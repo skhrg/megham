@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "megham"
+version = "0.0.1"
+authors = [{name="Saianeesh Keshav Haridas"}]
+description = "Tools for working with point clouds"
+readme = "README.md"
+requires-python = ">=3.8"
+keywords = ["point cloud", "affine", "rotations", "mds", "multidimensional scaling", "point set registration", "cpd", "coherent point drift", "mpd", "guassian mixture model"]
+license = {text = "GPLv3"}
+classifiers = [ "Programming Language :: Python" ]
+dependencies = ["numpy"]
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+tag_format = "$version"
+version_scheme = "semver"
+version_provider = "pep621"
+update_changelog_on_bump = true
