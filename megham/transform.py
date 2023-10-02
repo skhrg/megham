@@ -7,6 +7,61 @@ from numpy.typing import NDArray
 from scipy.spatial.transform import Rotation as R
 
 
+def get_rigid(
+    src: NDArray[np.floating], dst: NDArray[np.floating]
+) -> tuple[NDArray[np.floating], NDArray[np.floating]]:
+    """
+    Get rigid transformation between two point clouds.
+    It is assumed that the point clouds have the same registration,
+    ie. src[i] corresponds to dst[i].
+
+    Transformation is dst = rotation@src + shift
+
+    Parameters
+    ----------
+    src : NDArray[np.floating]
+         A (ndim, npoints) array of source points.
+    dst : NDArray[np.floating]
+         A (ndim, npoints) array of destination points.
+
+    Returns
+    -------
+    rotaion : NDArray[np.floating]
+        The (ndim, ndim) rotation matrix.
+    shift : NDArray[np.floating]
+        The (ndim,) shift to apply after transformation.
+
+    Raises
+    ------
+    ValueError
+        If the input point clouds have different shapes.
+        If the input point clouds don't have enough points.
+    """
+    if src.shape != dst.shape:
+        raise ValueError("Input point clouds should have the same shape")
+    msk = np.isfinite(src).all(axis=0) * np.isfinite(dst).all(axis=0)
+    ndim = len(src)
+    if np.sum(msk) < ndim * (ndim - 1) / 2:
+        raise ValueError("Not enough finite points to compute transformation")
+
+    _src = src[:, msk] - np.median(src[:, msk], axis=1)[:, None]
+    _dst = dst[:, msk] - np.median(dst[:, msk], axis=1)[:, None]
+
+    M = _src @ (_dst.T)
+    u, _, vh = la.svd(M)
+    v = vh.T
+    uT = u.T
+
+    corr = np.eye(ndim)
+    corr[ndim, ndim] = la.det((v) @ (uT))
+    rot = v @ corr @ uT
+
+    transformed = rot @ src[:, msk]
+    shift = np.median(dst[:, msk] - transformed, axis=1)
+
+    return rot, shift
+
+
 def get_affine(
     src: NDArray[np.floating], dst: NDArray[np.floating]
 ) -> tuple[NDArray[np.floating], NDArray[np.floating]]:
