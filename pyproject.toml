@@ -12,7 +12,7 @@ requires-python = ">=3.8"
 keywords = ["point cloud", "affine", "rotations", "mds", "multidimensional scaling", "point set registration", "cpd", "coherent point drift", "mpd", "guassian mixture model"]
 license = {text = "GPLv3"}
 classifiers = [ "Programming Language :: Python" ]
-dependencies = ["numpy, scipy"]
+dependencies = ["numpy", "scipy"]
 
 [tool.commitizen]
 name = "cz_conventional_commits"
