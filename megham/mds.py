@@ -8,6 +8,7 @@ import numpy as np
 import scipy.optimize as opt
 import scipy.spatial.distance as dist
 from numpy.typing import NDArray
+from sklearn.isotonic import IsotonicRegression
 
 
 def make_edm(coords: NDArray[np.floating]) -> NDArray[np.floating]:
@@ -196,3 +197,157 @@ def metric_mds(
     )
     print(f"Optimizer success: {res.success}\n Optimizer message: {res.message}")
     return res.x.reshape((npoint, ndim))
+
+
+def nonmetric_stress(
+    coords: NDArray[np.floating],
+    f_dist: NDArray[np.floating],
+    weights: NDArray[np.floating],
+    ndim: int,
+) -> float:
+    """
+    Stress that is minimized for nonmetric MDS.
+
+    Parameters
+    ----------
+    coords : NDArray[np.floating]
+        The coordinates to calculate stress at.
+        Should be (npoint, ndim)
+    f_dist : NDArray[np.floating]
+        The distance matrix with the isotonic regression applied.
+        Should be (npoint, npoint), unknown distances should be set to nan.
+    weights : NDArray[np.floating]
+        How much to weigh each distance in distance_matrix in the metric.
+        Should be (npoint, npoint) and have 1-to-1 correspondance with distance_matrix.
+    ndim : int, default: 3
+        The number of dimensions to scale to.
+
+    Returns
+    -------
+    stress : float
+        The stress of the system at the with the given coordinates.
+    """
+    npoint = len(f_dist)
+    idx = np.triu_indices(npoint, 1)
+    edm = make_edm(coords.reshape((npoint, ndim)))
+
+    num = np.nansum(weights[idx] * (f_dist[idx] - edm[idx]) ** 2)
+    denom = np.nansum(edm[idx] ** 2)
+    stress = np.sqrt(num / denom)
+
+    return stress
+
+
+def nonmetric_mds(
+    distance_matrix: NDArray[np.floating],
+    ndim: int = 3,
+    weights: Optional[NDArray[np.floating]] = None,
+    guess: Optional[NDArray[np.floating]] = None,
+    epsilon: float = 1e-16,
+    max_iters: Optional[int] = None,
+    **kwargs,
+) -> NDArray[np.floating]:
+    """
+    Perform nonmetric MDS.
+    This is useful over metric MDS if you have some wierd dissimilarity
+    (ie. not euclidean).
+
+    Parameters
+    ----------
+    distance_matrix : NDArray[np.floating]
+        The distance matrix.
+        Should be (npoint, npoint), unknown distances should be set to nan.
+    ndim : int, default: 3
+        The number of dimensions to scale to.
+    weights : Optional[NDArray[np.floating]], default: None
+        How much to weigh each distance in distance_matrix in the metric.
+        Weights should be finite and non-negative, invalid weights will be set to 0.
+        Should be (npoint, npoint) and have 1-to-1 correspondance with distance_matrix.
+    guess : Optional[NDArray[np.floating]], default: None
+        Initial guess at coordinates.
+        Should be (npoint, ndim) and in the same order as distance_matrix.
+    epsilon : float, default: 1e-16
+        Stopping criteria for outer optimization.
+    max_iters : Optional[int], default: None
+        Maximum number of iterations for outer optimization.
+    **kwargs
+        Keyword arguments to pass so scipy.optimize.minimize.
+
+    Returns
+    -------
+    coords : NDArray[np.floating]
+        The output coordinates, will be (npoint, ndim).
+        Points are in the same order as distance_matrix.
+
+    Raises
+    ------
+    ValueError
+       If distance_matrix is not square.
+       If the shape of weights or guess is not consistant with distance_matrix.
+    """
+    warnings.warn("This function is not well tested")
+    npoint = len(distance_matrix)
+    if distance_matrix.shape != (npoint, npoint):
+        raise ValueError("Distance matrix should be square")
+
+    if weights is None:
+        weights = np.ones_like(distance_matrix)
+    elif weights.shape != (npoint, npoint):
+        raise ValueError("Weights must match distance_matrix")
+    else:
+        neg_msk = weights < 0
+        if np.any(neg_msk):
+            warnings.warn("Negetive weight found, setting to 0.")
+            weights[neg_msk] = 0
+        nfin_msk = not np.isfinite(weights)
+        if np.any(nfin_msk):
+            warnings.warn("Non-finite weight found, setting to 0.")
+            weights[nfin_msk] = 0
+
+    if guess is None:
+        warnings.warn(
+            "No initial guess provided, it is unlikey that you will get a good result."
+        )
+        guess = _init_coords(npoint, ndim, distance_matrix)
+    elif guess.shape != (npoint, ndim):
+        raise ValueError("Guess must be (npoint, ndim)")
+
+    idx = np.triu_indices(npoint, 1)
+    flat_dist = np.ravel(distance_matrix[idx])
+    flat_weight = np.ravel(weights[idx])
+    msk = np.isfinite(flat_dist) + np.isfinite(flat_weight)
+    flat_dist = flat_dist[msk]
+    flat_weight = flat_weight[msk]
+    f_dist = np.zeros_like(distance_matrix)
+
+    stress = np.inf
+    it = 0
+    ir = IsotonicRegression()
+    while stress > epsilon:
+        if max_iters is not None and it >= max_iters:
+            break
+        # Make a guess at f
+        edm = make_edm(guess)[idx][msk]
+        _f_dist_flat = ir.fit_transform(flat_dist, edm, sample_weight=flat_weight)
+        f_dist_flat = np.nan + np.empty(msk.shape)
+        f_dist_flat[msk] = _f_dist_flat
+        f_dist[idx] = f_dist_flat
+
+        # Solve for the coordinates at this f
+        res = opt.minimize(
+            nonmetric_stress,
+            guess.ravel(),
+            args=(f_dist.astype(float), weights.astype(float), ndim),
+            **kwargs,
+        )
+        if res.fun > stress:
+            print("Stopping since stress is increasing")
+            break
+        guess = res.x.reshape((npoint, ndim))
+        stress = res.fun
+        if guess is None:
+            raise RuntimeError("Current guess is None, something went wrong...")
+        it += 1
+    print(f"Took {it} iterations with a final stress of {stress}")
+
+    return guess.reshape((npoint, ndim))
