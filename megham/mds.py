@@ -76,6 +76,17 @@ def classic_mds(
     return np.real(coords)
 
 
+def _init_coords(
+    npoint: int, ndim: int, distance_matrix: Optional[NDArray[np.floating]] = None
+) -> NDArray[np.floating]:
+    if distance_matrix is None:
+        scale = 1
+    else:
+        scale = np.nanmedian(distance_matrix)
+    coords = np.random.default_rng().normal(0, scale, (npoint, ndim))
+    return coords
+
+
 def metric_stress(
     coords: NDArray[np.floating],
     distance_matrix: NDArray[np.floating],
@@ -173,7 +184,7 @@ def metric_mds(
         warnings.warn(
             "No initial guess provided, it is unlikey that you will get a good result."
         )
-        guess = np.zeros((npoint, ndim))
+        guess = _init_coords(npoint, ndim, distance_matrix)
     elif guess.shape != (npoint, ndim):
         raise ValueError("Guess must be (npoint, ndim)")
 
