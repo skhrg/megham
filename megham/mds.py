@@ -17,12 +17,12 @@ def make_edm(coords: NDArray[np.floating]) -> NDArray[np.floating]:
     Parameters
     ----------
     coords : NDArray[np.floating]
-        The (npoints, ndim) array of input points.
+        The (npoint, ndim) array of input points.
 
     Returns
     -------
     edm : NDArray[np.floating]
-        The (npoints, npoints) euclidean distance matrix.
+        The (npoint, npoint) euclidean distance matrix.
     """
     dist_vec = dist.pdist(coords)
     edm = dist.squareform(dist_vec)
@@ -41,7 +41,7 @@ def classic_mds(
     distance_matrix : NDArray[np.floating]
         The euclidean distance matrix.
         Should be (npoint, npoint) and complete (no missing distances).
-    ndim: int, default: 3
+    ndim : int, default: 3
         The number of dimensions to scale to.
 
     Returns
