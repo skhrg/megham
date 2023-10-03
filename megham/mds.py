@@ -2,7 +2,28 @@
 Functions for doing multidimensional scaling.
 """
 import numpy as np
+import scipy.spatial.distance as dist
 from numpy.typing import NDArray
+
+
+def make_edm(coords: NDArray[np.floating]) -> NDArray[np.floating]:
+    """
+    Make an Euclidean distance matrix from a set of points.
+
+    Parameters
+    ----------
+    coords : NDArray[np.floating]
+        The (npoints, ndim) array of input points.
+
+    Returns
+    -------
+    edm : NDArray[np.floating]
+        The (npoints, npoints) euclidean distance matrix.
+    """
+    dist_vec = dist.pdist(coords)
+    edm = dist.squareform(dist_vec)
+
+    return edm
 
 
 def classic_mds(
