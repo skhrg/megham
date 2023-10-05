@@ -2,7 +2,7 @@
 Functions for doing multidimensional scaling.
 """
 import warnings
-from typing import Optional
+from typing import Callable, Optional
 
 import numpy as np
 import scipy.optimize as opt
@@ -88,6 +88,75 @@ def _init_coords(
     return coords
 
 
+def smacof(
+    stress_func: Callable[
+        [NDArray[np.floating], NDArray[np.floating], NDArray[np.floating], int], float
+    ],
+    coords: NDArray[np.floating],
+    distance_matrix: NDArray[np.floating],
+    weights: NDArray[np.floating],
+    ndim: int,
+    max_iters: int = 10000,
+    epsilon: float = 1e-10,
+) -> tuple[NDArray[np.floating], float]:
+    """
+    SMACOF algorithm for multidimensional scaling.
+
+    Parameters
+    ----------
+    stress_func : Callable[[NDArray[np.floating], NDArray[np.floating], NDArray[np.floating], int], float]
+        The stress function to use.
+    coords : NDArray[np.floating]
+        Initial guess of coordinates to calculate stress at.
+        Should be (npoint, ndim)
+    distance_matrix : NDArray[np.floating]
+        The distance matrix.
+        Should be (npoint, npoint), unknown distances should be set to nan.
+    weights : NDArray[np.floating]
+        How much to weigh each distance in distance_matrix in the metric.
+        Should be (npoint, npoint) and have 1-to-1 correspondance with distance_matrix.
+    ndim : int, default: 3
+        The number of dimensions to scale to.
+    epsilon : float, default: 1e-10
+        The difference in stress between iterations before stopping.
+    max_iters : int, default: 10000
+        The maximum iterations to run for.
+
+    Returns
+    -------
+    coords : NDArray[np.floating]
+        The coordinates as optimized by SMACOF.
+    stress : float
+        The stress of the system at the final iteration.
+    """
+    i = 0
+    npoint = len(distance_matrix)
+    stress = stress_func(coords, distance_matrix, weights, ndim)
+    for i in range(max_iters):
+        if stress == 0:
+            break
+        _stress = stress
+
+        edm = make_edm(coords)
+
+        B = -1 * weights * distance_matrix / edm
+        B[edm == 0] = 0
+        B[~np.isfinite(B)] = 0
+        B[np.diag_indices_from(B)] -= np.sum(B, axis=1)
+
+        guess = np.dot(B, coords) / npoint
+
+        stress = stress_func(guess, distance_matrix, weights, ndim)
+        if stress > _stress:
+            print("Stress increasing, rejecting guess and stopping SMACOF")
+            break
+        coords = guess
+        if _stress - stress < epsilon:
+            break
+    print(f"SMACOF took {i} iterations with a final stress of {stress}")
+    return coords, stress
+
+
 def metric_stress(
     coords: NDArray[np.floating],
     distance_matrix: NDArray[np.floating],
@@ -128,6 +197,7 @@ def metric_mds(
     ndim: int = 3,
     weights: Optional[NDArray[np.floating]] = None,
     guess: Optional[NDArray[np.floating]] = None,
+    use_smacof: bool = True,
     **kwargs,
 ) -> NDArray[np.floating]:
     """
@@ -148,8 +218,11 @@ def metric_mds(
     guess : Optional[NDArray[np.floating]], default: None
         Initial guess at coordinates.
         Should be (npoint, ndim) and in the same order as distance_matrix.
+    use_smacof : bool, default: True
+        If True use smacof for the optimization.
+        If False use scipy.optimize.minimize.
     **kwargs
-        Keyword arguments to pass so scipy.optimize.minimize.
+        Keyword arguments to pass to smacof or scipy.optimize.minimize.
 
     Returns
     -------
@@ -189,14 +262,20 @@ def metric_mds(
     elif guess.shape != (npoint, ndim):
         raise ValueError("Guess must be (npoint, ndim)")
 
-    res = opt.minimize(
-        metric_stress,
-        guess.ravel(),
-        args=(distance_matrix.astype(float), weights.astype(float), ndim),
-        **kwargs,
-    )
-    print(f"Optimizer success: {res.success}\n Optimizer message: {res.message}")
-    return res.x.reshape((npoint, ndim))
+    if use_smacof:
+        coords, _ = smacof(
+            metric_stress, guess, distance_matrix, weights, ndim, **kwargs
+        )
+    else:
+        res = opt.minimize(
+            metric_stress,
+            guess.ravel(),
+            args=(distance_matrix.astype(float), weights.astype(float), ndim),
+            **kwargs,
+        )
+        print(f"Optimizer success: {res.success}\n Optimizer message: {res.message}")
+        coords = res.x.reshape((npoint, ndim))
+    return coords
 
 
 def nonmetric_stress(
