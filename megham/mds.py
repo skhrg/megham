@@ -1,7 +1,7 @@
 """
 Functions for doing multidimensional scaling.
 """
-import warnings
+import logging
 from typing import Callable, Optional
 
 import numpy as np
@@ -9,6 +9,8 @@ import scipy.optimize as opt
 import scipy.spatial.distance as dist
 from numpy.typing import NDArray
 from sklearn.isotonic import IsotonicRegression
+
+logger = logging.getLogger(__name__)
 
 
 def make_edm(coords: NDArray[np.floating]) -> NDArray[np.floating]:
@@ -98,6 +100,7 @@ def smacof(
     ndim: int,
     max_iters: int = 10000,
     epsilon: float = 1e-10,
+    verbose: bool = True,
 ) -> tuple[NDArray[np.floating], float]:
     """
     SMACOF algorithm for multidimensional scaling.
@@ -121,6 +124,10 @@ def smacof(
         The difference in stress between iterations before stopping.
     max_iters : int, default: 10000
         The maximum iterations to run for.
+    verbose : bool, default: True
+        Sets the verbosity of this function.
+        If True logs at the INFO level.
+        If False logs at the DEBUG level.
 
     Returns
     -------
@@ -129,6 +136,10 @@ def smacof(
     stress : float
         The stress of the system at the final iteration.
     """
+    if verbose:
+        log = logger.info
+    else:
+        log = logger.debug
     i = 0
     npoint = len(distance_matrix)
     stress = stress_func(coords, distance_matrix, weights, ndim)
@@ -150,7 +161,7 @@ def smacof(
         coords = guess
         if _stress - stress < epsilon:
             break
-    print(f"SMACOF took {i} iterations with a final stress of {stress}")
+    log("SMACOF took %d iterations with a final stress of %f", i + 1, stress)
     return coords, stress
 
 
@@ -244,17 +255,15 @@ def metric_mds(
     else:
         neg_msk = weights < 0
         if np.any(neg_msk):
-            warnings.warn("Negetive weight found, setting to 0.")
+            logger.warn("Negetive weight found, setting to 0.")
             weights[neg_msk] = 0
         nfin_msk = not np.isfinite(weights)
         if np.any(nfin_msk):
-            warnings.warn("Non-finite weight found, setting to 0.")
+            logger.warn("Non-finite weight found, setting to 0.")
             weights[nfin_msk] = 0
 
     if guess is None:
-        warnings.warn(
-            "No initial guess provided, it is unlikey that you will get a good result."
-        )
+        logger.info("No initial guess provided, using a random set of points.")
         guess = _init_coords(npoint, ndim, distance_matrix)
     elif guess.shape != (npoint, ndim):
         raise ValueError("Guess must be (npoint, ndim)")
@@ -270,7 +279,11 @@ def metric_mds(
             args=(distance_matrix.astype(float), weights.astype(float), ndim),
             **kwargs,
         )
-        print(f"Optimizer success: {res.success}\n Optimizer message: {res.message}")
+        logger.info(
+            "Finished with a final stress of %f\n Optimizer message: %s",
+            res.fun,
+            res.message,
+        )
         coords = res.x.reshape((npoint, ndim))
     return coords
 
@@ -365,7 +378,10 @@ def nonmetric_mds(
        If distance_matrix is not square.
        If the shape of weights or guess is not consistant with distance_matrix.
     """
-    warnings.warn("This function is not well tested")
+    if use_smacof:
+        logger.warn(
+            "You are using SMACOF with nonmetric mds, this doesn't currently work very well..."
+        )
     npoint = len(distance_matrix)
     if distance_matrix.shape != (npoint, npoint):
         raise ValueError("Distance matrix should be square")
@@ -377,17 +393,15 @@ def nonmetric_mds(
     else:
         neg_msk = weights < 0
         if np.any(neg_msk):
-            warnings.warn("Negetive weight found, setting to 0.")
+            logger.warn("Negetive weight found, setting to 0.")
             weights[neg_msk] = 0
         nfin_msk = not np.isfinite(weights)
         if np.any(nfin_msk):
-            warnings.warn("Non-finite weight found, setting to 0.")
+            logger.warn("Non-finite weight found, setting to 0.")
             weights[nfin_msk] = 0
 
     if guess is None:
-        warnings.warn(
-            "No initial guess provided, it is unlikey that you will get a good result."
-        )
+        logger.info("No initial guess provided, using a random set of points.")
         guess = _init_coords(npoint, ndim, distance_matrix)
     elif guess.shape != (npoint, ndim):
         raise ValueError("Guess must be (npoint, ndim)")
@@ -434,6 +448,6 @@ def nonmetric_mds(
             break
         if stress == 0:
             break
-    print(f"Took {i+1} iterations with a final stress of {stress}")
+    logger.info("Took %d iterations with a final stress of %f", i + 1, stress)
 
     return coords
