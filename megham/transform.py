@@ -53,7 +53,7 @@ def get_rigid(
     uT = u.T
 
     corr = np.eye(ndim)
-    corr[ndim, ndim] = la.det((v) @ (uT))
+    corr[-1, -1] = la.det((v) @ (uT))
     rot = v @ corr @ uT
 
     transformed = rot @ src[:, msk]
