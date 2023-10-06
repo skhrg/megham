@@ -334,7 +334,7 @@ def nonmetric_mds(
     guess: Optional[NDArray[np.floating]] = None,
     epsilon_outer: float = 1e-10,
     max_iters_outer: int = 200,
-    use_smacof: bool = True,
+    use_smacof: bool = False,
     **kwargs,
 ) -> NDArray[np.floating]:
     """
@@ -360,7 +360,7 @@ def nonmetric_mds(
         The difference in stress between iterations before stopping outer optimization.
     max_iters_outer : int, default: 200
         Maximum number of iterations for outer optimization.
-    use_smacof : bool, default: True
+    use_smacof : bool, default: False
         If True use smacof for the optimization.
         If False use scipy.optimize.minimize.
     **kwargs
@@ -382,6 +382,8 @@ def nonmetric_mds(
         logger.warn(
             "You are using SMACOF with nonmetric mds, this doesn't currently work very well..."
         )
+        if "verbose" not in kwargs:
+            kwargs["verbose"] = False
     npoint = len(distance_matrix)
     if distance_matrix.shape != (npoint, npoint):
         raise ValueError("Distance matrix should be square")
