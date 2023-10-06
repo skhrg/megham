@@ -147,9 +147,6 @@ def smacof(
         guess = np.dot(B, coords) / npoint
 
         stress = stress_func(guess, distance_matrix, weights, ndim)
-        if stress > _stress:
-            print("Stress increasing, rejecting guess and stopping SMACOF")
-            break
         coords = guess
         if _stress - stress < epsilon:
             break
@@ -322,8 +319,9 @@ def nonmetric_mds(
     ndim: int = 3,
     weights: Optional[NDArray[np.floating]] = None,
     guess: Optional[NDArray[np.floating]] = None,
-    epsilon: float = 1e-16,
-    max_iters: Optional[int] = None,
+    epsilon_outer: float = 1e-10,
+    max_iters_outer: int = 200,
+    use_smacof: bool = True,
     **kwargs,
 ) -> NDArray[np.floating]:
     """
@@ -345,12 +343,15 @@ def nonmetric_mds(
     guess : Optional[NDArray[np.floating]], default: None
         Initial guess at coordinates.
         Should be (npoint, ndim) and in the same order as distance_matrix.
-    epsilon : float, default: 1e-16
-        Stopping criteria for outer optimization.
-    max_iters : Optional[int], default: None
+    epsilon_outer : float, default: 1e-10
+        The difference in stress between iterations before stopping outer optimization.
+    max_iters_outer : int, default: 200
         Maximum number of iterations for outer optimization.
+    use_smacof : bool, default: True
+        If True use smacof for the optimization.
+        If False use scipy.optimize.minimize.
     **kwargs
-        Keyword arguments to pass so scipy.optimize.minimize.
+        Keyword arguments to pass to smacof or scipy.optimize.minimize.
 
     Returns
     -------
@@ -400,11 +401,11 @@ def nonmetric_mds(
     f_dist = np.zeros_like(distance_matrix)
 
     stress = np.inf
-    it = 0
+    i = 0
     ir = IsotonicRegression()
-    while stress > epsilon:
-        if max_iters is not None and it >= max_iters:
-            break
+    coords = guess.copy()
+    for i in range(max_iters_outer):
+        _stress = stress
         # Make a guess at f
         edm = make_edm(guess)[idx][msk]
         _f_dist_flat = ir.fit_transform(flat_dist, edm, sample_weight=flat_weight)
@@ -413,20 +414,26 @@ def nonmetric_mds(
         f_dist[idx] = f_dist_flat
 
         # Solve for the coordinates at this f
-        res = opt.minimize(
-            nonmetric_stress,
-            guess.ravel(),
-            args=(f_dist.astype(float), weights.astype(float), ndim),
-            **kwargs,
-        )
-        if res.fun > stress:
-            print("Stopping since stress is increasing")
-            break
-        guess = res.x.reshape((npoint, ndim))
-        stress = res.fun
+        if use_smacof:
+            guess, stress = smacof(
+                nonmetric_stress, coords, f_dist, weights, ndim, **kwargs
+            )
+        else:
+            res = opt.minimize(
+                nonmetric_stress,
+                coords.ravel(),
+                args=(f_dist.astype(float), weights.astype(float), ndim),
+                **kwargs,
+            )
+            guess = res.x.reshape((npoint, ndim))
+            stress = res.fun
         if guess is None:
             raise RuntimeError("Current guess is None, something went wrong...")
-        it += 1
-    print(f"Took {it} iterations with a final stress of {stress}")
+        coords = guess
+        if _stress - stress < epsilon_outer:
+            break
+        if stress == 0:
+            break
+    print(f"Took {i+1} iterations with a final stress of {stress}")
 
-    return guess.reshape((npoint, ndim))
+    return coords
