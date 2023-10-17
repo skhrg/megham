@@ -62,6 +62,74 @@ def get_rigid(
     return rot, shift
 
 
+def apply_affine(
+    src: NDArray[np.floating],
+    affine: NDArray[np.floating],
+    shift: NDArray[np.floating],
+    transpose: bool = True,
+) -> NDArray[np.floating]:
+    """
+    Apply an affine transformation to a set of points.
+
+    Parameters
+    ----------
+    src : NDArray[np.floating]
+        The points to transform.
+        Should have shape (ndim, npoints) or (npoints, ndim).
+    affine : NDArray[np.floating]
+        The affine transformation matrix.
+        Should have shape (ndim, ndim).
+    shift : NDArray[np.floating]
+        The shift to apply after the affine tranrform.
+        Should have shape (ndim,).
+    transpose : bool, default: True
+        Whether or not the input and output need to be transposed.
+        This is the case when src is (npoints, ndim).
+        By default the function will try to figure this out in its own,
+        this is only used in the case where it can't because src is (ndim, ndim).
+
+    Returns
+    -------
+    transformed : NDArray[np.floating]
+        The transformed points.
+        Has the same shape as src.
+
+    Raises
+    ------
+    ValueError
+        If src is not a 2d array.
+        If one of src's axis is not of size ndim.
+        If affine and shift have inconsistent shapes.
+    """
+    ndim = len(shift)
+    if affine.shape != (ndim, ndim):
+        raise ValueError(
+            f"From shift we assume ndim={ndim} but affine has shape {affine.shape}"
+        )
+    src_shape = np.array(src.shape)
+    if len(src_shape) != 2:
+        raise ValueError(f"src should be a 2d array, not {len(src.shape)}d")
+    ndim_ax = src_shape[src_shape == ndim]
+    if not ndim_ax:
+        raise ValueError("No ndim lenght axis found in src")
+    if len(ndim_ax) > 1:
+        if transpose:
+            print("Both axes of src are ndim, assuming the first axis is npoints")
+        else:
+            print("Both axes of src are ndim, assuming the second axis is npoints")
+        transpose = transpose + (ndim_ax[0] == 1)
+    else:
+        transpose = ndim_ax[0] == 1
+
+    if transpose:
+        transformed = affine @ src.T + shift[..., np.newaxis]
+        transformed = transformed.T
+    else:
+        transformed = affine @ src + shift[..., np.newaxis]
+
+    return transformed
+
+
 def get_affine(
     src: NDArray[np.floating], dst: NDArray[np.floating]
 ) -> tuple[NDArray[np.floating], NDArray[np.floating]]:
