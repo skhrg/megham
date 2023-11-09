@@ -1,7 +1,7 @@
 """
 Module for performing coherent point drift
 """
-from typing import Optional, Sequence
+from typing import Optional, Protocol, Sequence
 
 import numpy as np
 import scipy.spatial.distance as dist
@@ -10,6 +10,25 @@ from numpy.typing import NDArray
 from ..transform import apply_affine
 
 epsilon = 1e-7
+
+
+class Callback(Protocol):
+    """
+    Callback idea shamelessly stolen from pycpd.
+    """
+
+    def __call__(
+        self,
+        target: NDArray[np.floating],
+        transformed: NDArray[np.floating],
+        iteration: int,
+        err: float,
+    ):
+        ...
+
+
+def dummy_callback(target, transformed, iteration, err):
+    return
 
 
 def _init_var(
@@ -106,6 +125,7 @@ def compute_P(
     norm_fac = np.clip(np.sum(gaussians, axis=0), epsilon, None)
 
     P = gaussians / (norm_fac + uni)
+
     return P
 
 
@@ -195,6 +215,7 @@ def joint_cpd(
     w: float = 0.0,
     eps: float = 1e-10,
     max_iters: int = 500,
+    callback: Callback = dummy_callback,
 ) -> tuple[
     NDArray[np.floating],
     NDArray[np.floating],
@@ -240,6 +261,9 @@ def joint_cpd(
         When the change in the objective function is less than or equal to this we stop.
     max_iters : int, default: 500
         The maximum number of iterations to run for.
+    callback: Callback, default: dummy_callback
+        Function that runs once per iteration, can be used to visualize the match process.
+        See the Callback Protocol for details on the expected signature.
 
     Returns
     -------
@@ -291,16 +315,19 @@ def joint_cpd(
     affine = np.eye(ndim)
     shift = np.zeros(ndim)
 
+    i = 0
     for i in range(max_iters):
         _err = err
         transformed = source @ affine + shift
         P = compute_P(transformed, target, var, w)
         affine, shift, var, err = solve_affine(source, target, P, dim_groups, var)
+        callback(target, transformed, i, err)
 
         if _err - err < eps:
             break
     transformed = source @ affine + shift
     P = compute_P(transformed, target, var, w)
+    callback(target, transformed, i + 1, err)
 
     return affine, shift, transformed, P
 
@@ -311,6 +338,7 @@ def cpd(
     w: float = 0.0,
     eps: float = 1e-10,
     max_iters: int = 500,
+    callback: Callback = dummy_callback,
 ) -> tuple[
     NDArray[np.floating],
     NDArray[np.floating],
@@ -331,4 +359,5 @@ def cpd(
         w=w,
         eps=eps,
         max_iters=max_iters,
+        callback=callback,
     )
