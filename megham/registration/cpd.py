@@ -95,9 +95,13 @@ def compute_P(
         * (nsrcpoints / ntrgpoints)
         * np.sqrt(((2 * np.pi) ** ndim) * np.product(var))
     )
-    gaussians = np.zeros((nsrcpoints, ntrgpoints))
+    gaussians = np.ones((nsrcpoints, ntrgpoints))
     for dim in range(ndim):
-        sq_diff = dist.cdist(source[:, dim], target[:, dim], metric="sqeuclidean")
+        sq_diff = dist.cdist(
+            np.atleast_2d(source[:, dim]).T,
+            np.atleast_2d(target[:, dim]).T,
+            metric="sqeuclidean",
+        )
         gaussians *= np.exp(-0.5 * sq_diff / var[dim])
     norm_fac = np.clip(np.sum(gaussians, axis=0), epsilon, None)
 
@@ -109,7 +113,7 @@ def solve_affine(
     source: NDArray[np.floating],
     target: NDArray[np.floating],
     P: NDArray[np.floating],
-    dim_groups: Sequence[Sequence[int] | NDArray[np.int_]],
+    dim_groups: Sequence[NDArray[np.int_]],
     cur_var: NDArray[np.floating],
 ) -> tuple[NDArray[np.floating], NDArray[np.floating], NDArray[np.floating], float]:
     """
@@ -123,7 +127,7 @@ def solve_affine(
         Should have shape (ntrgpoints, ndim).
     P : NDArray[np.floating]
         Probability matrix of matches between the source and target points.
-    dim_groups : Sequence[Sequence[int] | NDArray[np.int_]]
+    dim_groups : Sequence[NDArray[np.int_]]
         Which dimensions should be transformed together.
     cur_var : float
         The current mixture model variance.
@@ -147,8 +151,8 @@ def solve_affine(
     mu_src = np.sum(P.T @ source, axis=0) / N_P
     mu_trg = np.sum(P @ target, axis=0) / N_P
 
-    src_hat = source - mu_src[..., np.newaxis]
-    trg_hat = target - mu_trg[..., np.newaxis]
+    src_hat = source - mu_src
+    trg_hat = target - mu_trg
 
     affine = np.eye(ndim)
     shift = np.zeros(ndim)
@@ -165,7 +169,7 @@ def solve_affine(
         afn = np.linalg.solve(src_mul, all_mul)
         sft = mu_t - afn @ mu_s
 
-        affine[dim_group, dim_group] = afn
+        affine[dim_group[:, np.newaxis], dim_group] = afn
         shift[dim_group] = sft
 
         trc_trf_mul = np.trace(afn @ src_mul @ afn)
@@ -273,12 +277,13 @@ def joint_cpd(
     else:
         dims_flat = np.concatenate(dim_groups)
         dims_bad = dims_flat[(dims_flat < 0) + (dims_flat >= ndim)]
-        if not len(dims_bad):
+        if len(dims_bad):
             raise ValueError(f"Invalid dimensions in dim_groups: {dims_bad}")
-        dims_uniq, counts = np.unique(dims_flat)
+        dims_uniq, counts = np.unique(dims_flat, return_counts=True)
         repeats = dims_uniq[counts > 1]
-        if not len(repeats):
+        if len(repeats):
             raise ValueError(f"Repeated dimensions in dim_groups: {repeats}")
+        dim_groups = [np.array(dim_group, dtype=int) for dim_group in dim_groups]
 
     var = _init_var(source, target, dim_groups)
     err = np.inf
@@ -288,13 +293,13 @@ def joint_cpd(
 
     for i in range(max_iters):
         _err = err
-        transformed = apply_affine(source, affine, shift, True)
+        transformed = source @ affine + shift
         P = compute_P(transformed, target, var, w)
         affine, shift, var, err = solve_affine(source, target, P, dim_groups, var)
 
         if _err - err < eps:
             break
-    transformed = apply_affine(source, affine, shift)
+    transformed = source @ affine + shift
     P = compute_P(transformed, target, var, w)
 
     return affine, shift, transformed, P
