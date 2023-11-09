@@ -315,7 +315,8 @@ def joint_cpd(
     affine = np.eye(ndim)
     shift = np.zeros(ndim)
 
-    i = 0
+    transformed = source.copy()
+    P = np.ones((len(source), len(target)))
     for i in range(max_iters):
         _err = err
         transformed = source @ affine + shift
@@ -325,9 +326,6 @@ def joint_cpd(
 
         if _err - err < eps:
             break
-    transformed = source @ affine + shift
-    P = compute_P(transformed, target, var, w)
-    callback(target, transformed, i + 1, err)
 
     return affine, shift, transformed, P
 
