@@ -186,8 +186,8 @@ def solve_affine(
 
         all_mul = trg.T @ P.T @ src
         src_mul = src.T @ P1 @ src
-        afn = np.linalg.solve(src_mul, all_mul)
-        sft = mu_t - afn @ mu_s
+        afn = np.linalg.solve(src_mul.T, all_mul.T)
+        sft = mu_t.T - afn.T @ mu_s.T
 
         affine[dim_group[:, np.newaxis], dim_group] = afn
         shift[dim_group] = sft
@@ -318,16 +318,16 @@ def joint_cpd(
     transformed = source.copy()
     P = np.ones((len(source), len(target)))
     for i in range(max_iters):
-        _err = err
+        _err, _affine, _shift = err, affine, shift
         transformed = apply_transform(source, affine, shift)
         P = compute_P(transformed, target, var, w)
         affine, shift, var, err = solve_affine(source, target, P, dim_groups, var)
         callback(target, transformed, i, err)
 
         if _err - err < eps:
+            if err > _err:
+                affine, shift = _affine, _shift
             break
-    print(i)
-    print(err)
 
     return affine, shift, transformed, P
 
