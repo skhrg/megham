@@ -8,14 +8,15 @@ from scipy.spatial.transform import Rotation as R
 
 
 def get_rigid(
-    src: NDArray[np.floating], dst: NDArray[np.floating]
+    src: NDArray[np.floating], dst: NDArray[np.floating], row_basis: bool = True
 ) -> tuple[NDArray[np.floating], NDArray[np.floating]]:
     """
     Get rigid transformation between two point clouds.
     It is assumed that the point clouds have the same registration,
     ie. src[i] corresponds to dst[i].
 
-    Transformation is dst = rotation@src + shift
+    Transformation is dst = src@rot + shift in row basis,
+    and dst = rot@src + shift in col basis.
 
     Parameters
     ----------
@@ -23,13 +24,18 @@ def get_rigid(
          A (ndim, npoints) array of source points.
     dst : NDArray[np.floating]
          A (ndim, npoints) array of destination points.
+    row_basis : bool, True
+         If the basis of the points is row.
+         If row basis then each row of src and dst is a point.
+         If col basis then each col of src and dst is a point.
 
     Returns
     -------
-    rotaion : NDArray[np.floating]
+    rotation : NDArray[np.floating]
         The (ndim, ndim) rotation matrix.
     shift : NDArray[np.floating]
         The (ndim,) shift to apply after transformation.
+        If point are in col basis will be returned as a column vector.
 
     Raises
     ------
@@ -39,6 +45,10 @@ def get_rigid(
     """
     if src.shape != dst.shape:
         raise ValueError("Input point clouds should have the same shape")
+    if row_basis:
+        src = src.T
+        dst = dst.T
+
     msk = np.isfinite(src).all(axis=0) * np.isfinite(dst).all(axis=0)
     ndim = len(src)
     if np.sum(msk) < ndim * (ndim - 1) / 2:
@@ -59,93 +69,35 @@ def get_rigid(
     transformed = rot @ src[:, msk]
     shift = np.median(dst[:, msk] - transformed, axis=1)
 
+    if row_basis:
+        rot = rot.T
+    else:
+        shift = shift[..., np.newaxis]
+
     return rot, shift
 
 
-def apply_affine(
-    src: NDArray[np.floating],
-    affine: NDArray[np.floating],
-    shift: NDArray[np.floating],
-    transpose: bool = True,
-) -> NDArray[np.floating]:
-    """
-    Apply an affine transformation to a set of points.
-
-    Parameters
-    ----------
-    src : NDArray[np.floating]
-        The points to transform.
-        Should have shape (ndim, npoints) or (npoints, ndim).
-    affine : NDArray[np.floating]
-        The affine transformation matrix.
-        Should have shape (ndim, ndim).
-    shift : NDArray[np.floating]
-        The shift to apply after the affine tranrform.
-        Should have shape (ndim,).
-    transpose : bool, default: True
-        Whether or not the input and output need to be transposed.
-        This is the case when src is (npoints, ndim).
-        By default the function will try to figure this out in its own,
-        this is only used in the case where it can't because src is (ndim, ndim).
-
-    Returns
-    -------
-    transformed : NDArray[np.floating]
-        The transformed points.
-        Has the same shape as src.
-
-    Raises
-    ------
-    ValueError
-        If src is not a 2d array.
-        If one of src's axis is not of size ndim.
-        If affine and shift have inconsistent shapes.
-    """
-    ndim = len(shift)
-    if affine.shape != (ndim, ndim):
-        raise ValueError(
-            f"From shift we assume ndim={ndim} but affine has shape {affine.shape}"
-        )
-    src_shape = np.array(src.shape)
-    if len(src_shape) != 2:
-        raise ValueError(f"src should be a 2d array, not {len(src.shape)}d")
-    ndim_ax = src_shape[src_shape == ndim]
-    if not ndim_ax:
-        raise ValueError("No ndim lenght axis found in src")
-    if len(ndim_ax) > 1:
-        if transpose:
-            print("Both axes of src are ndim, assuming the first axis is npoints")
-        else:
-            print("Both axes of src are ndim, assuming the second axis is npoints")
-        transpose = transpose + (ndim_ax[0] == 1)
-    else:
-        transpose = ndim_ax[0] == 1
-
-    if transpose:
-        transformed = affine @ src.T + shift[..., np.newaxis]
-        transformed = transformed.T
-    else:
-        transformed = affine @ src + shift[..., np.newaxis]
-
-    return transformed
-
-
 def get_affine(
-    src: NDArray[np.floating], dst: NDArray[np.floating]
+    src: NDArray[np.floating], dst: NDArray[np.floating], row_basis: bool = True
 ) -> tuple[NDArray[np.floating], NDArray[np.floating]]:
     """
     Get affine transformation between two point clouds.
     It is assumed that the point clouds have the same registration,
     ie. src[i] corresponds to dst[i].
 
-    Transformation is dst = affine@src + shift
+    Transformation is dst = src@affine + shift in row basis,
+    and dst = affine@src + shift in col basis.
 
     Parameters
     ----------
     src : NDArray[np.floating]
-         A (ndim, npoints) array of source points.
+         A (npoints, ndim) or (ndim, npoints) array of source points.
     dst : NDArray[np.floating]
-         A (ndim, npoints) array of destination points.
+         A ((npoints, ndim) or (ndim, npoints) array of destination points.
+    row_basis : bool, True
+         If the basis of the points is row.
+         If row basis then each row of src and dst is a point.
+         If col basis then each col of src and dst is a point.
 
     Returns
     -------
@@ -153,6 +105,7 @@ def get_affine(
         The (ndim, ndim) transformation matrix.
     shift : NDArray[np.floating]
         The (ndim,) shift to apply after transformation.
+        If point are in col basis will be returned as a column vector.
 
     Raises
     ------
@@ -162,6 +115,10 @@ def get_affine(
     """
     if src.shape != dst.shape:
         raise ValueError("Input point clouds should have the same shape")
+    if row_basis:
+        src = src.T
+        dst = dst.T
+
     msk = np.isfinite(src).all(axis=0) * np.isfinite(dst).all(axis=0)
     if np.sum(msk) < len(src) + 1:
         raise ValueError("Not enough finite points to compute transformation")
@@ -181,7 +138,67 @@ def get_affine(
     transformed = affine @ src[:, msk]
     shift = np.median(dst[:, msk] - transformed, axis=1)
 
+    if row_basis:
+        affine = affine.T
+    else:
+        shift = shift[..., np.newaxis]
+
     return affine, shift
+
+
+def apply_transform(
+    src: NDArray[np.floating],
+    transform: NDArray[np.floating],
+    shift: NDArray[np.floating],
+    row_basis: bool = True,
+) -> NDArray[np.floating]:
+    """
+    Apply a transformation to a set of points.
+
+    Parameters
+    ----------
+    src : NDArray[np.floating]
+        The points to transform.
+        Should have shape (ndim, npoints) or (npoints, ndim).
+    transform: NDArray[np.floating]
+        The transformation matrix.
+        Should have shape (ndim, ndim).
+    shift : NDArray[np.floating]
+        The shift to apply after the affine tranrform.
+        Should have shape (ndim,).
+    row_basis : bool, default: True
+        Whether or not the input and output need to be transposed.
+        This is the case when src is (npoints, ndim).
+        By default the function will try to figure this out in its own,
+        this is only used in the case where it can't because src is (ndim, ndim).
+
+    Returns
+    -------
+    transformed : NDArray[np.floating]
+        The transformed points.
+        Has the same shape as src.
+
+    Raises
+    ------
+    ValueError
+        If src is not a 2d array.
+        If one of src's axis is not of size ndim.
+        If affine and shift have inconsistent shapes.
+    """
+    ndim = len(shift)
+    if transform.shape != (ndim, ndim):
+        raise ValueError(
+            f"From shift we assume ndim={ndim} but transform has shape {transform.shape}"
+        )
+    src_shape = np.array(src.shape)
+    if len(src_shape) != 2:
+        raise ValueError(f"src should be a 2d array, not {len(src.shape)}d")
+
+    if row_basis:
+        transformed = src @ transform + shift
+    else:
+        transformed = transform @ src + shift
+    return transformed
 
 
 def decompose_affine(

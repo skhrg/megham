@@ -7,7 +7,7 @@ import numpy as np
 import scipy.spatial.distance as dist
 from numpy.typing import NDArray
 
-from ..transform import apply_affine
+from ..transform import apply_transform
 
 epsilon = 1e-7
 
@@ -319,13 +319,15 @@ def joint_cpd(
     P = np.ones((len(source), len(target)))
     for i in range(max_iters):
         _err = err
-        transformed = source @ affine + shift
+        transformed = apply_transform(source, affine, shift)
         P = compute_P(transformed, target, var, w)
         affine, shift, var, err = solve_affine(source, target, P, dim_groups, var)
         callback(target, transformed, i, err)
 
         if _err - err < eps:
             break
+    print(i)
+    print(err)
 
     return affine, shift, transformed, P
 
