@@ -1,3 +1,18 @@
+## 0.4.0 (2023-11-10)
+
+### Feat
+
+- transforms have selectable basis
+- added callback to cpd
+- first pass of joint CPD algorhitm
+- add function to apply affine transformation
+
+### Fix
+
+- linalg corrections and don't return tranform that increases err
+- don't return last iter
+- bugfixes galore, mostly indexing
+
 ## 0.3.0 (2023-10-06)
 
 ### Feat
