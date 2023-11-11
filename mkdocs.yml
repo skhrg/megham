@@ -2,6 +2,7 @@ site_name: Megham
 theme: material 
 plugins:
   - search
+  - mkdocs-homepage-copier
   - gen-files:
       scripts:
       - docs/gen_ref_pages.py
