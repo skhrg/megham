@@ -14,6 +14,16 @@ license = {text = "GPLv3"}
 classifiers = [ "Programming Language :: Python" ]
 dependencies = ["numpy", "scipy", "scikit-learn"]
 
+[project.optional-dependencies]
+docs = [
+    "mkdocs",
+    "mkdocs-material",
+    "mkdocstrings[python]",
+    "mkdocs-gen-files",
+    "mkdocs-literate-nav",
+    "mkdocs-homepage-copier",
+]
+
 [tool.commitizen]
 name = "cz_conventional_commits"
 tag_format = "$version"
