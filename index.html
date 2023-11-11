@@ -551,11 +551,13 @@ There are things that exist in bits and pieces
 (<a href="https://numpy.org/">numpy</a>, <a href="https://scipy.org/">scipy</a>, <a href="https://scikit-learn.org/stable/modules/classes.html#module-sklearn.manifold">sklearn's manifold module</a>, <a href="https://github.com/siavashk/pycpd">pycpd</a>, etc.)
 but none of them had all of the features I wanted or were implemented in ways that weren't ideal for my usecase.</p>
 <p>Megham exists to help me bridge that gap.
-Currently I am targeting only a small set of features that are relevant to my work:
-* Fitting transforms between point clouds
-* Point set registration (without known correspondence)
-* Outlier detection
-* Multi dimensional scaling</p>
+Currently I am targeting only a small set of features that are relevant to my work:</p>
+<ul>
+<li>Fitting transforms between point clouds</li>
+<li>Point set registration (without known correspondence)</li>
+<li>Outlier detection</li>
+<li>Multi dimensional scaling</li>
+</ul>
 <p>But other features may exist down the line (and PRs are welcome).</p>
 <h2 id="getting-started">Getting Started</h2>
 <p>To install this repository run:</p>
@@ -585,9 +587,8 @@ It is recommended that you make use of these tools to save time.</p>
 <ol>
 <li>Make a branch for the edits you want to make.</li>
 <li>Code.</li>
-<li>Commit your code with a <a href="https://www.conventionalcommits.org/en/v1.0.0/#summary">conventional commit message</a>.</li>
-<li><code>cz c</code> gives you a wizard that will do this for you, if you followed Step 3 above then <code>git commit</code> will also do this (but not <code>git commit -m</code>).</li>
-<li>Repeat step 3 and 4 until the goal if your branch has been completed.</li>
+<li>Commit your code with a <a href="https://www.conventionalcommits.org/en/v1.0.0/#summary">conventional commit message</a>. <code>cz c</code> gives you a wizard that will do this for you, if you followed Step 3 above then <code>git commit</code> will also do this (but not <code>git commit -m</code>).</li>
+<li>Repeat steps 2 and 3 until the goal if your branch has been completed.</li>
 <li>Put in a PR.</li>
 <li>Once the PR is merged the repo version and tag will update <a href="https://commitizen-tools.github.io/commitizen/tutorials/github_actions/">automatically</a>.</li>
 </ol>
