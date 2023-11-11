@@ -56,8 +56,8 @@ def classic_mds(
     Raises
     ------
     ValueError
-       If distance_matrix is not square.
-       If distance_matrix has non-finite values.
+        If distance_matrix is not square.
+        If distance_matrix has non-finite values.
     """
     npoint = len(distance_matrix)
     if distance_matrix.shape != (npoint, npoint):
@@ -241,8 +241,8 @@ def metric_mds(
     Raises
     ------
     ValueError
-       If distance_matrix is not square.
-       If the shape of weights or guess is not consistant with distance_matrix.
+        If distance_matrix is not square.
+        If the shape of weights or guess is not consistant with distance_matrix.
     """
     npoint = len(distance_matrix)
     if distance_matrix.shape != (npoint, npoint):
@@ -375,8 +375,8 @@ def nonmetric_mds(
     Raises
     ------
     ValueError
-       If distance_matrix is not square.
-       If the shape of weights or guess is not consistant with distance_matrix.
+        If distance_matrix is not square.
+        If the shape of weights or guess is not consistant with distance_matrix.
     """
     if use_smacof:
         logger.warn(
