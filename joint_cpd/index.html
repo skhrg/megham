@@ -533,7 +533,7 @@ P^{old}(m|x_{n}) = \frac{\prod_{d=1}^{D}\exp\left(-\frac{1}{2} \lVert \frac{x_{(
 <div class="arithmatex">\[
 Q = -\sum_{n=1}^{N}\sum_{m=1}^{M} P^{old}(m|x_{n})\log\left(P^{new}(m)p^{new}(x_{n}|m)\right)
 \]</div>
-<p>Because the partial derivatives of <span class="arithmatex">\(Q\)</span> with respect to the components of <span class="arithmatex">\(T_{(d)}\)</span> and <span class="arithmatex">\(sigma_{(d)}\)</span> kill all terms pertaining to other dimensional groups (see <a href="./#proof-of-equivalence">Proof of Equivalence</a>) we can update the transformation and variance as in the original CPD algorithm within each dimensional group. 
+<p>Because the partial derivatives of <span class="arithmatex">\(Q\)</span> with respect to the components of <span class="arithmatex">\(T_{(d)}\)</span> and <span class="arithmatex">\(\sigma_{(d)}\)</span> kill all terms pertaining to other dimensional groups (see <a href="./#proof-of-equivalence">Proof of Equivalence</a>) we can update the transformation and variance as in the original CPD algorithm within each dimensional group. 
 This allows us to compute <span class="arithmatex">\(D\)</span> independent transformations, but because all of the dimensional groups are used to compute <span class="arithmatex">\(P^{old}\)</span> these transformations can leverage correlations between different dimensional groups.</p>
 <h2 id="proof-of-equivalence">Proof of Equivalence</h2>
 <p>Starting from the objective function <span class="arithmatex">\(Q\)</span> as defined <a href="./#the-joint-cpd-algorithm">above</a> we show that the partial derivatives within each dimensional group reduce to a form that is trivially equivalent to those in the base CPD algorithm below.</p>
