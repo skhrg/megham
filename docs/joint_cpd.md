@@ -67,7 +67,7 @@ $$
 Q = \sum_{d=1}^{D}\frac{N_{P}l_{(d)}}{2}\log\sigma_{(d)}^2 + \sum_{n=1}^{N}\sum_{m=1}^{M} P^{old}(m|x_{n})\sum_{d=1}^{D} \frac{\lVert x_{(d)n} - T_{(d)}(y_{(d)m})\rVert ^2}{2\sigma_{(d)}^2}
 $$
 
-Where $N_{P}$ is the sum of $P^{old}.
+Where $N_{P}$ is the sum of $P^{old}$.
 
 Now we take the partial derivatives.
 First WLOG take the derivative with respect to $A$ where $A$ is a component of the transform (ie: the affine matrix $B$ in the affine case, the rotation matrix $R$ in the rigid case, etc.):
