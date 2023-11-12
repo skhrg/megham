@@ -507,12 +507,12 @@ Joint CPD is an extension of the base CPD algorithm that exists to address this.
 <p>The joint CPD algorithm is a simple extension to CPD
 First we define the concept of "dimensional groups",
 where every axis in a given dimensional group is transformed together.
-For a <span class="arithmatex">\(N\)</span>-dimensional point cloud we can define <span class="arithmatex">\(D\)</span> dimensional groups, where <span class="arithmatex">\(1 \leq D \leq N\)</span>. For convenience we define the following notation:</p>
+For a <span class="arithmatex">\(L\)</span>-dimensional point cloud we can define <span class="arithmatex">\(D\)</span> dimensional groups, where <span class="arithmatex">\(1 \leq D \leq L\)</span>. For convenience we define the following notation:</p>
 <div class="arithmatex">\[
 x_{(d)}
 \]</div>
 <p>Where <span class="arithmatex">\(x\)</span> is a point cloud, and the <span class="arithmatex">\((d)\)</span> denotes that we are referring to the <span class="arithmatex">\(d\)</span>'th dimensional group.
-Each dimensional group can contain up to <span class="arithmatex">\(n\)</span> dimensions, but cannot overlap with each other at all.</p>
+Each dimensional group can contain up to <span class="arithmatex">\(L\)</span> dimensions, but cannot overlap with each other at all.</p>
 <p>With this now defined we can write down the posterior probabilities of the Gaussian Mixture Model (GMM) components as:</p>
 <div class="arithmatex">\[
 P^{old}(m|x_{n}) = \frac{\prod_{d=1}^{D}\exp\left(-\frac{1}{2} \lVert \frac{x_{(d)n} - T_{(d)}(y_{(d)m})}{\sigma_{(d)}} \rVert ^2 \right)}{\sum_{k=1}^{M}\prod_{d=1}^{D}\exp\left(-\frac{1}{2} \lVert \frac{x_{(d)n} - T_{(d)}(y_{(d)k})}{\sigma_{(d)}} \rVert ^2 \right) + \frac{w}{1-w}\frac{M}{N}\prod_{d=1}^{D} \left(2\pi\sigma_{(d)}^2\right)^{l_{(d)}/2}}
@@ -527,6 +527,7 @@ P^{old}(m|x_{n}) = \frac{\prod_{d=1}^{D}\exp\left(-\frac{1}{2} \lVert \frac{x_{(
 <li><span class="arithmatex">\(T_{(d)}\)</span> is the transformation in the <span class="arithmatex">\(d\)</span>'th dimensional group</li>
 <li><span class="arithmatex">\(\sigma_{(d)}^2\)</span> is the variance of the GMM in the <span class="arithmatex">\(d\)</span>'th dimensional group</li>
 <li><span class="arithmatex">\(l_{(d)}\)</span> is the number of dimensions in the <span class="arithmatex">\(d\)</span>'th dimensional group</li>
+<li><span class="arithmatex">\(w\)</span> is the weight of the uniform distribution </li>
 </ul>
 <p>And we can write down the objective function as:</p>
 <div class="arithmatex">\[
