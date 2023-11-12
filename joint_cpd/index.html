@@ -9,20 +9,22 @@
       
       
       
+        <link rel="prev" href="..">
       
-        <link rel="next" href="joint_cpd/">
+      
+        <link rel="next" href="../reference/mds/">
       
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.8">
     
     
       
-        <title>Megham</title>
+        <title>Joint CPD - Megham</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.4b4a2bd9.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.4b4a2bd9.min.css">
       
       
 
@@ -41,9 +43,9 @@
       
     
     
-      <link rel="stylesheet" href="assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -65,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#megham" class="md-skip">
+        <a href="#joint-coherent-point-drift" class="md-skip">
           Skip to content
         </a>
       
@@ -81,7 +83,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Megham" class="md-header__button md-logo" aria-label="Megham" data-md-component="logo">
+    <a href=".." title="Megham" class="md-header__button md-logo" aria-label="Megham" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -101,7 +103,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Joint CPD
             
           </span>
         </div>
@@ -173,7 +175,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Megham" class="md-nav__button md-logo" aria-label="Megham" data-md-component="logo">
+    <a href=".." title="Megham" class="md-nav__button md-logo" aria-label="Megham" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -183,6 +185,25 @@
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
     
       
       
@@ -203,18 +224,18 @@
           
   
   <span class="md-ellipsis">
-    Home
+    Joint CPD
   </span>
   
 
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="." class="md-nav__link md-nav__link--active">
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
-    Home
+    Joint CPD
   </span>
   
 
@@ -236,56 +257,23 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#introduction" class="md-nav__link">
-    Introduction
+  <a href="#background" class="md-nav__link">
+    Background
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#getting-started" class="md-nav__link">
-    Getting Started
+  <a href="#the-joint-cpd-algorithm" class="md-nav__link">
+    The Joint CPD Algorithm
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#contributing" class="md-nav__link">
-    Contributing
+  <a href="#proof-of-equivalence" class="md-nav__link">
+    Proof of Equivalence
   </a>
-  
-    <nav class="md-nav" aria-label="Contributing">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#style-and-standards" class="md-nav__link">
-    Style and Standards
-  </a>
-  
-    <nav class="md-nav" aria-label="Style and Standards">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#tool-setup" class="md-nav__link">
-    Tool Setup
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-workflow" class="md-nav__link">
-    Example Workflow
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -293,25 +281,6 @@
   
 </nav>
       
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="joint_cpd/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Joint CPD
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -358,7 +327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/mds/" class="md-nav__link">
+      <a href="../reference/mds/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -414,7 +383,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/registration/cpd/" class="md-nav__link">
+      <a href="../reference/registration/cpd/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -442,7 +411,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/transform/" class="md-nav__link">
+      <a href="../reference/transform/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -490,56 +459,23 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#introduction" class="md-nav__link">
-    Introduction
+  <a href="#background" class="md-nav__link">
+    Background
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#getting-started" class="md-nav__link">
-    Getting Started
+  <a href="#the-joint-cpd-algorithm" class="md-nav__link">
+    The Joint CPD Algorithm
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#contributing" class="md-nav__link">
-    Contributing
+  <a href="#proof-of-equivalence" class="md-nav__link">
+    Proof of Equivalence
   </a>
-  
-    <nav class="md-nav" aria-label="Contributing">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#style-and-standards" class="md-nav__link">
-    Style and Standards
-  </a>
-  
-    <nav class="md-nav" aria-label="Style and Standards">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#tool-setup" class="md-nav__link">
-    Tool Setup
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-workflow" class="md-nav__link">
-    Example Workflow
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -558,60 +494,70 @@
                   
 
 
-<h1 id="megham">megham</h1>
-<p>A library for working with point clouds and related concepts.</p>
-<h2 id="introduction">Introduction</h2>
-<p>Over the last few years I have written a fair bit of code for both
-the <a href="https://simonsobservatory.org/">Simons Observatory</a> and <a href="https://sites.krieger.jhu.edu/class/">CLASS</a>
-that involves point clouds.
-When writing that code I have found myself wanting for a cohesive library that handles all my point cloud
-related tasks.
-There are things that exist in bits and pieces
-(<a href="https://numpy.org/">numpy</a>, <a href="https://scipy.org/">scipy</a>, <a href="https://scikit-learn.org/stable/modules/classes.html#module-sklearn.manifold">sklearn's manifold module</a>, <a href="https://github.com/siavashk/pycpd">pycpd</a>, etc.)
-but none of them had all of the features I wanted or were implemented in ways that weren't ideal for my usecase.</p>
-<p>Megham exists to help me bridge that gap.
-Currently I am targeting only a small set of features that are relevant to my work:</p>
+<h1 id="joint-coherent-point-drift">Joint Coherent Point Drift</h1>
+<h2 id="background">Background</h2>
+<p>Coherent Point Drift (CPD) is a point set registration algorithm originally described in <a href="https://arxiv.org/abs/0905.2635">Myroneko &amp; Song</a>.
+This algorithm is an excellent choice for point set registration in cases without known correspondences, outperforming many other state-of-the-art methods.
+There are many existing implementations of CPD, such as <a href="https://github.com/siavashk/pycpd">pycpd</a>.</p>
+<p>One assumption made by CPD is that your point clouds exist in a space where all the axes form a single basis.
+As a result every degree of freedom allowed by your transformation of choice (affine, rigid, etc.) can be used in the final transformation.
+This is generally OK in cases where your data is purely spatial, but if your point clouds include a non-spatial axis (ie: color) this can cause issues since transformations that mix the spatial and non-spatial axes can occur.
+Joint CPD is an extension of the base CPD algorithm that exists to address this.</p>
+<h2 id="the-joint-cpd-algorithm">The Joint CPD Algorithm</h2>
+<p>The joint CPD algorithm is a simple extension to CPD
+First we define the concept of "dimensional groups",
+where every axis in a given dimensional group is transformed together.
+For a <span class="arithmatex">\(N\)</span>-dimensional point cloud we can define <span class="arithmatex">\(D\)</span> dimensional groups, where <span class="arithmatex">\(1 \leq D \leq N\)</span>. For convenience we define the following notation:</p>
+<div class="arithmatex">\[
+x_{(d)}
+\]</div>
+<p>Where <span class="arithmatex">\(x\)</span> is a point cloud, and the <span class="arithmatex">\((d)\)</span> denotes that we are referring to the <span class="arithmatex">\(d\)</span>'th dimensional group.
+Each dimensional group can contain up to <span class="arithmatex">\(n\)</span> dimensions, but cannot overlap with each other at all.</p>
+<p>With this now defined we can write down the posterior probabilities of the Gaussian Mixture Model (GMM) components as:</p>
+<div class="arithmatex">\[
+P^{old}(m|x_{n}) = \frac{\prod_{d=1}^{D}\exp\left(-\frac{1}{2} \lVert \frac{x_{(d)n} - T_{(d)}(y_{(d)m})}{\sigma_{(d)}} \rVert ^2 \right)}{\sum_{k=1}^{M}\prod_{d=1}^{D}\exp\left(-\frac{1}{2} \lVert \frac{x_{(d)n} - T_{(d)}(y_{(d)k})}{\sigma_{(d)}} \rVert ^2 \right) + \frac{w}{1-w}\frac{M}{N}\prod_{d=1}^{D} \left(2\pi\sigma_{(d)}^2\right)^{l_{(d)}/2}}
+\]</div>
+<p>Where: </p>
 <ul>
-<li>Fitting transforms between point clouds</li>
-<li>Point set registration (without known correspondence)</li>
-<li>Outlier detection</li>
-<li>Multi dimensional scaling</li>
+<li><span class="arithmatex">\(x\)</span> is the target point cloud</li>
+<li><span class="arithmatex">\(y\)</span> is the source point cloud (the GMM centroids)</li>
+<li><span class="arithmatex">\(N\)</span> is the number of points in <span class="arithmatex">\(x\)</span></li>
+<li><span class="arithmatex">\(M\)</span> is the number of points in <span class="arithmatex">\(y\)</span></li>
+<li><span class="arithmatex">\(D\)</span> is the number of dimensional groups</li>
+<li><span class="arithmatex">\(T_{(d)}\)</span> is the transformation in the <span class="arithmatex">\(d\)</span>'th dimensional group</li>
+<li><span class="arithmatex">\(\sigma_{(d)}^2\)</span> is the variance of the GMM in the <span class="arithmatex">\(d\)</span>'th dimensional group</li>
+<li><span class="arithmatex">\(l_{(d)}\)</span> is the number of dimensions in the <span class="arithmatex">\(d\)</span>'th dimensional group</li>
 </ul>
-<p>But other features may exist down the line (and PRs are welcome).</p>
-<h2 id="getting-started">Getting Started</h2>
-<p>To install this repository run:</p>
-<pre><code>pip install megham 
-</code></pre>
-<p>If you will be actively developing the code may want to instead clone this repository and run:</p>
-<pre><code>pip install -e .
-</code></pre>
-<p>Documentation can be found <a href="https://skhrg.github.io/megham/">here</a></p>
-<h2 id="contributing">Contributing</h2>
-<p>All are welcome to contribute to this repository as long as long as the code is relevant.
-In general contributions other than minor changes should follow the branch/fork -&gt; PR -&gt; merge workflow.
-If you are going to contribute regularly, contact me to get push access to the repository.</p>
-<h3 id="style-and-standards">Style and Standards</h3>
-<p>In general contributions should be <a href="https://peps.python.org/pep-0008/">PEP8</a> with commits in the <a href="https://www.conventionalcommits.org/en/v1.0.0/">conventional commits</a> format.
-This library follows <a href="https://semver.org/">semantic versioning</a>, so changes that bump the version should do so by editing <code>pyproject.toml</code>.</p>
-<p>In order to make following these rules easier this repository is setup to work with <a href="https://commitizen-tools.github.io/commitizen/">commitizen</a> and <a href="https://pre-commit.com/">pre-commit</a>.
-It is recommended that you make use of these tools to save time.</p>
-<p>Docstrings should follow the <a href="https://numpydoc.readthedocs.io/en/latest/format.html">numpy style</a>. API reference docs are automatically built, but any additional narrative documentation or tutorials should go in the <code>docs</code> folder. This project uses <a href="https://www.mkdocs.org/"><code>mkdocs</code></a> to generate documentation.</p>
-<h4 id="tool-setup">Tool Setup</h4>
-<ol>
-<li>Install both tools with <code>pip install commitizen pre-commit</code>.</li>
-<li><code>cd</code> into the <code>minkasi_jax</code> repository it you aren't already in it.</li>
-<li>(Optional) Setup <code>commitizen</code> to automatically run when you run <code>git commit</code>. Follow instruction <a href="https://commitizen-tools.github.io/commitizen/tutorials/auto_prepare_commit_message/">here</a>.</li>
-<li>Make sure the <code>pre-commit</code> hook is installed by running <code>pre-commit install</code>.</li>
-</ol>
-<h4 id="example-workflow">Example Workflow</h4>
-<ol>
-<li>Make a branch for the edits you want to make.</li>
-<li>Code.</li>
-<li>Commit your code with a <a href="https://www.conventionalcommits.org/en/v1.0.0/#summary">conventional commit message</a>. <code>cz c</code> gives you a wizard that will do this for you, if you followed Step 3 above then <code>git commit</code> will also do this (but not <code>git commit -m</code>).</li>
-<li>Repeat steps 2 and 3 until the goal if your branch has been completed.</li>
-<li>Put in a PR.</li>
-<li>Once the PR is merged the repo version and tag will update <a href="https://commitizen-tools.github.io/commitizen/tutorials/github_actions/">automatically</a>.</li>
-</ol>
+<p>And we can write down the objective function as:</p>
+<div class="arithmatex">\[
+Q = -\sum_{n=1}^{N}\sum_{m=1}^{M} P^{old}(m|x_{n})\log\left(P^{new}(m)p^{new}(x_{n}|m)\right)
+\]</div>
+<p>Because the partial derivatives of <span class="arithmatex">\(Q\)</span> with respect to the components of <span class="arithmatex">\(T_{(d)}\)</span> and <span class="arithmatex">\(sigma_{(d)}\)</span> kill all terms pertaining to other dimensional groups (see <a href="./#proof-of-equivalence">Proof of Equivalence</a>) we can update the transformation and variance as in the original CPD algorithm within each dimensional group. 
+This allows us to compute <span class="arithmatex">\(D\)</span> independent transformations, but because all of the dimensional groups are used to compute <span class="arithmatex">\(P^{old}\)</span> these transformations can leverage correlations between different dimensional groups.</p>
+<h2 id="proof-of-equivalence">Proof of Equivalence</h2>
+<p>Starting from the objective function <span class="arithmatex">\(Q\)</span> as defined <a href="./#the-joint-cpd-algorithm">above</a> we show that the partial derivatives within each dimensional group reduce to a form that is trivially equivalent to those in the base CPD algorithm below.</p>
+<p>First we expand <span class="arithmatex">\(Q\)</span> as:</p>
+<div class="arithmatex">\[
+Q = -\sum_{n=1}^{N}\sum_{m=1}^{M} P^{old}(m|x_{n})\log\left(\prod_{d=1}^{D} \frac{\exp\left(-\frac{\lVert x_{(d)n} - T_{(d)}(y_{(d)m})\rVert ^2}{2\sigma_{(d)}^2} \right)}{\left(2\pi\sigma_{(d)}^2\right)^{1/2}}\right)
+\]</div>
+<div class="arithmatex">\[
+Q = -\sum_{n=1}^{N}\sum_{m=1}^{M} P^{old}(m|x_{n})\sum_{d=1}^{D} -\frac{\lVert x_{(d)n} - T_{(d)}(y_{(d)m})\rVert ^2}{2\sigma_{(d)}^2} - \frac{\log\left(2\pi\sigma_{(d)}^2\right)}{2}
+\]</div>
+<div class="arithmatex">\[
+Q = \sum_{d=1}^{D}\frac{N_{P}l_{(d)}}{2}\log\sigma_{(d)}^2 + \sum_{n=1}^{N}\sum_{m=1}^{M} P^{old}(m|x_{n})\sum_{d=1}^{D} \frac{\lVert x_{(d)n} - T_{(d)}(y_{(d)m})\rVert ^2}{2\sigma_{(d)}^2}
+\]</div>
+<p>Where <span class="arithmatex">\(N_{P}\)</span> is the sum of $P^{old}.</p>
+<p>Now we take the partial derivatives.
+First WLOG take the derivative with respect to <span class="arithmatex">\(A\)</span> where <span class="arithmatex">\(A\)</span> is a component of the transform (ie: the affine matrix <span class="arithmatex">\(B\)</span> in the affine case, the rotation matrix <span class="arithmatex">\(R\)</span> in the rigid case, etc.):</p>
+<div class="arithmatex">\[
+\frac{dQ}{dA_{(d)}} = \sum_{n=1}^{N}\sum_{m=1}^{M} P^{old}(m|x_{n})\frac{\lVert x_{(d)n} - \frac{dT_{(d)}}{dA_{(d)}}(y_{(d)m})\rVert ^2}{2\sigma_{(d)}^2}
+\]</div>
+<p>Which is trivially equivalent to the derivative in the base CPD case.</p>
+<p>Similarly taking the derivative with respect to <span class="arithmatex">\(\sigma^2\)</span>:</p>
+<div class="arithmatex">\[
+\frac{dQ}{\sigma_{(d)}^2} = \frac{N_{P}l_{(d)}}{2\sigma_{(d)}^2} - \sum_{n=1}^{N}\sum_{m=1}^{M} P^{old}(m|x_{n}) \frac{\lVert x_{(d)n} - T_{(d)}(y_{(d)m})\rVert ^2}{2\sigma_{(d)}^4}
+\]</div>
+<p>Which is also trivially equivalent to the derivative in the base CPD case.</p>
 
 
 
@@ -650,12 +596,12 @@ It is recommended that you make use of these tools to save time.</p>
     </div>
     
     
-    <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.81fa17fe.min.js"></script>
+      <script src="../assets/javascripts/bundle.81fa17fe.min.js"></script>
       
-        <script src="javascripts/mathjax.js"></script>
+        <script src="../javascripts/mathjax.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
