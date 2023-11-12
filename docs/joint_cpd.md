@@ -14,14 +14,14 @@ Joint CPD is an extension of the base CPD algorithm that exists to address this.
 The joint CPD algorithm is a simple extension to CPD
 First we define the concept of "dimensional groups",
 where every axis in a given dimensional group is transformed together.
-For a $N$-dimensional point cloud we can define $D$ dimensional groups, where $1 \leq D \leq N$. For convenience we define the following notation:
+For a $L$-dimensional point cloud we can define $D$ dimensional groups, where $1 \leq D \leq L$. For convenience we define the following notation:
 
 $$
 x_{(d)}
 $$
 
 Where $x$ is a point cloud, and the $(d)$ denotes that we are referring to the $d$'th dimensional group.
-Each dimensional group can contain up to $n$ dimensions, but cannot overlap with each other at all.
+Each dimensional group can contain up to $L$ dimensions, but cannot overlap with each other at all.
 
 With this now defined we can write down the posterior probabilities of the Gaussian Mixture Model (GMM) components as:
 
@@ -39,6 +39,7 @@ Where:
 * $T_{(d)}$ is the transformation in the $d$'th dimensional group
 * $\sigma_{(d)}^2$ is the variance of the GMM in the $d$'th dimensional group
 * $l_{(d)}$ is the number of dimensions in the $d$'th dimensional group
+* $w$ is the weight of the uniform distribution 
 
 And we can write down the objective function as:
 
@@ -46,7 +47,7 @@ $$
 Q = -\sum_{n=1}^{N}\sum_{m=1}^{M} P^{old}(m|x_{n})\log\left(P^{new}(m)p^{new}(x_{n}|m)\right)
 $$
 
-Because the partial derivatives of $Q$ with respect to the components of $T_{(d)}$ and $sigma_{(d)}$ kill all terms pertaining to other dimensional groups (see [Proof of Equivalence](joint_cpd.md#proof-of-equivalence)) we can update the transformation and variance as in the original CPD algorithm within each dimensional group. 
+Because the partial derivatives of $Q$ with respect to the components of $T_{(d)}$ and $\sigma_{(d)}$ kill all terms pertaining to other dimensional groups (see [Proof of Equivalence](joint_cpd.md#proof-of-equivalence)) we can update the transformation and variance as in the original CPD algorithm within each dimensional group. 
 This allows us to compute $D$ independent transformations, but because all of the dimensional groups are used to compute $P^{old}$ these transformations can leverage correlations between different dimensional groups.
 
 ## Proof of Equivalence
