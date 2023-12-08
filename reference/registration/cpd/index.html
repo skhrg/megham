@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.8">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.1">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.4b4a2bd9.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.45e1311d.min.css">
       
       
 
@@ -57,9 +57,6 @@
   
     <body dir="ltr">
   
-    
-    
-      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -109,6 +106,9 @@
         </div>
       </div>
     </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
     
@@ -191,6 +191,7 @@
   
   
   
+  
     <li class="md-nav__item">
       <a href="../../.." class="md-nav__link">
         
@@ -207,6 +208,7 @@
     
       
       
+  
   
   
   
@@ -229,6 +231,7 @@
   
   
     
+  
   
   
     
@@ -267,6 +270,7 @@
   
   
   
+  
     <li class="md-nav__item">
       <a href="../../mds/" class="md-nav__link">
         
@@ -287,6 +291,7 @@
   
   
     
+  
   
   
     
@@ -325,6 +330,7 @@
   
   
     
+  
   
   
     <li class="md-nav__item md-nav__item--active">
@@ -369,42 +375,54 @@
       
         <li class="md-nav__item">
   <a href="#megham.registration.cpd" class="md-nav__link">
-    cpd
+    <span class="md-ellipsis">
+      cpd
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#megham.registration.cpd.Callback" class="md-nav__link">
-    Callback
+    <span class="md-ellipsis">
+      Callback
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#megham.registration.cpd.compute_P" class="md-nav__link">
-    compute_P()
+    <span class="md-ellipsis">
+      compute_P()
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#megham.registration.cpd.cpd" class="md-nav__link">
-    cpd()
+    <span class="md-ellipsis">
+      cpd()
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#megham.registration.cpd.joint_cpd" class="md-nav__link">
-    joint_cpd()
+    <span class="md-ellipsis">
+      joint_cpd()
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#megham.registration.cpd.solve_affine" class="md-nav__link">
-    solve_affine()
+  <a href="#megham.registration.cpd.solve_transform" class="md-nav__link">
+    <span class="md-ellipsis">
+      solve_transform()
+    </span>
   </a>
   
 </li>
@@ -428,6 +446,7 @@
             
               
                 
+  
   
   
   
@@ -479,42 +498,54 @@
       
         <li class="md-nav__item">
   <a href="#megham.registration.cpd" class="md-nav__link">
-    cpd
+    <span class="md-ellipsis">
+      cpd
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#megham.registration.cpd.Callback" class="md-nav__link">
-    Callback
+    <span class="md-ellipsis">
+      Callback
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#megham.registration.cpd.compute_P" class="md-nav__link">
-    compute_P()
+    <span class="md-ellipsis">
+      compute_P()
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#megham.registration.cpd.cpd" class="md-nav__link">
-    cpd()
+    <span class="md-ellipsis">
+      cpd()
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#megham.registration.cpd.joint_cpd" class="md-nav__link">
-    joint_cpd()
+    <span class="md-ellipsis">
+      joint_cpd()
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#megham.registration.cpd.solve_affine" class="md-nav__link">
-    solve_affine()
+  <a href="#megham.registration.cpd.solve_transform" class="md-nav__link">
+    <span class="md-ellipsis">
+      solve_transform()
+    </span>
   </a>
   
 </li>
@@ -577,8 +608,7 @@
 
             <details class="quote">
               <summary>Source code in <code>megham/registration/cpd.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">15</span>
-<span class="normal">16</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">16</span>
 <span class="normal">17</span>
 <span class="normal">18</span>
 <span class="normal">19</span>
@@ -589,7 +619,8 @@
 <span class="normal">24</span>
 <span class="normal">25</span>
 <span class="normal">26</span>
-<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Callback</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+<span class="normal">27</span>
+<span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Callback</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Callback idea shamelessly stolen from pycpd.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -746,8 +777,7 @@ Has shape (nsrcpoints, ntrgpoints).</p>
 
           <details class="quote">
             <summary>Source code in <code>megham/registration/cpd.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 77</span>
-<span class="normal"> 78</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 78</span>
 <span class="normal"> 79</span>
 <span class="normal"> 80</span>
 <span class="normal"> 81</span>
@@ -798,7 +828,8 @@ Has shape (nsrcpoints, ntrgpoints).</p>
 <span class="normal">126</span>
 <span class="normal">127</span>
 <span class="normal">128</span>
-<span class="normal">129</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">compute_P</span><span class="p">(</span>
+<span class="normal">129</span>
+<span class="normal">130</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">compute_P</span><span class="p">(</span>
     <span class="n">source</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
     <span class="n">target</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
     <span class="n">var</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
@@ -864,7 +895,7 @@ Has shape (nsrcpoints, ntrgpoints).</p>
 
 
 <h2 id="megham.registration.cpd.cpd" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">cpd</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">max_iters</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">dummy_callback</span><span class="p">)</span></code>
+          <code class="highlight language-python"><span class="n">cpd</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">max_iters</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">dummy_callback</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;affine&#39;</span><span class="p">)</span></code>
 
 </h2>
 
@@ -878,41 +909,44 @@ See the docstring of joint_cpd for details on the parameters and returns.</p>
 
           <details class="quote">
             <summary>Source code in <code>megham/registration/cpd.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">335</span>
-<span class="normal">336</span>
-<span class="normal">337</span>
-<span class="normal">338</span>
-<span class="normal">339</span>
-<span class="normal">340</span>
-<span class="normal">341</span>
-<span class="normal">342</span>
-<span class="normal">343</span>
-<span class="normal">344</span>
-<span class="normal">345</span>
-<span class="normal">346</span>
-<span class="normal">347</span>
-<span class="normal">348</span>
-<span class="normal">349</span>
-<span class="normal">350</span>
-<span class="normal">351</span>
-<span class="normal">352</span>
-<span class="normal">353</span>
-<span class="normal">354</span>
-<span class="normal">355</span>
-<span class="normal">356</span>
-<span class="normal">357</span>
-<span class="normal">358</span>
-<span class="normal">359</span>
-<span class="normal">360</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">360</span>
 <span class="normal">361</span>
 <span class="normal">362</span>
-<span class="normal">363</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">cpd</span><span class="p">(</span>
+<span class="normal">363</span>
+<span class="normal">364</span>
+<span class="normal">365</span>
+<span class="normal">366</span>
+<span class="normal">367</span>
+<span class="normal">368</span>
+<span class="normal">369</span>
+<span class="normal">370</span>
+<span class="normal">371</span>
+<span class="normal">372</span>
+<span class="normal">373</span>
+<span class="normal">374</span>
+<span class="normal">375</span>
+<span class="normal">376</span>
+<span class="normal">377</span>
+<span class="normal">378</span>
+<span class="normal">379</span>
+<span class="normal">380</span>
+<span class="normal">381</span>
+<span class="normal">382</span>
+<span class="normal">383</span>
+<span class="normal">384</span>
+<span class="normal">385</span>
+<span class="normal">386</span>
+<span class="normal">387</span>
+<span class="normal">388</span>
+<span class="normal">389</span>
+<span class="normal">390</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">cpd</span><span class="p">(</span>
     <span class="n">source</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
     <span class="n">target</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
     <span class="n">w</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
     <span class="n">eps</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-10</span><span class="p">,</span>
     <span class="n">max_iters</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">500</span><span class="p">,</span>
     <span class="n">callback</span><span class="p">:</span> <span class="n">Callback</span> <span class="o">=</span> <span class="n">dummy_callback</span><span class="p">,</span>
+    <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;affine&quot;</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span>
     <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
     <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
@@ -934,6 +968,7 @@ See the docstring of joint_cpd for details on the parameters and returns.</p>
         <span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="p">,</span>
         <span class="n">max_iters</span><span class="o">=</span><span class="n">max_iters</span><span class="p">,</span>
         <span class="n">callback</span><span class="o">=</span><span class="n">callback</span><span class="p">,</span>
+        <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
           </details>
@@ -948,7 +983,7 @@ See the docstring of joint_cpd for details on the parameters and returns.</p>
 
 
 <h2 id="megham.registration.cpd.joint_cpd" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">joint_cpd</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">dim_groups</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">max_iters</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">dummy_callback</span><span class="p">)</span></code>
+          <code class="highlight language-python"><span class="n">joint_cpd</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">dim_groups</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">max_iters</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">dummy_callback</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;affine&#39;</span><span class="p">)</span></code>
 
 </h2>
 
@@ -1090,6 +1125,22 @@ See the Callback Protocol for details on the expected signature.</p>
                 <code><span title="megham.registration.cpd.dummy_callback">dummy_callback</span></code>
           </td>
         </tr>
+        <tr>
+          <td><code>method</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The type of transformation to compute.
+Acceptable values are: affine, rigid.
+If any other value is passed then transform will be the identity.</p>
+            </div>
+          </td>
+          <td>
+                <code>&#39;affine&#39;</code>
+          </td>
+        </tr>
     </tbody>
   </table>
 
@@ -1105,13 +1156,13 @@ See the Callback Protocol for details on the expected signature.</p>
     </thead>
     <tbody>
         <tr>
-<td><code>affine</code></td>          <td>
+<td><code>transform</code></td>          <td>
                 <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.floating">floating</span>]</code>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>The affine transformation that takes source to target.
-Apply using megham.transform.apply_affine.
+              <p>The transform transformation that takes source to target.
+Apply using megham.transform.apply_transform.
 Has shape (ndim, ndim).</p>
             </div>
           </td>
@@ -1122,8 +1173,8 @@ Has shape (ndim, ndim).</p>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>The transformation that takes source to target after affine is applied.
-Apply using megham.transform.apply_affine.
+              <p>The transformation that takes source to target after transform is applied.
+Apply using megham.transform.apply_transform.
 Has shape (ndim,).</p>
             </div>
           </td>
@@ -1181,25 +1232,7 @@ If dim_groups has repeated dimensions or invalid dimensions.</p>
 
           <details class="quote">
             <summary>Source code in <code>megham/registration/cpd.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">211</span>
-<span class="normal">212</span>
-<span class="normal">213</span>
-<span class="normal">214</span>
-<span class="normal">215</span>
-<span class="normal">216</span>
-<span class="normal">217</span>
-<span class="normal">218</span>
-<span class="normal">219</span>
-<span class="normal">220</span>
-<span class="normal">221</span>
-<span class="normal">222</span>
-<span class="normal">223</span>
-<span class="normal">224</span>
-<span class="normal">225</span>
-<span class="normal">226</span>
-<span class="normal">227</span>
-<span class="normal">228</span>
-<span class="normal">229</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">229</span>
 <span class="normal">230</span>
 <span class="normal">231</span>
 <span class="normal">232</span>
@@ -1302,7 +1335,32 @@ If dim_groups has repeated dimensions or invalid dimensions.</p>
 <span class="normal">329</span>
 <span class="normal">330</span>
 <span class="normal">331</span>
-<span class="normal">332</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">joint_cpd</span><span class="p">(</span>
+<span class="normal">332</span>
+<span class="normal">333</span>
+<span class="normal">334</span>
+<span class="normal">335</span>
+<span class="normal">336</span>
+<span class="normal">337</span>
+<span class="normal">338</span>
+<span class="normal">339</span>
+<span class="normal">340</span>
+<span class="normal">341</span>
+<span class="normal">342</span>
+<span class="normal">343</span>
+<span class="normal">344</span>
+<span class="normal">345</span>
+<span class="normal">346</span>
+<span class="normal">347</span>
+<span class="normal">348</span>
+<span class="normal">349</span>
+<span class="normal">350</span>
+<span class="normal">351</span>
+<span class="normal">352</span>
+<span class="normal">353</span>
+<span class="normal">354</span>
+<span class="normal">355</span>
+<span class="normal">356</span>
+<span class="normal">357</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">joint_cpd</span><span class="p">(</span>
     <span class="n">source</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
     <span class="n">target</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
     <span class="n">dim_groups</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">int_</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1310,6 +1368,7 @@ If dim_groups has repeated dimensions or invalid dimensions.</p>
     <span class="n">eps</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-10</span><span class="p">,</span>
     <span class="n">max_iters</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">500</span><span class="p">,</span>
     <span class="n">callback</span><span class="p">:</span> <span class="n">Callback</span> <span class="o">=</span> <span class="n">dummy_callback</span><span class="p">,</span>
+    <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;affine&quot;</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span>
     <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
     <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
@@ -1358,16 +1417,20 @@ If dim_groups has repeated dimensions or invalid dimensions.</p>
 <span class="sd">    callback: Callback, default: dummy_callback</span>
 <span class="sd">        Function that runs once per iteration, can be used to visualize the match process.</span>
 <span class="sd">        See the Callback Protocol for details on the expected signature.</span>
+<span class="sd">    method : str, default: &#39;affine&#39;</span>
+<span class="sd">        The type of transformation to compute.</span>
+<span class="sd">        Acceptable values are: affine, rigid.</span>
+<span class="sd">        If any other value is passed then transform will be the identity.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    affine : NDArray[np.floating]</span>
-<span class="sd">        The affine transformation that takes source to target.</span>
-<span class="sd">        Apply using megham.transform.apply_affine.</span>
+<span class="sd">    transform : NDArray[np.floating]</span>
+<span class="sd">        The transform transformation that takes source to target.</span>
+<span class="sd">        Apply using megham.transform.apply_transform.</span>
 <span class="sd">        Has shape (ndim, ndim).</span>
 <span class="sd">    shift : NDArray[np.floating]</span>
-<span class="sd">        The transformation that takes source to target after affine is applied.</span>
-<span class="sd">        Apply using megham.transform.apply_affine.</span>
+<span class="sd">        The transformation that takes source to target after transform is applied.</span>
+<span class="sd">        Apply using megham.transform.apply_transform.</span>
 <span class="sd">        Has shape (ndim,).</span>
 <span class="sd">    transformed : NDArray[np.floating]</span>
 <span class="sd">        Source transformed to align with target.</span>
@@ -1406,24 +1469,26 @@ If dim_groups has repeated dimensions or invalid dimensions.</p>
     <span class="n">var</span> <span class="o">=</span> <span class="n">_init_var</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">dim_groups</span><span class="p">)</span>
     <span class="n">err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
 
-    <span class="n">affine</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">ndim</span><span class="p">)</span>
+    <span class="n">transform</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">ndim</span><span class="p">)</span>
     <span class="n">shift</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ndim</span><span class="p">)</span>
 
     <span class="n">transformed</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">source</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">target</span><span class="p">)))</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_iters</span><span class="p">):</span>
-        <span class="n">_err</span><span class="p">,</span> <span class="n">_affine</span><span class="p">,</span> <span class="n">_shift</span> <span class="o">=</span> <span class="n">err</span><span class="p">,</span> <span class="n">affine</span><span class="p">,</span> <span class="n">shift</span>
-        <span class="n">transformed</span> <span class="o">=</span> <span class="n">apply_transform</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">affine</span><span class="p">,</span> <span class="n">shift</span><span class="p">)</span>
+        <span class="n">_err</span><span class="p">,</span> <span class="n">_transform</span><span class="p">,</span> <span class="n">_shift</span> <span class="o">=</span> <span class="n">err</span><span class="p">,</span> <span class="n">transform</span><span class="p">,</span> <span class="n">shift</span>
+        <span class="n">transformed</span> <span class="o">=</span> <span class="n">apply_transform</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">transform</span><span class="p">,</span> <span class="n">shift</span><span class="p">)</span>
         <span class="n">P</span> <span class="o">=</span> <span class="n">compute_P</span><span class="p">(</span><span class="n">transformed</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
-        <span class="n">affine</span><span class="p">,</span> <span class="n">shift</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">solve_affine</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">dim_groups</span><span class="p">,</span> <span class="n">var</span><span class="p">)</span>
+        <span class="n">transform</span><span class="p">,</span> <span class="n">shift</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">solve_transform</span><span class="p">(</span>
+            <span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">dim_groups</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">method</span>
+        <span class="p">)</span>
         <span class="n">callback</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">transformed</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">_err</span> <span class="o">-</span> <span class="n">err</span> <span class="o">&lt;</span> <span class="n">eps</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">err</span> <span class="o">&gt;</span> <span class="n">_err</span><span class="p">:</span>
-                <span class="n">affine</span><span class="p">,</span> <span class="n">shift</span> <span class="o">=</span> <span class="n">_affine</span><span class="p">,</span> <span class="n">_shift</span>
+                <span class="n">transform</span><span class="p">,</span> <span class="n">shift</span> <span class="o">=</span> <span class="n">_transform</span><span class="p">,</span> <span class="n">_shift</span>
             <span class="k">break</span>
 
-    <span class="k">return</span> <span class="n">affine</span><span class="p">,</span> <span class="n">shift</span><span class="p">,</span> <span class="n">transformed</span><span class="p">,</span> <span class="n">P</span>
+    <span class="k">return</span> <span class="n">transform</span><span class="p">,</span> <span class="n">shift</span><span class="p">,</span> <span class="n">transformed</span><span class="p">,</span> <span class="n">P</span>
 </code></pre></div></td></tr></table></div>
           </details>
   </div>
@@ -1436,14 +1501,15 @@ If dim_groups has repeated dimensions or invalid dimensions.</p>
 
 
 
-<h2 id="megham.registration.cpd.solve_affine" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">solve_affine</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">dim_groups</span><span class="p">,</span> <span class="n">cur_var</span><span class="p">)</span></code>
+<h2 id="megham.registration.cpd.solve_transform" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">solve_transform</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">dim_groups</span><span class="p">,</span> <span class="n">cur_var</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;affine&#39;</span><span class="p">)</span></code>
 
 </h2>
 
 
   <div class="doc doc-contents ">
   
+      <p>Solve for the transformation at each iteration of CPD.</p>
 
 
 
@@ -1530,6 +1596,22 @@ Should have shape (ntrgpoints, ndim).</p>
               <em>required</em>
           </td>
         </tr>
+        <tr>
+          <td><code>method</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The type of transformation to compute.
+Acceptable values are: affine, rigid.
+If any other value is passed then transform will be the identity.</p>
+            </div>
+          </td>
+          <td>
+                <code>&#39;affine&#39;</code>
+          </td>
+        </tr>
     </tbody>
   </table>
 
@@ -1545,12 +1627,12 @@ Should have shape (ntrgpoints, ndim).</p>
     </thead>
     <tbody>
         <tr>
-<td><code>affine</code></td>          <td>
+<td><code>transform</code></td>          <td>
                 <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.floating">floating</span>]</code>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>Affine transformation between source and target.</p>
+              <p>Transformation between source and target.</p>
             </div>
           </td>
         </tr>
@@ -1589,8 +1671,7 @@ Should have shape (ntrgpoints, ndim).</p>
 
           <details class="quote">
             <summary>Source code in <code>megham/registration/cpd.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">132</span>
-<span class="normal">133</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">133</span>
 <span class="normal">134</span>
 <span class="normal">135</span>
 <span class="normal">136</span>
@@ -1665,14 +1746,35 @@ Should have shape (ntrgpoints, ndim).</p>
 <span class="normal">205</span>
 <span class="normal">206</span>
 <span class="normal">207</span>
-<span class="normal">208</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">solve_affine</span><span class="p">(</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">solve_transform</span><span class="p">(</span>
     <span class="n">source</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
     <span class="n">target</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
     <span class="n">P</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
     <span class="n">dim_groups</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">int_</span><span class="p">]],</span>
     <span class="n">cur_var</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
+    <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;affine&quot;</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span> <span class="nb">float</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Solve for the transformation at each iteration of CPD.</span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    source : NDArray[np.floating]</span>
@@ -1687,11 +1789,15 @@ Should have shape (ntrgpoints, ndim).</p>
 <span class="sd">        Which dimensions should be transformed together.</span>
 <span class="sd">    cur_var : float</span>
 <span class="sd">        The current mixture model variance.</span>
+<span class="sd">    method : str, default: &#39;affine&#39;</span>
+<span class="sd">        The type of transformation to compute.</span>
+<span class="sd">        Acceptable values are: affine, rigid.</span>
+<span class="sd">        If any other value is passed then transform will be the identity.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    affine : NDArray[np.floating]</span>
-<span class="sd">        Affine transformation between source and target.</span>
+<span class="sd">    transform : NDArray[np.floating]</span>
+<span class="sd">        Transformation between source and target.</span>
 <span class="sd">    shift : NDArray[np.floating]</span>
 <span class="sd">        Shift to be applied after the affine transformation.</span>
 <span class="sd">    var : NDArray[np.floating]</span>
@@ -1710,7 +1816,7 @@ Should have shape (ntrgpoints, ndim).</p>
     <span class="n">src_hat</span> <span class="o">=</span> <span class="n">source</span> <span class="o">-</span> <span class="n">mu_src</span>
     <span class="n">trg_hat</span> <span class="o">=</span> <span class="n">target</span> <span class="o">-</span> <span class="n">mu_trg</span>
 
-    <span class="n">affine</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">ndim</span><span class="p">)</span>
+    <span class="n">transform</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">ndim</span><span class="p">)</span>
     <span class="n">shift</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ndim</span><span class="p">)</span>
     <span class="n">new_var</span> <span class="o">=</span> <span class="n">cur_var</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="n">err</span> <span class="o">=</span> <span class="mi">0</span>
@@ -1722,15 +1828,25 @@ Should have shape (ntrgpoints, ndim).</p>
 
         <span class="n">all_mul</span> <span class="o">=</span> <span class="n">trg</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">P</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">src</span>
         <span class="n">src_mul</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">P1</span> <span class="o">@</span> <span class="n">src</span>
-        <span class="n">afn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">src_mul</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">all_mul</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
-        <span class="n">sft</span> <span class="o">=</span> <span class="n">mu_t</span><span class="o">.</span><span class="n">T</span> <span class="o">-</span> <span class="n">afn</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">mu_s</span><span class="o">.</span><span class="n">T</span>
 
-        <span class="n">affine</span><span class="p">[</span><span class="n">dim_group</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">],</span> <span class="n">dim_group</span><span class="p">]</span> <span class="o">=</span> <span class="n">afn</span>
+        <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;affine&quot;</span><span class="p">:</span>
+            <span class="n">tfm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">src_mul</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">all_mul</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;rigid&quot;</span><span class="p">:</span>
+            <span class="n">U</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">all_mul</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">corr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dim_group</span><span class="p">))</span>
+            <span class="n">corr</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">det</span><span class="p">((</span><span class="n">V</span><span class="p">)</span> <span class="o">@</span> <span class="p">(</span><span class="n">U</span><span class="p">))</span>
+            <span class="n">tfm</span> <span class="o">=</span> <span class="n">U</span> <span class="o">@</span> <span class="n">corr</span> <span class="o">@</span> <span class="n">V</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">tfm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">ndim</span><span class="p">)</span>
+
+        <span class="n">sft</span> <span class="o">=</span> <span class="n">mu_t</span><span class="o">.</span><span class="n">T</span> <span class="o">-</span> <span class="n">tfm</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">mu_s</span><span class="o">.</span><span class="n">T</span>
+
+        <span class="n">transform</span><span class="p">[</span><span class="n">dim_group</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">],</span> <span class="n">dim_group</span><span class="p">]</span> <span class="o">=</span> <span class="n">tfm</span>
         <span class="n">shift</span><span class="p">[</span><span class="n">dim_group</span><span class="p">]</span> <span class="o">=</span> <span class="n">sft</span>
 
-        <span class="n">trc_trf_mul</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">afn</span> <span class="o">@</span> <span class="n">src_mul</span> <span class="o">@</span> <span class="n">afn</span><span class="p">)</span>
+        <span class="n">trc_trf_mul</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">tfm</span> <span class="o">@</span> <span class="n">src_mul</span> <span class="o">@</span> <span class="n">tfm</span><span class="p">)</span>
         <span class="n">trc_trg_mul</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">trg</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">PT1</span> <span class="o">@</span> <span class="n">trg</span><span class="p">)</span>
-        <span class="n">trc_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">all_mul</span> <span class="o">@</span> <span class="n">afn</span><span class="p">)</span>
+        <span class="n">trc_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">all_mul</span> <span class="o">@</span> <span class="n">tfm</span><span class="p">)</span>
 
         <span class="n">var</span> <span class="o">=</span> <span class="p">(</span><span class="n">trc_trg_mul</span> <span class="o">-</span> <span class="n">trc_all</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">N_P</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">dim_group</span><span class="p">))</span>
         <span class="k">if</span> <span class="n">var</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
@@ -1741,7 +1857,7 @@ Should have shape (ntrgpoints, ndim).</p>
             <span class="mi">2</span> <span class="o">*</span> <span class="n">cur_var</span><span class="p">[</span><span class="n">dim_group</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
         <span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">N_P</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">dim_group</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">cur_var</span><span class="p">[</span><span class="n">dim_group</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
 
-    <span class="k">return</span> <span class="n">affine</span><span class="p">,</span> <span class="n">shift</span><span class="p">,</span> <span class="n">new_var</span><span class="p">,</span> <span class="n">err</span>
+    <span class="k">return</span> <span class="n">transform</span><span class="p">,</span> <span class="n">shift</span><span class="p">,</span> <span class="n">new_var</span><span class="p">,</span> <span class="n">err</span>
 </code></pre></div></td></tr></table></div>
           </details>
   </div>
@@ -1760,11 +1876,19 @@ Should have shape (ntrgpoints, ndim).</p>
 
 
 
+
+
+
+
+
+
+
                 
               </article>
             </div>
           
           
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
       </main>
@@ -1796,7 +1920,7 @@ Should have shape (ntrgpoints, ndim).</p>
     <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.81fa17fe.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d7c377c4.min.js"></script>
       
         <script src="../../../javascripts/mathjax.js"></script>
       
