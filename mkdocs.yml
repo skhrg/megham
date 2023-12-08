@@ -13,6 +13,9 @@ plugins:
         python:
           options:
             docstring_style: numpy
+extra:
+  version:
+    provider: mike
 markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
