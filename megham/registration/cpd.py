@@ -4,6 +4,7 @@ Module for performing coherent point drift
 from typing import Optional, Protocol, Sequence
 
 import numpy as np
+import scipy.linalg as la
 import scipy.spatial.distance as dist
 from numpy.typing import NDArray
 
@@ -129,14 +130,17 @@ def compute_P(
     return P
 
 
-def solve_affine(
+def solve_transform(
     source: NDArray[np.floating],
     target: NDArray[np.floating],
     P: NDArray[np.floating],
     dim_groups: Sequence[NDArray[np.int_]],
     cur_var: NDArray[np.floating],
+    method: str = "affine",
 ) -> tuple[NDArray[np.floating], NDArray[np.floating], NDArray[np.floating], float]:
     """
+    Solve for the transformation at each iteration of CPD.
+
     Parameters
     ----------
     source : NDArray[np.floating]
@@ -151,11 +155,15 @@ def solve_affine(
         Which dimensions should be transformed together.
     cur_var : float
         The current mixture model variance.
+    method : str, default: 'affine'
+        The type of transformation to compute.
+        Acceptable values are: affine, rigid.
+        If any other value is passed then transform will be the identity.
 
     Returns
     -------
-    affine : NDArray[np.floating]
-        Affine transformation between source and target.
+    transform : NDArray[np.floating]
+        Transformation between source and target.
     shift : NDArray[np.floating]
         Shift to be applied after the affine transformation.
     var : NDArray[np.floating]
@@ -174,7 +182,7 @@ def solve_affine(
     src_hat = source - mu_src
     trg_hat = target - mu_trg
 
-    affine = np.eye(ndim)
+    transform = np.eye(ndim)
     shift = np.zeros(ndim)
     new_var = cur_var.copy()
     err = 0
@@ -186,15 +194,25 @@ def solve_affine(
 
         all_mul = trg.T @ P.T @ src
         src_mul = src.T @ P1 @ src
-        afn = np.linalg.solve(src_mul.T, all_mul.T)
-        sft = mu_t.T - afn.T @ mu_s.T
 
-        affine[dim_group[:, np.newaxis], dim_group] = afn
+        if method == "affine":
+            tfm = np.linalg.solve(src_mul.T, all_mul.T)
+        elif method == "rigid":
+            U, _, V = la.svd(all_mul, full_matrices=True)
+            corr = np.eye(len(dim_group))
+            corr[-1, -1] = la.det((V) @ (U))
+            tfm = U @ corr @ V
+        else:
+            tfm = np.eye(ndim)
+
+        sft = mu_t.T - tfm.T @ mu_s.T
+
+        transform[dim_group[:, np.newaxis], dim_group] = tfm
         shift[dim_group] = sft
 
-        trc_trf_mul = np.trace(afn @ src_mul @ afn)
+        trc_trf_mul = np.trace(tfm @ src_mul @ tfm)
         trc_trg_mul = np.trace(trg.T @ PT1 @ trg)
-        trc_all = np.trace(all_mul @ afn)
+        trc_all = np.trace(all_mul @ tfm)
 
         var = (trc_trg_mul - trc_all) / (N_P * len(dim_group))
         if var <= 0:
@@ -205,7 +223,7 @@ def solve_affine(
             2 * cur_var[dim_group][0]
         ) + 0.5 * N_P * len(dim_group) * np.log(cur_var[dim_group][0])
 
-    return affine, shift, new_var, err
+    return transform, shift, new_var, err
 
 
 def joint_cpd(
@@ -216,6 +234,7 @@ def joint_cpd(
     eps: float = 1e-10,
     max_iters: int = 500,
     callback: Callback = dummy_callback,
+    method: str = "affine",
 ) -> tuple[
     NDArray[np.floating],
     NDArray[np.floating],
@@ -264,16 +283,20 @@ def joint_cpd(
     callback: Callback, default: dummy_callback
         Function that runs once per iteration, can be used to visualize the match process.
         See the Callback Protocol for details on the expected signature.
+    method : str, default: 'affine'
+        The type of transformation to compute.
+        Acceptable values are: affine, rigid.
+        If any other value is passed then transform will be the identity.
 
     Returns
     -------
-    affine : NDArray[np.floating]
-        The affine transformation that takes source to target.
-        Apply using megham.transform.apply_affine.
+    transform : NDArray[np.floating]
+        The transform transformation that takes source to target.
+        Apply using megham.transform.apply_transform.
         Has shape (ndim, ndim).
     shift : NDArray[np.floating]
-        The transformation that takes source to target after affine is applied.
-        Apply using megham.transform.apply_affine.
+        The transformation that takes source to target after transform is applied.
+        Apply using megham.transform.apply_transform.
         Has shape (ndim,).
     transformed : NDArray[np.floating]
         Source transformed to align with target.
@@ -312,24 +335,26 @@ def joint_cpd(
     var = _init_var(source, target, dim_groups)
     err = np.inf
 
-    affine = np.eye(ndim)
+    transform = np.eye(ndim)
     shift = np.zeros(ndim)
 
     transformed = source.copy()
     P = np.ones((len(source), len(target)))
     for i in range(max_iters):
-        _err, _affine, _shift = err, affine, shift
-        transformed = apply_transform(source, affine, shift)
+        _err, _transform, _shift = err, transform, shift
+        transformed = apply_transform(source, transform, shift)
         P = compute_P(transformed, target, var, w)
-        affine, shift, var, err = solve_affine(source, target, P, dim_groups, var)
+        transform, shift, var, err = solve_transform(
+            source, target, P, dim_groups, var, method
+        )
         callback(target, transformed, i, err)
 
         if _err - err < eps:
             if err > _err:
-                affine, shift = _affine, _shift
+                transform, shift = _transform, _shift
             break
 
-    return affine, shift, transformed, P
+    return transform, shift, transformed, P
 
 
 def cpd(
@@ -339,6 +364,7 @@ def cpd(
     eps: float = 1e-10,
     max_iters: int = 500,
     callback: Callback = dummy_callback,
+    method: str = "affine",
 ) -> tuple[
     NDArray[np.floating],
     NDArray[np.floating],
@@ -360,4 +386,5 @@ def cpd(
         eps=eps,
         max_iters=max_iters,
         callback=callback,
+        method=method,
     )
