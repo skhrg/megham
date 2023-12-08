@@ -44,3 +44,8 @@ jobs:
     steps:
     - name: Download all the dists
       uses: actions/download-artifact@v3
+      with:
+        name: python-package-distributions
+        path: dist/
+    - name: Publish to PyPi
+      uses: pypa/gh-action-pypi-publish@release/v1
