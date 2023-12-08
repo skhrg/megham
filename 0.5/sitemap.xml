@@ -1,3 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://skhrg.github.io/megham/0.5/</loc>
+         <lastmod>2023-12-08</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://skhrg.github.io/megham/0.5/joint_cpd/</loc>
+         <lastmod>2023-12-08</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://skhrg.github.io/megham/0.5/reference/SUMMARY/</loc>
+         <lastmod>2023-12-08</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://skhrg.github.io/megham/0.5/reference/mds/</loc>
+         <lastmod>2023-12-08</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://skhrg.github.io/megham/0.5/reference/transform/</loc>
+         <lastmod>2023-12-08</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://skhrg.github.io/megham/0.5/reference/registration/cpd/</loc>
+         <lastmod>2023-12-08</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
 </urlset>
