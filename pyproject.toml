@@ -24,6 +24,10 @@ docs = [
     "mkdocs-homepage-copier",
 ]
 
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["megham"]
+
 [tool.commitizen]
 name = "cz_conventional_commits"
 tag_format = "$version"
