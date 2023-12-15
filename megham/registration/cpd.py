@@ -216,7 +216,7 @@ def solve_transform(
 
         var = (trc_trg_mul - trc_all) / (N_P * len(dim_group))
         if var <= 0:
-            var = epsilon
+            var = cur_var[dim_group] / 2
         new_var[dim_group] = var
 
         err += (trc_trg_mul - 2 * trc_all + trc_trf_mul) / (
@@ -231,7 +231,7 @@ def joint_cpd(
     target: NDArray[np.floating],
     dim_groups: Optional[Sequence[Sequence[int] | NDArray[np.int_]]] = None,
     w: float = 0.0,
-    eps: float = 1e-10,
+    eps: float = 1e-3,
     max_iters: int = 500,
     callback: Callback = dummy_callback,
     method: str = "affine",
