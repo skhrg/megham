@@ -1,3 +1,9 @@
+## 0.5.1 (2023-12-15)
+
+### Fix
+
+- don't rely on hardcoded epsilon
+
 ## 0.5.0 (2023-12-08)
 
 ### Feat
