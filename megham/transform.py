@@ -1,14 +1,87 @@
 """
 Functions to computing and working with transformations between point clouds
 """
+from typing import Optional
+
 import numpy as np
 import scipy.linalg as la
 from numpy.typing import NDArray
 from scipy.spatial.transform import Rotation as R
 
 
+def get_shift(
+    src: NDArray[np.floating],
+    dst: NDArray[np.floating],
+    row_basis: bool = True,
+    method: str = "median",
+    weights: Optional[NDArray[np.floating]] = None,
+) -> NDArray[np.floating]:
+    """
+    Get shift between two point clouds.
+    Shift can be applied as dst = src + shift.
+
+    Parameters
+    -----------
+    src : NDArray[np.floating]
+        A (ndim, npoints) array of source points.
+    dst : NDArray[np.floating]
+        Nominally a (ndim, npoints) array of destination points,
+        but really any array broadcastable with src is accepted.
+        Some useful options are:
+        * np.zeros(1) to align with the origin
+        * A (ndim, 1) array to align with an arbitrary point
+    row_basis : bool, default: True
+        If the basis of the points is row.
+        If row basis then each row of src and dst is a point.
+        If col basis then each col of src and dst is a point.
+    method : str, default: 'median'
+        Method to use to align points.
+        Current accepted values are: 'median' and 'mean'
+    weights : Optional[NDArray[np.floating]], default: None
+        (npoints,) array of weights to use.
+        If provided and method is 'mean' then a weighted average is used.
+        If method is median this is not currently used.
+
+    Returns
+    -------
+    shift : NDArray[np.floating]
+        The (ndim,) shift to apply after transformation.
+        If point are in col basis will be returned as a column vector.
+
+    Raises
+    ------
+    ValueError
+        If an invalid method is provided
+    """
+    if method not in ["median", "mean"]:
+        raise ValueError(f"Invalid method: {method}")
+
+    if row_basis:
+        src = src.T
+        dst = np.atleast_2d(dst).T
+
+    shift = np.zeros(src.shape[0])
+    if method == "median":
+        shift = np.median(dst - src, axis=-1)
+    elif method == "mean":
+        if weights is None:
+            shift = np.mean(dst - src, axis=-1)
+        else:
+            wdiff = weights * (dst - src)
+            shift = np.nansum(wdiff, axis=1) / np.nansum(weights)
+
+    if not row_basis:
+        shift = shift[..., np.newaxis]
+
+    return shift
+
+
 def get_rigid(
-    src: NDArray[np.floating], dst: NDArray[np.floating], row_basis: bool = True
+    src: NDArray[np.floating],
+    dst: NDArray[np.floating],
+    row_basis: bool = True,
+    center_dst: bool = True,
+    **kwargs,
 ) -> tuple[NDArray[np.floating], NDArray[np.floating]]:
     """
     Get rigid transformation between two point clouds.
@@ -21,13 +94,18 @@ def get_rigid(
     Parameters
     ----------
     src : NDArray[np.floating]
-         A (ndim, npoints) array of source points.
+        A (ndim, npoints) array of source points.
     dst : NDArray[np.floating]
-         A (ndim, npoints) array of destination points.
-    row_basis : bool, True
-         If the basis of the points is row.
-         If row basis then each row of src and dst is a point.
-         If col basis then each col of src and dst is a point.
+        A (ndim, npoints) array of destination points.
+    row_basis : bool, default: True
+        If the basis of the points is row.
+        If row basis then each row of src and dst is a point.
+        If col basis then each col of src and dst is a point.
+    center_dst : bool, default: True
+        If True, dst will be recentered at the origin before computing transformation.
+        This is done with get_shift, but weights will not be used if provided.
+    **kwargs
+        Arguments to pass to get_shift.
 
     Returns
     -------
@@ -54,8 +132,13 @@ def get_rigid(
     if np.sum(msk) < ndim * (ndim - 1) / 2:
         raise ValueError("Not enough finite points to compute transformation")
 
-    _src = src[:, msk] - np.median(src[:, msk], axis=1)[:, None]
-    _dst = dst[:, msk] - np.median(dst[:, msk], axis=1)[:, None]
+    _dst = dst[:, msk].copy()
+    if center_dst:
+        _kwargs = kwargs.copy()
+        _kwargs.update({"weights": None})
+        _dst += get_shift(_dst, np.zeros(1), False, **_kwargs)
+    _src = src[:, msk].copy()
+    _src += get_shift(_src, _dst, False, **kwargs)
 
     M = _src @ (_dst.T)
     u, _, vh = la.svd(M)
@@ -67,7 +150,7 @@ def get_rigid(
     rot = v @ corr @ uT
 
     transformed = rot @ src[:, msk]
-    shift = np.median(dst[:, msk] - transformed, axis=1)
+    shift = get_shift(transformed, dst[:, msk], False, **kwargs)
 
     if row_basis:
         rot = rot.T
@@ -78,7 +161,11 @@ def get_rigid(
 
 
 def get_affine(
-    src: NDArray[np.floating], dst: NDArray[np.floating], row_basis: bool = True
+    src: NDArray[np.floating],
+    dst: NDArray[np.floating],
+    row_basis: bool = True,
+    center_dst: bool = True,
+    **kwargs,
 ) -> tuple[NDArray[np.floating], NDArray[np.floating]]:
     """
     Get affine transformation between two point clouds.
@@ -91,13 +178,18 @@ def get_affine(
     Parameters
     ----------
     src : NDArray[np.floating]
-         A (npoints, ndim) or (ndim, npoints) array of source points.
+        A (npoints, ndim) or (ndim, npoints) array of source points.
     dst : NDArray[np.floating]
-         A ((npoints, ndim) or (ndim, npoints) array of destination points.
-    row_basis : bool, True
-         If the basis of the points is row.
-         If row basis then each row of src and dst is a point.
-         If col basis then each col of src and dst is a point.
+        A ((npoints, ndim) or (ndim, npoints) array of destination points.
+    row_basis : bool, default: True
+        If the basis of the points is row.
+        If row basis then each row of src and dst is a point.
+        If col basis then each col of src and dst is a point.
+    center_dst : bool, default: True
+        If True, dst will be recentered at the origin before computing transformation.
+        This is done with get_shift, but weights will not be used if provided.
+    **kwargs
+        Arguments to pass to get_shift.
 
     Returns
     -------
@@ -123,12 +215,15 @@ def get_affine(
     if np.sum(msk) < len(src) + 1:
         raise ValueError("Not enough finite points to compute transformation")
 
-    M = np.vstack(
-        (
-            src[:, msk] - np.median(src[:, msk], axis=1)[:, None],
-            dst[:, msk] - np.median(dst[:, msk], axis=1)[:, None],
-        )
-    ).T
+    _dst = dst[:, msk].copy()
+    if center_dst:
+        _kwargs = kwargs.copy()
+        _kwargs.update({"weights": None})
+        _dst += get_shift(_dst, np.zeros(1), False, **_kwargs)
+    _src = src[:, msk].copy()
+    _src += get_shift(_src, _dst, False, **kwargs)
+
+    M = np.vstack((_src, _dst)).T
     *_, vh = la.svd(M)
     vh_splits = [
         quad for half in np.split(vh.T, 2, axis=0) for quad in np.split(half, 2, axis=1)
@@ -136,7 +231,7 @@ def get_affine(
     affine = np.dot(vh_splits[2], la.pinv(vh_splits[0]))
 
     transformed = affine @ src[:, msk]
-    shift = np.median(dst[:, msk] - transformed, axis=1)
+    shift = get_shift(transformed, dst[:, msk], False, **kwargs)
 
     if row_basis:
         affine = affine.T
