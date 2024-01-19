@@ -1,4 +1,5 @@
 site_name: Megham 
+site_url: https://skhrg.github.io/megham/
 theme: material 
 plugins:
   - search
