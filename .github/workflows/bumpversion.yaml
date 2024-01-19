@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  bump-version:
+  bump-version-and-docs:
     if: "!startsWith(github.event.head_commit.message, 'bump:')"
     runs-on: ubuntu-latest
     name: "Bump version and create changelog with commitizen"
@@ -25,16 +25,6 @@ jobs:
           git push origin main --tags
       - name: Print Version
         run: echo "Bumped to version ${{ steps.cz.outputs.version }}"
-  update-docs:
-    needs: bump-version
-    runs-on: ubuntu-latest
-    name: "Update docs with mike"
-    steps:
-      - name: Check out
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-          ssh-key: "${{ secrets.GHA_KEY }}"
       - name: Setup python
         uses: actions/setup-python@v4
         with:
@@ -43,14 +33,10 @@ jobs:
         run: |
           pip install mkdocs-material
           pip install pillow cairosvg mike mkdocstrings[python] mkdocs-gen-files mkdocs-literate-nav mkdocs-homepage-copier 
-      - name: Get version
-        uses: rickstaa/action-get-semver@v1
-        id: get_semver
-        with:
-          bump_level: "minor"
       - name: Setup Docs Deploy
         run: |
           git config --global user.name "Docs Deploy"
           git config --global user.email "docs.deploy@saianeesh.com"
       - name: Build Docs Website
-        run: mike deploy --push --update-aliases ${{ steps.get_semver.outputs.current_version }} latest
+        run: mike deploy --push --update-aliases ${{ env.REVISION }} latest
+      
