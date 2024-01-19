@@ -1,3 +1,9 @@
+## 0.6.0 (2024-01-19)
+
+### Feat
+
+- add more options for computing shifts
+
 ## 0.5.1 (2023-12-15)
 
 ### Fix
