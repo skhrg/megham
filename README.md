@@ -51,7 +51,7 @@ Docstrings should follow the [numpy style](https://numpydoc.readthedocs.io/en/la
 
 #### Tool Setup
 1. Install both tools with `pip install commitizen pre-commit`.
-2. `cd` into the `minkasi_jax` repository it you aren't already in it.
+2. `cd` into the `megham` repository it you aren't already in it.
 3. (Optional) Setup `commitizen` to automatically run when you run `git commit`. Follow instruction [here](https://commitizen-tools.github.io/commitizen/tutorials/auto_prepare_commit_message/).
 4. Make sure the `pre-commit` hook is installed by running `pre-commit install`.
 
