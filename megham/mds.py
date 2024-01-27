@@ -257,7 +257,7 @@ def metric_mds(
         if np.any(neg_msk):
             logger.warn("Negetive weight found, setting to 0.")
             weights[neg_msk] = 0
-        nfin_msk = not np.isfinite(weights)
+        nfin_msk = ~np.isfinite(weights)
         if np.any(nfin_msk):
             logger.warn("Non-finite weight found, setting to 0.")
             weights[nfin_msk] = 0
