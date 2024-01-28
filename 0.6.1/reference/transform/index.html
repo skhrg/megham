@@ -1,0 +1,2277 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://skhrg.github.io/megham/0.6.1/reference/transform/">
+      
+      
+        <link rel="prev" href="../registration/cpd/">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.6">
+    
+    
+      
+        <title>transform - Megham</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.50c56a3b.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#megham.transform" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Megham" class="md-header__button md-logo" aria-label="Megham" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Megham
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              transform
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Megham" class="md-nav__button md-logo" aria-label="Megham" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Megham
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../joint_cpd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Joint CPD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    API Reference
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            API Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mds/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mds
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    registration
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            registration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../registration/cpd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cpd
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    transform
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    transform
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#megham.transform" class="md-nav__link">
+    <span class="md-ellipsis">
+      transform
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#megham.transform.apply_transform" class="md-nav__link">
+    <span class="md-ellipsis">
+      apply_transform
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#megham.transform.decompose_affine" class="md-nav__link">
+    <span class="md-ellipsis">
+      decompose_affine
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#megham.transform.decompose_rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      decompose_rotation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#megham.transform.get_affine" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_affine
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#megham.transform.get_rigid" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_rigid
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#megham.transform.get_shift" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_shift
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#megham.transform" class="md-nav__link">
+    <span class="md-ellipsis">
+      transform
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#megham.transform.apply_transform" class="md-nav__link">
+    <span class="md-ellipsis">
+      apply_transform
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#megham.transform.decompose_affine" class="md-nav__link">
+    <span class="md-ellipsis">
+      decompose_affine
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#megham.transform.decompose_rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      decompose_rotation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#megham.transform.get_affine" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_affine
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#megham.transform.get_rigid" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_rigid
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#megham.transform.get_shift" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_shift
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>transform</h1>
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="megham.transform"></a>
+  <div class="doc doc-contents first">
+  
+      <p>Functions to computing and working with transformations between point clouds</p>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="megham.transform.apply_transform" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">apply_transform</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">transform</span><span class="p">,</span> <span class="n">shift</span><span class="p">,</span> <span class="n">row_basis</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Apply a transformation to a set of points.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>src</code></td>
+          <td>
+                <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.floating">floating</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The points to transform.
+Should have shape (ndim, npoints) or (npoints, ndim).</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>transform</code></td>
+          <td>
+                <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.floating">floating</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The transformation matrix.
+Should have shape (ndim, ndim).</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>shift</code></td>
+          <td>
+                <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.floating">floating</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The shift to apply after the affine tranrform.
+Should have shape (ndim,).</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>row_basis</code></td>
+          <td>
+                <code>bool</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Whether or not the input and output need to be transposed.
+This is the case when src is (npoints, ndim).
+By default the function will try to figure this out in its own,
+this is only used in the case where it can't because src is (ndim, ndim).</p>
+            </div>
+          </td>
+          <td>
+                <code>True</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+<td><code>transformed</code></td>          <td>
+                <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.floating">floating</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The transformed points.
+Has the same shape as src.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>ValueError</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If src is not a 2d array.
+If one of src's axis is not of size ndim.
+If affine and shift have inconsistent shapes.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>megham/transform.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">apply_transform</span><span class="p">(</span>
+    <span class="n">src</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
+    <span class="n">transform</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
+    <span class="n">shift</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
+    <span class="n">row_basis</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Apply a transformation to a set of points.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    src : NDArray[np.floating]</span>
+<span class="sd">        The points to transform.</span>
+<span class="sd">        Should have shape (ndim, npoints) or (npoints, ndim).</span>
+<span class="sd">    transform: NDArray[np.floating]</span>
+<span class="sd">        The transformation matrix.</span>
+<span class="sd">        Should have shape (ndim, ndim).</span>
+<span class="sd">    shift : NDArray[np.floating]</span>
+<span class="sd">        The shift to apply after the affine tranrform.</span>
+<span class="sd">        Should have shape (ndim,).</span>
+<span class="sd">    row_basis : bool, default: True</span>
+<span class="sd">        Whether or not the input and output need to be transposed.</span>
+<span class="sd">        This is the case when src is (npoints, ndim).</span>
+<span class="sd">        By default the function will try to figure this out in its own,</span>
+<span class="sd">        this is only used in the case where it can&#39;t because src is (ndim, ndim).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    transformed : NDArray[np.floating]</span>
+<span class="sd">        The transformed points.</span>
+<span class="sd">        Has the same shape as src.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If src is not a 2d array.</span>
+<span class="sd">        If one of src&#39;s axis is not of size ndim.</span>
+<span class="sd">        If affine and shift have inconsistent shapes.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ndim</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">shift</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">transform</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="n">ndim</span><span class="p">,</span> <span class="n">ndim</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;From shift we assume ndim=</span><span class="si">{</span><span class="n">ndim</span><span class="si">}</span><span class="s2"> but transform has shape </span><span class="si">{</span><span class="n">transform</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+    <span class="n">src_shape</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">src_shape</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;src should be a 2d array, not </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="si">}</span><span class="s2">d&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">row_basis</span><span class="p">:</span>
+        <span class="n">transformed</span> <span class="o">=</span> <span class="n">src</span> <span class="o">@</span> <span class="n">transform</span> <span class="o">+</span> <span class="n">shift</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">transformed</span> <span class="o">=</span> <span class="n">transform</span> <span class="o">@</span> <span class="n">src</span> <span class="o">+</span> <span class="n">shift</span>
+    <span class="k">return</span> <span class="n">transformed</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="megham.transform.decompose_affine" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">decompose_affine</span><span class="p">(</span><span class="n">affine</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Decompose an affine transformation into its components.
+This decomposetion treats the affine matrix as: rotation * shear * scale.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>affine</code></td>
+          <td>
+                <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.floating">floating</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The (ndim, ndim) affine transformation matrix.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+<td><code>scale</code></td>          <td>
+                <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.floating">floating</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The (ndim,) array of scale parameters.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+<td><code>shear</code></td>          <td>
+                <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.floating">floating</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The (ndim*(ndim - 1)/2,) array of shear parameters.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+<td><code>rot</code></td>          <td>
+                <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.floating">floating</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The (ndim, ndim) rotation matrix.
+If ndim is 2 or 3 then decompose_rotation can be used to get euler angles.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>ValueError</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If affine is not ndim by ndim.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>megham/transform.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">297</span>
+<span class="normal">298</span>
+<span class="normal">299</span>
+<span class="normal">300</span>
+<span class="normal">301</span>
+<span class="normal">302</span>
+<span class="normal">303</span>
+<span class="normal">304</span>
+<span class="normal">305</span>
+<span class="normal">306</span>
+<span class="normal">307</span>
+<span class="normal">308</span>
+<span class="normal">309</span>
+<span class="normal">310</span>
+<span class="normal">311</span>
+<span class="normal">312</span>
+<span class="normal">313</span>
+<span class="normal">314</span>
+<span class="normal">315</span>
+<span class="normal">316</span>
+<span class="normal">317</span>
+<span class="normal">318</span>
+<span class="normal">319</span>
+<span class="normal">320</span>
+<span class="normal">321</span>
+<span class="normal">322</span>
+<span class="normal">323</span>
+<span class="normal">324</span>
+<span class="normal">325</span>
+<span class="normal">326</span>
+<span class="normal">327</span>
+<span class="normal">328</span>
+<span class="normal">329</span>
+<span class="normal">330</span>
+<span class="normal">331</span>
+<span class="normal">332</span>
+<span class="normal">333</span>
+<span class="normal">334</span>
+<span class="normal">335</span>
+<span class="normal">336</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">decompose_affine</span><span class="p">(</span>
+    <span class="n">affine</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Decompose an affine transformation into its components.</span>
+<span class="sd">    This decomposetion treats the affine matrix as: rotation * shear * scale.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    affine : NDArray[np.floating]</span>
+<span class="sd">        The (ndim, ndim) affine transformation matrix.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    scale : NDArray[np.floating]</span>
+<span class="sd">        The (ndim,) array of scale parameters.</span>
+<span class="sd">    shear : NDArray[np.floating]</span>
+<span class="sd">        The (ndim*(ndim - 1)/2,) array of shear parameters.</span>
+<span class="sd">    rot: NDArray[np.floating]</span>
+<span class="sd">        The (ndim, ndim) rotation matrix.</span>
+<span class="sd">        If ndim is 2 or 3 then decompose_rotation can be used to get euler angles.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If affine is not ndim by ndim.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ndim</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">affine</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">affine</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="n">ndim</span><span class="p">,</span> <span class="n">ndim</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Affine matrix should be ndim by ndim&quot;</span><span class="p">)</span>
+    <span class="c1"># Use the fact that rotation matrix times its transpose is the identity</span>
+    <span class="n">no_rot</span> <span class="o">=</span> <span class="n">affine</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">affine</span>
+    <span class="c1"># Decompose to get a matrix with just scale and shear</span>
+    <span class="n">no_rot</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">cholesky</span><span class="p">(</span><span class="n">no_rot</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+
+    <span class="n">scale</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">no_rot</span><span class="p">)</span>
+    <span class="n">shear</span> <span class="o">=</span> <span class="p">(</span><span class="n">no_rot</span> <span class="o">/</span> <span class="n">scale</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">])[</span><span class="n">np</span><span class="o">.</span><span class="n">triu_indices</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">no_rot</span><span class="p">),</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
+    <span class="n">rot</span> <span class="o">=</span> <span class="n">affine</span> <span class="o">@</span> <span class="n">la</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">no_rot</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">scale</span><span class="p">,</span> <span class="n">shear</span><span class="p">,</span> <span class="n">rot</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="megham.transform.decompose_rotation" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">decompose_rotation</span><span class="p">(</span><span class="n">rotation</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Decompose a rotation matrix into its xyz rotation angles.
+This currently won't work on anything higher than 3 dimensions.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>rotation</code></td>
+          <td>
+                <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.floating">floating</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The (ndim, ndim) rotation matrix.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+<td><code>angles</code></td>          <td>
+                <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.floating">floating</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The rotation angles in radians.
+If the input is 3d then this has 3 angles in xyz order,
+if 2d it just has one.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>ValueError</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If affine is not ndim by ndim.
+If ndim is not 2 or 3.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>megham/transform.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">339</span>
+<span class="normal">340</span>
+<span class="normal">341</span>
+<span class="normal">342</span>
+<span class="normal">343</span>
+<span class="normal">344</span>
+<span class="normal">345</span>
+<span class="normal">346</span>
+<span class="normal">347</span>
+<span class="normal">348</span>
+<span class="normal">349</span>
+<span class="normal">350</span>
+<span class="normal">351</span>
+<span class="normal">352</span>
+<span class="normal">353</span>
+<span class="normal">354</span>
+<span class="normal">355</span>
+<span class="normal">356</span>
+<span class="normal">357</span>
+<span class="normal">358</span>
+<span class="normal">359</span>
+<span class="normal">360</span>
+<span class="normal">361</span>
+<span class="normal">362</span>
+<span class="normal">363</span>
+<span class="normal">364</span>
+<span class="normal">365</span>
+<span class="normal">366</span>
+<span class="normal">367</span>
+<span class="normal">368</span>
+<span class="normal">369</span>
+<span class="normal">370</span>
+<span class="normal">371</span>
+<span class="normal">372</span>
+<span class="normal">373</span>
+<span class="normal">374</span>
+<span class="normal">375</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">decompose_rotation</span><span class="p">(</span><span class="n">rotation</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Decompose a rotation matrix into its xyz rotation angles.</span>
+<span class="sd">    This currently won&#39;t work on anything higher than 3 dimensions.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    rotation : NDArray[np.floating]</span>
+<span class="sd">        The (ndim, ndim) rotation matrix.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    angles : NDArray[np.floating]</span>
+<span class="sd">        The rotation angles in radians.</span>
+<span class="sd">        If the input is 3d then this has 3 angles in xyz order,</span>
+<span class="sd">        if 2d it just has one.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If affine is not ndim by ndim.</span>
+<span class="sd">        If ndim is not 2 or 3.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ndim</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">rotation</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No support for rotations in more than 3 dimensions&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ndim</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Rotations with less than 2 dimensions don&#39;t make sense&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">rotation</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="n">ndim</span><span class="p">,</span> <span class="n">ndim</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Rotation matrix should be ndim by ndim&quot;</span><span class="p">)</span>
+    <span class="n">_rotation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">_rotation</span><span class="p">[:</span><span class="n">ndim</span><span class="p">,</span> <span class="p">:</span><span class="n">ndim</span><span class="p">]</span> <span class="o">=</span> <span class="n">rotation</span>
+    <span class="n">angles</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="n">from_matrix</span><span class="p">(</span><span class="n">_rotation</span><span class="p">)</span><span class="o">.</span><span class="n">as_euler</span><span class="p">(</span><span class="s2">&quot;xyz&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">angles</span> <span class="o">=</span> <span class="n">angles</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span>
+    <span class="k">return</span> <span class="n">angles</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="megham.transform.get_affine" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">get_affine</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">row_basis</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">center_dst</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Get affine transformation between two point clouds.
+It is assumed that the point clouds have the same registration,
+ie. src[i] corresponds to dst[i].</p>
+<p>Transformation is dst = src@affine + shift in row basis,
+and dst = affine@src + shift in col basis.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>src</code></td>
+          <td>
+                <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.floating">floating</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>A (npoints, ndim) or (ndim, npoints) array of source points.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>dst</code></td>
+          <td>
+                <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.floating">floating</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>A ((npoints, ndim) or (ndim, npoints) array of destination points.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>row_basis</code></td>
+          <td>
+                <code>bool</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If the basis of the points is row.
+If row basis then each row of src and dst is a point.
+If col basis then each col of src and dst is a point.</p>
+            </div>
+          </td>
+          <td>
+                <code>True</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>center_dst</code></td>
+          <td>
+                <code>bool</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If True, dst will be recentered at the origin before computing transformation.
+This is done with get_shift, but weights will not be used if provided.</p>
+            </div>
+          </td>
+          <td>
+                <code>True</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>**kwargs</code></td>
+          <td>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Arguments to pass to get_shift.</p>
+            </div>
+          </td>
+          <td>
+                <code>{}</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+<td><code>affine</code></td>          <td>
+                <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.floating">floating</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The (ndim, ndim) transformation matrix.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+<td><code>shift</code></td>          <td>
+                <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.floating">floating</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The (ndim,) shift to apply after transformation.
+If point are in col basis will be returned as a column vector.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>ValueError</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If the input point clouds have different shapes.
+If the input point clouds don't have enough points.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>megham/transform.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_affine</span><span class="p">(</span>
+    <span class="n">src</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
+    <span class="n">dst</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
+    <span class="n">row_basis</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">center_dst</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get affine transformation between two point clouds.</span>
+<span class="sd">    It is assumed that the point clouds have the same registration,</span>
+<span class="sd">    ie. src[i] corresponds to dst[i].</span>
+
+<span class="sd">    Transformation is dst = src@affine + shift in row basis,</span>
+<span class="sd">    and dst = affine@src + shift in col basis.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    src : NDArray[np.floating]</span>
+<span class="sd">        A (npoints, ndim) or (ndim, npoints) array of source points.</span>
+<span class="sd">    dst : NDArray[np.floating]</span>
+<span class="sd">        A ((npoints, ndim) or (ndim, npoints) array of destination points.</span>
+<span class="sd">    row_basis : bool, default: True</span>
+<span class="sd">        If the basis of the points is row.</span>
+<span class="sd">        If row basis then each row of src and dst is a point.</span>
+<span class="sd">        If col basis then each col of src and dst is a point.</span>
+<span class="sd">    center_dst : bool, default: True</span>
+<span class="sd">        If True, dst will be recentered at the origin before computing transformation.</span>
+<span class="sd">        This is done with get_shift, but weights will not be used if provided.</span>
+<span class="sd">    **kwargs</span>
+<span class="sd">        Arguments to pass to get_shift.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    affine : NDArray[np.floating]</span>
+<span class="sd">        The (ndim, ndim) transformation matrix.</span>
+<span class="sd">    shift : NDArray[np.floating]</span>
+<span class="sd">        The (ndim,) shift to apply after transformation.</span>
+<span class="sd">        If point are in col basis will be returned as a column vector.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If the input point clouds have different shapes.</span>
+<span class="sd">        If the input point clouds don&#39;t have enough points.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">src</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">dst</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Input point clouds should have the same shape&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">row_basis</span><span class="p">:</span>
+        <span class="n">src</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">dst</span> <span class="o">=</span> <span class="n">dst</span><span class="o">.</span><span class="n">T</span>
+
+    <span class="n">msk</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">src</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">dst</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">msk</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">src</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Not enough finite points to compute transformation&quot;</span><span class="p">)</span>
+
+    <span class="n">_dst</span> <span class="o">=</span> <span class="n">dst</span><span class="p">[:,</span> <span class="n">msk</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">center_dst</span><span class="p">:</span>
+        <span class="n">_kwargs</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;weights&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">})</span>
+        <span class="n">_dst</span> <span class="o">+=</span> <span class="n">get_shift</span><span class="p">(</span><span class="n">_dst</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">_kwargs</span><span class="p">)</span>
+    <span class="n">_src</span> <span class="o">=</span> <span class="n">src</span><span class="p">[:,</span> <span class="n">msk</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">_src</span> <span class="o">+=</span> <span class="n">get_shift</span><span class="p">(</span><span class="n">_src</span><span class="p">,</span> <span class="n">_dst</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">_src</span><span class="p">,</span> <span class="n">_dst</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+    <span class="o">*</span><span class="n">_</span><span class="p">,</span> <span class="n">vh</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+    <span class="n">vh_splits</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">quad</span> <span class="k">for</span> <span class="n">half</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">vh</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">quad</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">half</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">]</span>
+    <span class="n">affine</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">vh_splits</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">la</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">vh_splits</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+    <span class="n">transformed</span> <span class="o">=</span> <span class="n">affine</span> <span class="o">@</span> <span class="n">src</span><span class="p">[:,</span> <span class="n">msk</span><span class="p">]</span>
+    <span class="n">shift</span> <span class="o">=</span> <span class="n">get_shift</span><span class="p">(</span><span class="n">transformed</span><span class="p">,</span> <span class="n">dst</span><span class="p">[:,</span> <span class="n">msk</span><span class="p">],</span> <span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">row_basis</span><span class="p">:</span>
+        <span class="n">affine</span> <span class="o">=</span> <span class="n">affine</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">shift</span> <span class="o">=</span> <span class="n">shift</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">affine</span><span class="p">,</span> <span class="n">shift</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="megham.transform.get_rigid" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">get_rigid</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">row_basis</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">center_dst</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Get rigid transformation between two point clouds.
+It is assumed that the point clouds have the same registration,
+ie. src[i] corresponds to dst[i].</p>
+<p>Transformation is dst = src@rot + shift in row basis,
+and dst = rot@src + shift in col basis.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>src</code></td>
+          <td>
+                <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.floating">floating</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>A (ndim, npoints) array of source points.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>dst</code></td>
+          <td>
+                <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.floating">floating</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>A (ndim, npoints) array of destination points.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>row_basis</code></td>
+          <td>
+                <code>bool</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If the basis of the points is row.
+If row basis then each row of src and dst is a point.
+If col basis then each col of src and dst is a point.</p>
+            </div>
+          </td>
+          <td>
+                <code>True</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>center_dst</code></td>
+          <td>
+                <code>bool</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If True, dst will be recentered at the origin before computing transformation.
+This is done with get_shift, but weights will not be used if provided.</p>
+            </div>
+          </td>
+          <td>
+                <code>True</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>**kwargs</code></td>
+          <td>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Arguments to pass to get_shift.</p>
+            </div>
+          </td>
+          <td>
+                <code>{}</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+<td><code>rotation</code></td>          <td>
+                <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.floating">floating</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The (ndim, ndim) rotation matrix.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+<td><code>shift</code></td>          <td>
+                <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.floating">floating</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The (ndim,) shift to apply after transformation.
+If point are in col basis will be returned as a column vector.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>ValueError</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If the input point clouds have different shapes.
+If the input point clouds don't have enough points.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>megham/transform.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_rigid</span><span class="p">(</span>
+    <span class="n">src</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
+    <span class="n">dst</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
+    <span class="n">row_basis</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">center_dst</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get rigid transformation between two point clouds.</span>
+<span class="sd">    It is assumed that the point clouds have the same registration,</span>
+<span class="sd">    ie. src[i] corresponds to dst[i].</span>
+
+<span class="sd">    Transformation is dst = src@rot + shift in row basis,</span>
+<span class="sd">    and dst = rot@src + shift in col basis.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    src : NDArray[np.floating]</span>
+<span class="sd">        A (ndim, npoints) array of source points.</span>
+<span class="sd">    dst : NDArray[np.floating]</span>
+<span class="sd">        A (ndim, npoints) array of destination points.</span>
+<span class="sd">    row_basis : bool, default: True</span>
+<span class="sd">        If the basis of the points is row.</span>
+<span class="sd">        If row basis then each row of src and dst is a point.</span>
+<span class="sd">        If col basis then each col of src and dst is a point.</span>
+<span class="sd">    center_dst : bool, default: True</span>
+<span class="sd">        If True, dst will be recentered at the origin before computing transformation.</span>
+<span class="sd">        This is done with get_shift, but weights will not be used if provided.</span>
+<span class="sd">    **kwargs</span>
+<span class="sd">        Arguments to pass to get_shift.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    rotation : NDArray[np.floating]</span>
+<span class="sd">        The (ndim, ndim) rotation matrix.</span>
+<span class="sd">    shift : NDArray[np.floating]</span>
+<span class="sd">        The (ndim,) shift to apply after transformation.</span>
+<span class="sd">        If point are in col basis will be returned as a column vector.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If the input point clouds have different shapes.</span>
+<span class="sd">        If the input point clouds don&#39;t have enough points.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">src</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">dst</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Input point clouds should have the same shape&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">row_basis</span><span class="p">:</span>
+        <span class="n">src</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">dst</span> <span class="o">=</span> <span class="n">dst</span><span class="o">.</span><span class="n">T</span>
+
+    <span class="n">msk</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">src</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">dst</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">ndim</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">src</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">msk</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">ndim</span> <span class="o">*</span> <span class="p">(</span><span class="n">ndim</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Not enough finite points to compute transformation&quot;</span><span class="p">)</span>
+
+    <span class="n">_dst</span> <span class="o">=</span> <span class="n">dst</span><span class="p">[:,</span> <span class="n">msk</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">center_dst</span><span class="p">:</span>
+        <span class="n">_kwargs</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;weights&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">})</span>
+        <span class="n">_dst</span> <span class="o">+=</span> <span class="n">get_shift</span><span class="p">(</span><span class="n">_dst</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">_kwargs</span><span class="p">)</span>
+    <span class="n">_src</span> <span class="o">=</span> <span class="n">src</span><span class="p">[:,</span> <span class="n">msk</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">_src</span> <span class="o">+=</span> <span class="n">get_shift</span><span class="p">(</span><span class="n">_src</span><span class="p">,</span> <span class="n">_dst</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="n">M</span> <span class="o">=</span> <span class="n">_src</span> <span class="o">@</span> <span class="p">(</span><span class="n">_dst</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">u</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">vh</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">vh</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">uT</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">T</span>
+
+    <span class="n">corr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">ndim</span><span class="p">)</span>
+    <span class="n">corr</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">det</span><span class="p">((</span><span class="n">v</span><span class="p">)</span> <span class="o">@</span> <span class="p">(</span><span class="n">uT</span><span class="p">))</span>
+    <span class="n">rot</span> <span class="o">=</span> <span class="n">v</span> <span class="o">@</span> <span class="n">corr</span> <span class="o">@</span> <span class="n">uT</span>
+
+    <span class="n">transformed</span> <span class="o">=</span> <span class="n">rot</span> <span class="o">@</span> <span class="n">src</span><span class="p">[:,</span> <span class="n">msk</span><span class="p">]</span>
+    <span class="n">shift</span> <span class="o">=</span> <span class="n">get_shift</span><span class="p">(</span><span class="n">transformed</span><span class="p">,</span> <span class="n">dst</span><span class="p">[:,</span> <span class="n">msk</span><span class="p">],</span> <span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">row_basis</span><span class="p">:</span>
+        <span class="n">rot</span> <span class="o">=</span> <span class="n">rot</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">shift</span> <span class="o">=</span> <span class="n">shift</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">rot</span><span class="p">,</span> <span class="n">shift</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="megham.transform.get_shift" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">get_shift</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">row_basis</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Get shift between two point clouds.
+Shift can be applied as dst = src + shift.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>src</code></td>
+          <td>
+                <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.floating">floating</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>A (ndim, npoints) array of source points.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>dst</code></td>
+          <td>
+                <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.floating">floating</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Nominally a (ndim, npoints) array of destination points,
+but really any array broadcastable with src is accepted.
+Some useful options are:
+* np.zeros(1) to align with the origin
+* A (ndim, 1) array to align with an arbitrary point</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>row_basis</code></td>
+          <td>
+                <code>bool</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If the basis of the points is row.
+If row basis then each row of src and dst is a point.
+If col basis then each col of src and dst is a point.</p>
+            </div>
+          </td>
+          <td>
+                <code>True</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>method</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Method to use to align points.
+Current accepted values are: 'median' and 'mean'</p>
+            </div>
+          </td>
+          <td>
+                <code>&#39;median&#39;</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>weights</code></td>
+          <td>
+                <code><span title="typing.Optional">Optional</span>[<span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.floating">floating</span>]]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>(npoints,) array of weights to use.
+If provided and method is 'mean' then a weighted average is used.
+If method is median this is not currently used.</p>
+            </div>
+          </td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+<td><code>shift</code></td>          <td>
+                <code><span title="numpy.typing.NDArray">NDArray</span>[<span title="numpy.floating">floating</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The (ndim,) shift to apply after transformation.
+If point are in col basis will be returned as a column vector.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>ValueError</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If an invalid method is provided</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>megham/transform.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_shift</span><span class="p">(</span>
+    <span class="n">src</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
+    <span class="n">dst</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
+    <span class="n">row_basis</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;median&quot;</span><span class="p">,</span>
+    <span class="n">weights</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get shift between two point clouds.</span>
+<span class="sd">    Shift can be applied as dst = src + shift.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    -----------</span>
+<span class="sd">    src : NDArray[np.floating]</span>
+<span class="sd">        A (ndim, npoints) array of source points.</span>
+<span class="sd">    dst : NDArray[np.floating]</span>
+<span class="sd">        Nominally a (ndim, npoints) array of destination points,</span>
+<span class="sd">        but really any array broadcastable with src is accepted.</span>
+<span class="sd">        Some useful options are:</span>
+<span class="sd">        * np.zeros(1) to align with the origin</span>
+<span class="sd">        * A (ndim, 1) array to align with an arbitrary point</span>
+<span class="sd">    row_basis : bool, default: True</span>
+<span class="sd">        If the basis of the points is row.</span>
+<span class="sd">        If row basis then each row of src and dst is a point.</span>
+<span class="sd">        If col basis then each col of src and dst is a point.</span>
+<span class="sd">    method : str, default: &#39;median&#39;</span>
+<span class="sd">        Method to use to align points.</span>
+<span class="sd">        Current accepted values are: &#39;median&#39; and &#39;mean&#39;</span>
+<span class="sd">    weights : Optional[NDArray[np.floating]], default: None</span>
+<span class="sd">        (npoints,) array of weights to use.</span>
+<span class="sd">        If provided and method is &#39;mean&#39; then a weighted average is used.</span>
+<span class="sd">        If method is median this is not currently used.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    shift : NDArray[np.floating]</span>
+<span class="sd">        The (ndim,) shift to apply after transformation.</span>
+<span class="sd">        If point are in col basis will be returned as a column vector.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If an invalid method is provided</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">method</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;median&quot;</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid method: </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">row_basis</span><span class="p">:</span>
+        <span class="n">src</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">dst</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">dst</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+
+    <span class="n">shift</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;median&quot;</span><span class="p">:</span>
+        <span class="n">shift</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">dst</span> <span class="o">-</span> <span class="n">src</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;mean&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">weights</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">shift</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dst</span> <span class="o">-</span> <span class="n">src</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">wdiff</span> <span class="o">=</span> <span class="n">weights</span> <span class="o">*</span> <span class="p">(</span><span class="n">dst</span> <span class="o">-</span> <span class="n">src</span><span class="p">)</span>
+            <span class="n">shift</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">wdiff</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">row_basis</span><span class="p">:</span>
+        <span class="n">shift</span> <span class="o">=</span> <span class="n">shift</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">shift</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e1c3ead8.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
