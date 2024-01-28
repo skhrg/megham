@@ -154,8 +154,7 @@ def get_rigid(
 
     if row_basis:
         rot = rot.T
-    else:
-        shift = shift[..., np.newaxis]
+        shift = shift[:, 0]
 
     return rot, shift
 
@@ -235,8 +234,7 @@ def get_affine(
 
     if row_basis:
         affine = affine.T
-    else:
-        shift = shift[..., np.newaxis]
+        shift = shift[:, 0]
 
     return affine, shift
 
