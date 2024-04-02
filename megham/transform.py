@@ -137,7 +137,9 @@ def get_rigid(
 def get_affine(
     src: NDArray[np.floating],
     dst: NDArray[np.floating],
+    weights: Optional[NDArray[np.floating]] = None,
     center_dst: bool = True,
+    force_svd: bool = False,
     **kwargs,
 ) -> tuple[NDArray[np.floating], NDArray[np.floating]]:
     """
@@ -153,9 +155,15 @@ def get_affine(
         A (npoints, ndim) array of source points.
     dst : NDArray[np.floating]
         A (npoints, ndim) array of destination points.
+    weights : Optional[NDArray[np.floating]], default: None
+        (npoints,) array of weights to use.
+        If provided a weighted least squares is done instead of an SVD.
     center_dst : bool, default: True
         If True, dst will be recentered at the origin before computing transformation.
         This is done with get_shift, but weights will not be used if provided.
+    force_svd : bool, default: False
+        If True the SVD is used even if there are a small number of points
+        or weights are present.
     **kwargs
         Arguments to pass to get_shift.
 
@@ -179,23 +187,39 @@ def get_affine(
     if np.sum(msk) < src.shape[1] + 1:
         raise ValueError("Not enough finite points to compute transformation")
 
+    # When we have a small number of points lstsq is better than SVD
+    # Condition is a bit arbitrary for now
+    if force_svd is False and weights is None and np.sum(msk) < 50 * src.shape[1]:
+        weights = np.ones(len(src))
+
     _dst = dst[msk].copy()
     if center_dst:
-        _kwargs = kwargs.copy()
-        _kwargs.update({"weights": None})
-        _dst += get_shift(_dst, np.zeros(1), **_kwargs)
+        _dst += get_shift(_dst, np.zeros(1), **kwargs)
     _src = src[msk].copy()
-    _src += get_shift(_src, _dst, **kwargs)
+    init_shift = get_shift(_src, _dst, weights=weights, **kwargs)
 
-    M = np.vstack((_src.T, _dst.T)).T
-    *_, vh = la.svd(M)
-    vh_splits = [
-        quad for half in np.split(vh.T, 2, axis=0) for quad in np.split(half, 2, axis=1)
-    ]
-    affine = np.dot(vh_splits[2], la.pinv(vh_splits[0])).T
+    if force_svd or weights is None:
+        M = np.vstack((_src.T, (_dst - init_shift).T)).T
+        *_, vh = la.svd(M)
+        vh_splits = [
+            quad
+            for half in np.split(vh.T, 2, axis=0)
+            for quad in np.split(half, 2, axis=1)
+        ]
+        affine = np.dot(vh_splits[2], la.pinv(vh_splits[0])).T
+        shift = init_shift
+    else:
+        rt_weight = np.sqrt(weights[msk])[..., None]
+        wsrc = rt_weight * _src
+        wdst = rt_weight * (_dst - init_shift)
+        x, *_ = la.lstsq(
+            np.column_stack((wsrc, np.ones(len(wsrc)))), wdst, check_finite=False
+        )
+        affine = x[:-1]
+        shift = x[-1] + init_shift
 
-    transformed = src[msk] @ affine
-    shift = get_shift(transformed, dst[msk], **kwargs)
+    transformed = src[msk] @ affine + shift
+    shift += get_shift(transformed, dst[msk], **kwargs)
 
     return affine, shift
 
