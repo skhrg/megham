@@ -605,9 +605,8 @@ This is just the median distance between nearest neighbors.</p>
           </td>
           <td>
             <div class="doc-md-description">
-              <pre><code>The point cloud to estimate spacing of.
-Should have shape (npoint, ndim).
-</code></pre>
+              <p>The point cloud to estimate spacing of.
+Should have shape (npoint, ndim).</p>
             </div>
           </td>
           <td>
@@ -642,8 +641,8 @@ Should have shape (npoint, ndim).
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    coords: NDArray[np.floating]</span>
-<span class="sd">            The point cloud to estimate spacing of.</span>
-<span class="sd">            Should have shape (npoint, ndim).</span>
+<span class="sd">        The point cloud to estimate spacing of.</span>
+<span class="sd">        Should have shape (npoint, ndim).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">edm</span> <span class="o">=</span> <span class="n">make_edm</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span>
     <span class="n">edm</span><span class="p">[</span><span class="n">edm</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
