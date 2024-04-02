@@ -1,3 +1,13 @@
+## 1.0.0 (2024-04-02)
+
+### Feat
+
+- add weighted affine
+
+### Refactor
+
+- all transforms assume (npoint, ndim)
+
 ## 0.7.0 (2024-04-02)
 
 ### Feat
