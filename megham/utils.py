@@ -68,3 +68,21 @@ def estimate_var(
         var[dim_group] = np.nansum(sq_diff) / (len(dim_group) * nsrcpoints * ndstpoints)
 
     return var
+
+
+def estimate_spacing(coords: NDArray[np.floating]):
+    """
+    Estimate the spacing between points in a point cloud.
+    This is just the median distance between nearest neighbors.
+
+    Parameters
+    ----------
+    coords: NDArray[np.floating]
+            The point cloud to estimate spacing of.
+            Should have shape (npoint, ndim).
+    """
+    edm = make_edm(coords)
+    edm[edm == 0] = np.nan
+    nearest_dists = np.nanmin(edm, axis=0)
+
+    return np.median(nearest_dists)
