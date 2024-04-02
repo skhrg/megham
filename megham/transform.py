@@ -349,3 +349,84 @@ def decompose_rotation(rotation: NDArray[np.floating]) -> NDArray[np.floating]:
     if ndim == 2:
         angles = angles[-1:]
     return angles
+
+
+def compose_transform(
+    transform_1: NDArray[np.floating],
+    shift_1: NDArray[np.floating],
+    transform_2: NDArray[np.floating],
+    shift_2: NDArray[np.floating],
+) -> tuple[NDArray[np.floating], NDArray[np.floating]]:
+    """
+    Combine transformations to get one that is equivalent to:
+    dst = (src@transform_1 + shift)@transform_2 + shift_2
+
+    Parameters
+    ----------
+    transform_1 : NDArray[np.floating]
+        The first transform (affine or rotation matrix).
+        Should have shape (ndim, ndim).
+    shift_1 : NDArray[np.floating]
+        The first shift.
+        Should have shape (ndim,).
+    transform_2 : NDArray[np.floating]
+        The second transform (affine or rotation matrix).
+        Should have shape (ndim, ndim).
+    shift_2 : NDArray[np.floating]
+        The second shift.
+        Should have shape (ndim,).
+
+    Returns
+    -------
+    transform : NDArray[np.floating]
+        The composed transform.
+        Has shape (ndim, ndim).
+    shift : NDArray[np.floating].
+        The composed shift.
+        Has shape (ndim,).
+    """
+    transform = transform_1 @ transform_2
+    shift = shift_1 @ transform_2 + shift_2
+
+    return transform, shift
+
+
+def decompose_transform(
+    transform: NDArray[np.floating],
+    shift: NDArray[np.floating],
+    transform_1: NDArray[np.floating],
+    shift_1: NDArray[np.floating],
+) -> tuple[NDArray[np.floating], NDArray[np.floating]]:
+    """
+    Decompose transformations to get one with the other removed.
+    This is solving for transform_2 and shift_2 in the following equation:
+    dst = src@transform + shift = (src@transform_1 + shift)@transform_2 + shift_2
+
+    Parameters
+    ----------
+    transform : NDArray[np.floating]
+        The composed transform (affine or rotation matrix).
+        Should have shape (ndim, ndim).
+    shift : NDArray[np.floating]
+        The composed shift.
+        Should have shape (ndim,)
+    transform_1 : NDArray[np.floating]
+        The transform (affine or rotation matrix) to remove.
+        Should have shape (ndim, ndim).
+    shift_1 : NDArray[np.floating]
+        The shift to remove.
+        Should have shape (ndim,)
+
+    Returns
+    -------
+    transform_2 : NDArray[np.floating]
+        The transform with the first transform removed.
+        Has shape (ndim, ndim).
+    shift_2 : NDArray[np.floating].
+        The shift with the first transform removed.
+        Has shape (ndim,).
+    """
+    transform_2 = np.linalg.inv(transform_1) @ transform
+    shift_2 = shift - shift_1 @ transform_2
+
+    return transform_2, shift_2
