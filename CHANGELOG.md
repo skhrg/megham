@@ -1,3 +1,9 @@
+## 1.1.0 (2024-04-02)
+
+### Feat
+
+- add functions to (de)compose transforms
+
 ## 1.0.0 (2024-04-02)
 
 ### Feat
