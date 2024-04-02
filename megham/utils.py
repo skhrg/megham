@@ -78,8 +78,8 @@ def estimate_spacing(coords: NDArray[np.floating]):
     Parameters
     ----------
     coords: NDArray[np.floating]
-            The point cloud to estimate spacing of.
-            Should have shape (npoint, ndim).
+        The point cloud to estimate spacing of.
+        Should have shape (npoint, ndim).
     """
     edm = make_edm(coords)
     edm[edm == 0] = np.nan

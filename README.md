@@ -42,7 +42,7 @@ If you are going to contribute regularly, contact me to get push access to the r
 
 ### Style and Standards
 In general contributions should be [PEP8](https://peps.python.org/pep-0008/) with commits in the [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) format.
-This library follows [semantic versioning](https://semver.org/), so changes that bump the version should do so by editing `pyproject.toml`.
+This library follows [semantic versioning](https://semver.org/) but the version bumping is done automatically and should usually not have be done manually.
 
 In order to make following these rules easier this repository is setup to work with [commitizen](https://commitizen-tools.github.io/commitizen/) and [pre-commit](https://pre-commit.com/).
 It is recommended that you make use of these tools to save time.
