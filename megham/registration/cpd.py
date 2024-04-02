@@ -9,6 +9,7 @@ import scipy.spatial.distance as dist
 from numpy.typing import NDArray
 
 from ..transform import apply_transform
+from ..utils import estimate_var
 
 epsilon = 1e-7
 
@@ -30,49 +31,6 @@ class Callback(Protocol):
 
 def dummy_callback(target, transformed, iteration, err):
     return
-
-
-def _init_var(
-    source: NDArray[np.floating],
-    target: NDArray[np.floating],
-    dim_groups: Sequence[Sequence[int] | NDArray[np.int_]],
-) -> NDArray[np.floating]:
-    """
-    Initialize the variance used by joint CPD.
-
-    Parameters
-    ----------
-    source : NDArray[np.floating]
-        The set of source points to be mapped onto the target points.
-        Should have shape (nsrcpoints, ndim).
-    target : NDArray[np.floating]
-        The set of target points to be mapped onto.
-        Should have shape (ntrgpoints, ndim).
-    dim_groups : Sequence[Sequence[int] | NDArray[np.int_]]
-        Which dimensions should be transformed together.
-
-    Returns
-    -------
-    var : NDArray[np.floating]
-        The initial variance.
-        Will have shape (ndim,).
-    """
-    nsrcpoints, ndim = source.shape
-    ntrgpoints = len(target)
-
-    dims_flat = np.concatenate(dim_groups)
-    no_group = np.setdiff1d(np.arange(ndim), dims_flat)
-    dim_groups = list(dim_groups)
-    dim_groups = dim_groups + [[dim] for dim in no_group]
-
-    var = np.zeros(ndim)
-    for dim_group in dim_groups:
-        sq_diff = dist.cdist(
-            source[:, dim_group], target[:, dim_group], metric="sqeuclidean"
-        )
-        var[dim_group] = np.sum(sq_diff) / (len(dim_group) * nsrcpoints * ntrgpoints)
-
-    return var
 
 
 def compute_P(
@@ -332,7 +290,7 @@ def joint_cpd(
             raise ValueError(f"Repeated dimensions in dim_groups: {repeats}")
         dim_groups = [np.array(dim_group, dtype=int) for dim_group in dim_groups]
 
-    var = _init_var(source, target, dim_groups)
+    var = estimate_var(source, target, dim_groups)
     err = np.inf
 
     transform = np.eye(ndim)
