@@ -1,3 +1,10 @@
+## 0.7.0 (2024-04-02)
+
+### Feat
+
+- add function to estimate spacing
+- move some generically useful functions into a utils module
+
 ## 0.6.1 (2024-01-28)
 
 ### Fix
