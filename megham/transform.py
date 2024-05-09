@@ -224,6 +224,49 @@ def get_affine(
     return affine, shift
 
 
+def get_affine_two_stage(
+    src: NDArray[np.floating],
+    dst: NDArray[np.floating],
+    weights: NDArray[np.floating],
+) -> tuple[NDArray[np.floating], NDArray[np.floating]]:
+    """
+    Get affine transformation between two point clouds with a two stage solver.
+    This first uses the SVD to do an intitial alignment and
+    then uses weighted least squares to compute a correction on top of that.
+
+    Transformation is dst = affine@src + shift
+
+    Parameters
+    ----------
+    src : NDArray[np.floating]
+        A (npoints, ndim) array of source points.
+    dst : NDArray[np.floating]
+        A (npoints, ndim) array of destination points.
+    weights : NDArray[np.floating]
+        (npoints,) array of weights to use.
+        If provided a weighted least squares is done instead of an SVD.
+
+    Returns
+    -------
+    affine : NDArray[np.floating]
+        The (ndim, ndim) transformation matrix.
+    shift : NDArray[np.floating]
+        The (ndim,) shift to apply after transformation.
+    """
+    # Do an initial alignment without weights
+    affine_0, shift_0 = get_affine(src, dst, force_svd=True)
+    init_align = apply_transform(src, affine_0, shift_0)
+    # Now compute the actual transform
+    affine, shift = get_affine(init_align, dst, weights)
+    # Compose the transforms
+    affine, shift = compose_transform(affine_0, shift_0, affine, shift)
+    # Now one last shift correction
+    transformed = apply_transform(src, affine, shift)
+    shift += get_shift(transformed, dst, "mean", weights)
+
+    return affine, shift
+
+
 def apply_transform(
     src: NDArray[np.floating],
     transform: NDArray[np.floating],
