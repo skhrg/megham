@@ -70,19 +70,69 @@ def estimate_var(
     return var
 
 
-def estimate_spacing(coords: NDArray[np.floating]):
+def estimate_spacing(coords: NDArray[np.floating]) -> float:
     """
     Estimate the spacing between points in a point cloud.
     This is just the median distance between nearest neighbors.
 
     Parameters
     ----------
-    coords: NDArray[np.floating]
+    coords : NDArray[np.floating]
         The point cloud to estimate spacing of.
         Should have shape (npoint, ndim).
+
+    Returns
+    -------
+    spacing : float
+        The spacing between points.
     """
     edm = make_edm(coords)
     edm[edm == 0] = np.nan
     nearest_dists = np.nanmin(edm, axis=0)
 
     return np.median(nearest_dists)
+
+
+def gen_weights(
+    src: NDArray[np.floating],
+    dst: NDArray[np.floating],
+    var: Optional[NDArray[np.floating]] = None,
+    pdf: bool = False,
+) -> NDArray[np.floating]:
+    """
+    Generate weights between points in two registered point clouds.
+    The weight here is just the liklihood from a gaussian.
+    Note that this is not a GMM, each weight is computed from a single
+    gaussian since we are assuming a known registration.
+
+    Parameters
+    ----------
+    src : NDArray[np.floating]
+        The set of source points to be mapped onto the target points.
+        Should have shape (nsrcpoints, ndim).
+    dst : NDArray[np.floating]
+        The set of destination points to be mapped onto.
+        Should have shape (ndstpoints, ndim).
+    var : Optional[NDArray[np.floating]], default: None
+        The variance along each axis.
+        Should have shape (ndim,) if provided.
+        If None, will be computed with estimate_var
+    pdf : bool, default: False
+        If True apply the 1/sqrt(2*pi*var) normalization factor.
+        This makes the weights the PDF of a normal distribution.
+
+    Returns
+    -------
+    weights : NDArray[np.floating]
+        (npoints,) array of weights.
+    """
+    if var is None:
+        var = estimate_var(src, dst)
+    norm = np.ones_like(var)
+    if pdf:
+        norm = 1.0 / np.sqrt(2 * np.pi * var)
+
+    # Compute nd gaussian for each pair
+    weights = np.prod(norm * np.exp(-0.5 * (src - dst) ** 2 / var), axis=1)
+
+    return weights
