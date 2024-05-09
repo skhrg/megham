@@ -70,16 +70,21 @@ def estimate_var(
     return var
 
 
-def estimate_spacing(coords: NDArray[np.floating]):
+def estimate_spacing(coords: NDArray[np.floating]) -> float:
     """
     Estimate the spacing between points in a point cloud.
     This is just the median distance between nearest neighbors.
 
     Parameters
     ----------
-    coords: NDArray[np.floating]
+    coords : NDArray[np.floating]
         The point cloud to estimate spacing of.
         Should have shape (npoint, ndim).
+
+    Returns
+    -------
+    spacing : float
+        The spacing between points.
     """
     edm = make_edm(coords)
     edm[edm == 0] = np.nan
