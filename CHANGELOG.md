@@ -1,3 +1,10 @@
+## 1.2.0 (2024-05-09)
+
+### Feat
+
+- add function to generate weihgts
+- add two stage solver
+
 ## 1.1.0 (2024-04-02)
 
 ### Feat
