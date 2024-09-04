@@ -2,37 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://skhrg.github.io/megham/1.2.0/</loc>
-         <lastmod>2024-05-09</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-09-04</lastmod>
     </url>
     <url>
          <loc>https://skhrg.github.io/megham/1.2.0/joint_cpd/</loc>
-         <lastmod>2024-05-09</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-09-04</lastmod>
     </url>
     <url>
          <loc>https://skhrg.github.io/megham/1.2.0/reference/SUMMARY/</loc>
-         <lastmod>2024-05-09</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-09-04</lastmod>
     </url>
     <url>
          <loc>https://skhrg.github.io/megham/1.2.0/reference/mds/</loc>
-         <lastmod>2024-05-09</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-09-04</lastmod>
     </url>
     <url>
          <loc>https://skhrg.github.io/megham/1.2.0/reference/transform/</loc>
-         <lastmod>2024-05-09</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-09-04</lastmod>
     </url>
     <url>
          <loc>https://skhrg.github.io/megham/1.2.0/reference/utils/</loc>
-         <lastmod>2024-05-09</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-09-04</lastmod>
     </url>
     <url>
          <loc>https://skhrg.github.io/megham/1.2.0/reference/registration/cpd/</loc>
-         <lastmod>2024-05-09</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2024-09-04</lastmod>
     </url>
 </urlset>
