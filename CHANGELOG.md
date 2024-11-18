@@ -1,3 +1,9 @@
+## 1.3.0 (2024-11-18)
+
+### Feat
+
+- add function to invert a transform
+
 ## 1.2.0 (2024-05-09)
 
 ### Feat
