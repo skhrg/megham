@@ -1,3 +1,9 @@
+## 1.3.1 (2024-11-18)
+
+### Fix
+
+- switch from np.product to np.prod
+
 ## 1.3.0 (2024-11-18)
 
 ### Feat
