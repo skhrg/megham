@@ -473,3 +473,33 @@ def decompose_transform(
     shift_2 = shift - shift_1 @ transform_2
 
     return transform_2, shift_2
+
+
+def invert_transform(
+    transform: NDArray[np.floating], shift: NDArray[np.floating]
+) -> tuple[NDArray[np.floating], NDArray[np.floating]]:
+    """
+    Invert a transformation.
+    If the inverted transformation is applied to a point cloud that has already been
+    transformed, you will recover the original point cloud.
+
+    Parameters
+    ----------
+    transform : NDArray[np.floating]
+        The transform (affine or rotation matrix) the invert.
+        Should have shape (ndim, ndim).
+    shift : NDArray[np.floating]
+        The shift to invert.
+        Should have shape (ndim,)
+
+    Returns
+    -------
+    transform_inv : NDArray[np.floating]
+        The inverted transformation matrix.
+    shift_inv : NDArray[np.floating]
+        The inverted shift vector.
+    """
+    transform_inv = np.linalg.inv(transform)
+    shift_inv = (-1 * shift) @ transform_inv
+
+    return transform_inv, shift_inv
