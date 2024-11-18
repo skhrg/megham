@@ -71,7 +71,7 @@ def compute_P(
     uni = (
         (w / (1 - w))
         * (nsrcpoints / ntrgpoints)
-        * np.sqrt(((2 * np.pi) ** ndim) * np.product(var))
+        * np.sqrt(((2 * np.pi) ** ndim) * np.prod(var))
     )
     gaussians = np.ones((nsrcpoints, ntrgpoints))
     for dim in range(ndim):
