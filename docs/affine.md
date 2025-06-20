@@ -30,7 +30,7 @@ $$
 M = \begin{bmatrix} x^T & y^T \end{bmatrix}
 $$
 
-we then use the SVD to compute $V\*$, the right singular vectors of $M$.
+we then use the SVD to compute $V^{\ast}$, the right singular vectors of $M$.
 
 Taking the two largest right singular vectors, $V_{1}$ and $V_{2}$ we define the following:
 
