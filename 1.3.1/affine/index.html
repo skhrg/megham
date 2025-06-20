@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://skhrg.github.io/megham/1.3.1/joint_cpd/">
+        <link rel="canonical" href="https://skhrg.github.io/megham/1.3.1/affine/">
       
       
-        <link rel="prev" href="..">
+        <link rel="prev" href="../joint_cpd/">
       
       
-        <link rel="next" href="../affine/">
+        <link rel="next" href="../reference/mds/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Joint CPD - Megham</title>
+        <title>Affine Transformation - Megham</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#joint-coherent-point-drift" class="md-skip">
+        <a href="#computing-and-decomposing-the-affine-transformation" class="md-skip">
           Skip to content
         </a>
       
@@ -106,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Joint CPD
+              Affine Transformation
             
           </span>
         </div>
@@ -221,6 +221,28 @@
       
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../joint_cpd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Joint CPD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -238,7 +260,7 @@
   
   
   <span class="md-ellipsis">
-    Joint CPD
+    Affine Transformation
     
   </span>
   
@@ -251,7 +273,7 @@
   
   
   <span class="md-ellipsis">
-    Joint CPD
+    Affine Transformation
     
   </span>
   
@@ -274,27 +296,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#background" class="md-nav__link">
+  <a href="#the-affine-transformation" class="md-nav__link">
     <span class="md-ellipsis">
-      Background
+      The Affine Transformation
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-joint-cpd-algorithm" class="md-nav__link">
+  <a href="#method-1-the-svd-method" class="md-nav__link">
     <span class="md-ellipsis">
-      The Joint CPD Algorithm
+      Method 1: The SVD Method
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#proof-of-equivalence" class="md-nav__link">
+  <a href="#method-2-weighted-least-squares" class="md-nav__link">
     <span class="md-ellipsis">
-      Proof of Equivalence
+      Method 2: Weighted Least Squares
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decomposing-the-affine-transformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Decomposing the Affine Transformation
     </span>
   </a>
   
@@ -304,28 +335,6 @@
   
 </nav>
       
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../affine/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Affine Transformation
-    
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -540,27 +549,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#background" class="md-nav__link">
+  <a href="#the-affine-transformation" class="md-nav__link">
     <span class="md-ellipsis">
-      Background
+      The Affine Transformation
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-joint-cpd-algorithm" class="md-nav__link">
+  <a href="#method-1-the-svd-method" class="md-nav__link">
     <span class="md-ellipsis">
-      The Joint CPD Algorithm
+      Method 1: The SVD Method
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#proof-of-equivalence" class="md-nav__link">
+  <a href="#method-2-weighted-least-squares" class="md-nav__link">
     <span class="md-ellipsis">
-      Proof of Equivalence
+      Method 2: Weighted Least Squares
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decomposing-the-affine-transformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Decomposing the Affine Transformation
     </span>
   </a>
   
@@ -582,71 +600,97 @@
 
 
 
-<h1 id="joint-coherent-point-drift">Joint Coherent Point Drift</h1>
-<h2 id="background">Background</h2>
-<p>Coherent Point Drift (CPD) is a point set registration algorithm originally described in <a href="https://arxiv.org/abs/0905.2635">Myroneko &amp; Song</a>.
-This algorithm is an excellent choice for point set registration in cases without known correspondences, outperforming many other state-of-the-art methods.
-There are many existing implementations of CPD, such as <a href="https://github.com/siavashk/pycpd">pycpd</a>.</p>
-<p>One assumption made by CPD is that your point clouds exist in a space where all the axes form a single basis.
-As a result every degree of freedom allowed by your transformation of choice (affine, rigid, etc.) can be used in the final transformation.
-This is generally OK in cases where your data is purely spatial, but if your point clouds include a non-spatial axis (ie: color) this can cause issues since transformations that mix the spatial and non-spatial axes can occur.
-Joint CPD is an extension of the base CPD algorithm that exists to address this.</p>
-<h2 id="the-joint-cpd-algorithm">The Joint CPD Algorithm</h2>
-<p>The joint CPD algorithm is a simple extension to CPD
-First we define the concept of "dimensional groups",
-where every axis in a given dimensional group is transformed together.
-For a <span class="arithmatex">\(L\)</span>-dimensional point cloud we can define <span class="arithmatex">\(D\)</span> dimensional groups, where <span class="arithmatex">\(1 \leq D \leq L\)</span>. For convenience we define the following notation:</p>
+<h1 id="computing-and-decomposing-the-affine-transformation">Computing and Decomposing the Affine Transformation</h1>
+<h2 id="the-affine-transformation">The Affine Transformation</h2>
+<p>The affine transformation is a supremely useful transformation that preserves collinearity and parallelism but nothing else.
+This is useful in many scenarios where you which to remain in the linear regime while allowing as generic of a transformation as possible.
+There are many places to learn the details of the transformation, but as usual <a href="https://en.wikipedia.org/wiki/Affine_transformation">Wikipedia</a> is a good starting place. </p>
+<p>This repository contains a function, <a href="https://skhrg.github.io/megham/latest/reference/transform/#megham.transform.get_affine"><code>get_affine</code></a>, to compute this transform.
+This page contains information on the two methods used in that function to compute this transformation.</p>
+<p>Since the affine transformation is the simply a generic affine transformation, we write it as follows:</p>
 <div class="arithmatex">\[
-x_{(d)}
+y = Ax + b
 \]</div>
-<p>Where <span class="arithmatex">\(x\)</span> is a point cloud, and the <span class="arithmatex">\((d)\)</span> denotes that we are referring to the <span class="arithmatex">\(d\)</span>'th dimensional group.
-Each dimensional group can contain up to <span class="arithmatex">\(L\)</span> dimensions, but cannot overlap with each other at all.</p>
-<p>With this now defined we can write down the posterior probabilities of the Gaussian Mixture Model (GMM) components as:</p>
+<p>Where <span class="arithmatex">\(x\)</span> is the starting set of points, <span class="arithmatex">\(A\)</span> is a matrix representing the affine transformation, <span class="arithmatex">\(b\)</span> is a offset vector, and <span class="arithmatex">\(y\)</span> is the transformed set of points.
+We will refer to the terms of this equation throughout this page.</p>
+<h2 id="method-1-the-svd-method">Method 1: The SVD Method</h2>
+<p>Using the SVD to compute the affine transform is incredibly useful when dealing with noisy or large datasets (or large noisy datasets).</p>
+<p>To begin we first approximate <span class="arithmatex">\(b\)</span> by taking the mean or median of <span class="arithmatex">\(y - x\)</span>.
+Then we build the following matrix:</p>
 <div class="arithmatex">\[
-P^{old}(m|x_{n}) = \frac{\prod_{d=1}^{D}\exp\left(-\frac{1}{2} \lVert \frac{x_{(d)n} - T_{(d)}(y_{(d)m})}{\sigma_{(d)}} \rVert ^2 \right)}{\sum_{k=1}^{M}\prod_{d=1}^{D}\exp\left(-\frac{1}{2} \lVert \frac{x_{(d)n} - T_{(d)}(y_{(d)k})}{\sigma_{(d)}} \rVert ^2 \right) + \frac{w}{1-w}\frac{M}{N}\prod_{d=1}^{D} \left(2\pi\sigma_{(d)}^2\right)^{l_{(d)}/2}}
+M = \begin{bmatrix} x^T &amp; y^T \end{bmatrix}
 \]</div>
-<p>Where: </p>
-<ul>
-<li><span class="arithmatex">\(x\)</span> is the target point cloud</li>
-<li><span class="arithmatex">\(y\)</span> is the source point cloud (the GMM centroids)</li>
-<li><span class="arithmatex">\(N\)</span> is the number of points in <span class="arithmatex">\(x\)</span></li>
-<li><span class="arithmatex">\(M\)</span> is the number of points in <span class="arithmatex">\(y\)</span></li>
-<li><span class="arithmatex">\(D\)</span> is the number of dimensional groups</li>
-<li><span class="arithmatex">\(T_{(d)}\)</span> is the transformation in the <span class="arithmatex">\(d\)</span>'th dimensional group</li>
-<li><span class="arithmatex">\(\sigma_{(d)}^2\)</span> is the variance of the GMM in the <span class="arithmatex">\(d\)</span>'th dimensional group</li>
-<li><span class="arithmatex">\(l_{(d)}\)</span> is the number of dimensions in the <span class="arithmatex">\(d\)</span>'th dimensional group</li>
-<li><span class="arithmatex">\(w\)</span> is the weight of the uniform distribution </li>
-</ul>
-<p>And we can write down the objective function as:</p>
+<p>we then use the SVD to compute <span class="arithmatex">\(V\*\)</span>, the right singular vectors of <span class="arithmatex">\(M\)</span>.</p>
+<p>Taking the two largest right singular vectors, <span class="arithmatex">\(V_{1}\)</span> and <span class="arithmatex">\(V_{2}\)</span> we define the following:</p>
 <div class="arithmatex">\[
-Q = -\sum_{n=1}^{N}\sum_{m=1}^{M} P^{old}(m|x_{n})\log\left(P^{new}(m)p^{new}(x_{n}|m)\right)
+\begin{bmatrix} B \\ C \end{bmatrix} = \begin{bmatrix} V_{1} &amp; V_{2} \end{bmatrix}
 \]</div>
-<p>Because the partial derivatives of <span class="arithmatex">\(Q\)</span> with respect to the components of <span class="arithmatex">\(T_{(d)}\)</span> and <span class="arithmatex">\(\sigma_{(d)}\)</span> kill all terms pertaining to other dimensional groups (see <a href="./#proof-of-equivalence">Proof of Equivalence</a>) we can update the transformation and variance as in the original CPD algorithm within each dimensional group. 
-This allows us to compute <span class="arithmatex">\(D\)</span> independent transformations, but because all of the dimensional groups are used to compute <span class="arithmatex">\(P^{old}\)</span> these transformations can leverage correlations between different dimensional groups.</p>
-<h2 id="proof-of-equivalence">Proof of Equivalence</h2>
-<p>Starting from the objective function <span class="arithmatex">\(Q\)</span> as defined <a href="./#the-joint-cpd-algorithm">above</a> we show that the partial derivatives within each dimensional group reduce to a form that is trivially equivalent to those in the base CPD algorithm below.</p>
-<p>First we expand <span class="arithmatex">\(Q\)</span> as:</p>
+<p>which then gives us the affine transformation <span class="arithmatex">\(A = CB^{-1}\)</span>.</p>
+<p>This may seem like nonsense at first but its actually fairly intuitive method.
+<span class="arithmatex">\(B\)</span> essentially is a description of <span class="arithmatex">\(x\)</span>'s column basis and <span class="arithmatex">\(C\)</span> the same for <span class="arithmatex">\(y\)</span>,
+so <span class="arithmatex">\(CB^{^1}\)</span> takes us from the basis of <span class="arithmatex">\(x\)</span> to the singular basis and then to the basis of <span class="arithmatex">\(y\)</span>.
+Given that <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(y\)</span> are <span class="arithmatex">\(n_{point}\)</span> by <span class="arithmatex">\(n_{dim}\)</span> matrices, the column basis describes the coordinate systems in which they live.</p>
+<h2 id="method-2-weighted-least-squares">Method 2: Weighted Least Squares</h2>
+<p>This method is much more straightforward to understand.
+In the original equation <span class="arithmatex">\(y = Ax + b\)</span> we add an additional variable <span class="arithmatex">\(w\)</span> where <span class="arithmatex">\(w\)</span> is a per-point weight.
+The equation now becomes:</p>
 <div class="arithmatex">\[
-Q = -\sum_{n=1}^{N}\sum_{m=1}^{M} P^{old}(m|x_{n})\log\left(\prod_{d=1}^{D} \frac{\exp\left(-\frac{\lVert x_{(d)n} - T_{(d)}(y_{(d)m})\rVert ^2}{2\sigma_{(d)}^2} \right)}{\left(2\pi\sigma_{(d)}^2\right)^{1/2}}\right)
+\sqrt{2}y = A\sqrt{2}(x + b)
+\]</div>
+<p>In order to simplify this equation we split <span class="arithmatex">\(b\)</span> into two terms: <span class="arithmatex">\(b_{naive}\)</span> and <span class="arithmatex">\(b_{leastsq}\)</span>.
+We solve for <span class="arithmatex">\(b_{naive}\)</span> simply by taking the mean or median of <span class="arithmatex">\(y - b\)</span> just as before.</p>
+<p>Then to solve for <span class="arithmatex">\(b_{leastsq}\)</span> we define the following:</p>
+<div class="arithmatex">\[
+A' = \begin{bmatrix}A\\ b_{leastsq} \end{bmatrix}
+\]</div>
+<p>and</p>
+<div class="arithmatex">\[
+x' = \begin{bmatrix}\sqrt{w}x &amp; \mathbf{1} \end{bmatrix}
+\]</div>
+<p>where <span class="arithmatex">\(\mathbf{1}\)</span> is a vector of all ones.</p>
+<p>Now we have:</p>
+<div class="arithmatex">\[
+\sqrt{w}\left(y - b_{naive}\right) = A'x'
+\]</div>
+<p>from which we can solve for <span class="arithmatex">\(A'\)</span>.</p>
+<p>The analytic solution is simply:</p>
+<div class="arithmatex">\[
+A' = \sqrt{w}yx'^{-1}
+\]</div>
+<p>but direct inversion of <span class="arithmatex">\(x'\)</span> can be costly if it is a large array and can have numerical issues
+if it has a poor condition number, so instead we use the standard <a href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.lstsq.html">numpy function</a> to solve.</p>
+<p>Then we can extract <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(b_{leastsq}\)</span> from <span class="arithmatex">\(A'\)</span> and sum up to get the full <span class="arithmatex">\(b = b_{naive} + b_{leastsq}\)</span>.</p>
+<h2 id="decomposing-the-affine-transformation">Decomposing the Affine Transformation</h2>
+<p>Regardless of how we compute the affine transformation we often want to decompose it into a set of numbers which can then be understood.
+The function <a href="https://skhrg.github.io/megham/latest/reference/transform/#megham.transform.decompose_affine"><code>decompose_affine</code></a> decomposes the affine transform into a scale term, a shear term, and a rotation matrix.
+This decomposition is able to fully describe the transformation and offers values that are easy to interpret geometrically.</p>
+<p>We define this decomposition as:</p>
+<div class="arithmatex">\[
+A = RSM
+\]</div>
+<p>where <span class="arithmatex">\(R\)</span> is the rotation matrix, <span class="arithmatex">\(S\)</span> is the shear matrix, and <span class="arithmatex">\(M\)</span> is the scale matrix.</p>
+<p>Starting with the affine transform as a <span class="arithmatex">\(n_{dim|\)</span> by <span class="arithmatex">\(n_{dim}\)</span> matrix we take:</p>
+<div class="arithmatex">\[
+B = A^T A = M^T S^T R^T R S M = M^T S^T S M
+\]</div>
+<p><span class="arithmatex">\(B\)</span> is now the transform without the rotation term since the transpose of a rotation matrix is the inverse of said rotation matrix.</p>
+<p>We can then use a Cholesky decomposition to extract</p>
+<div class="arithmatex">\[
+C = SM
+\]</div>
+<p>from <span class="arithmatex">\(B\)</span>.</p>
+<p>Since the scale matrix is fully diagonal and the diagonal of a shear matrix is the identity we can compute them as follows:</p>
+<div class="arithmatex">\[
+M = diag \left( C \right)
 \]</div>
 <div class="arithmatex">\[
-Q = -\sum_{n=1}^{N}\sum_{m=1}^{M} P^{old}(m|x_{n})\sum_{d=1}^{D} -\frac{\lVert x_{(d)n} - T_{(d)}(y_{(d)m})\rVert ^2}{2\sigma_{(d)}^2} - \frac{\log\left(2\pi\sigma_{(d)}^2\right)}{2}
+S = CM^{-1}
 \]</div>
+<p>Now to get the rotation matrix we can simply take:</p>
 <div class="arithmatex">\[
-Q = \sum_{d=1}^{D}\frac{N_{P}l_{(d)}}{2}\log\sigma_{(d)}^2 + \sum_{n=1}^{N}\sum_{m=1}^{M} P^{old}(m|x_{n})\sum_{d=1}^{D} \frac{\lVert x_{(d)n} - T_{(d)}(y_{(d)m})\rVert ^2}{2\sigma_{(d)}^2}
+R = AC^{-1} = R S M \left( SM \right) ^{-1}
 \]</div>
-<p>Where <span class="arithmatex">\(N_{P}\)</span> is the sum of <span class="arithmatex">\(P^{old}\)</span>.</p>
-<p>Now we take the partial derivatives.
-First WLOG take the derivative with respect to <span class="arithmatex">\(A\)</span> where <span class="arithmatex">\(A\)</span> is a component of the transform (ie: the affine matrix <span class="arithmatex">\(B\)</span> in the affine case, the rotation matrix <span class="arithmatex">\(R\)</span> in the rigid case, etc.):</p>
-<div class="arithmatex">\[
-\frac{dQ}{dA_{(d)}} = \sum_{n=1}^{N}\sum_{m=1}^{M} P^{old}(m|x_{n})\frac{\lVert x_{(d)n} - \frac{dT_{(d)}}{dA_{(d)}}(y_{(d)m})\rVert ^2}{2\sigma_{(d)}^2}
-\]</div>
-<p>Which is trivially equivalent to the derivative in the base CPD case.</p>
-<p>Similarly taking the derivative with respect to <span class="arithmatex">\(\sigma^2\)</span>:</p>
-<div class="arithmatex">\[
-\frac{dQ}{\sigma_{(d)}^2} = \frac{N_{P}l_{(d)}}{2\sigma_{(d)}^2} - \sum_{n=1}^{N}\sum_{m=1}^{M} P^{old}(m|x_{n}) \frac{\lVert x_{(d)n} - T_{(d)}(y_{(d)m})\rVert ^2}{2\sigma_{(d)}^4}
-\]</div>
-<p>Which is also trivially equivalent to the derivative in the base CPD case.</p>
+<p>The rotation matrix can then be converted to a something like an euler angle sequence for further intuition.</p>
 
 
 
