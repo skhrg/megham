@@ -10,7 +10,7 @@ This repository contains a function, [`get_affine`](https://skhrg.github.io/megh
 This page contains information on the two methods used in that function to compute this transformation.
 
 
-Since the affine transformation is the simply a generic affine transformation, we write it as follows:
+Since the affine transformation is simply a generic linear transformation, we write it as follows:
 
 $$
 y = Ax + b
@@ -105,7 +105,7 @@ $$
 
 where $R$ is the rotation matrix, $S$ is the shear matrix, and $M$ is the scale matrix.
 
-Starting with the affine transform as a $n_{dim|$ by $n_{dim}$ matrix we take:
+Starting with the affine transform as a $n_{dim}$ by $n_{dim}$ matrix we take:
 
 $$
 B = A^T A = M^T S^T R^T R S M = M^T S^T S M
