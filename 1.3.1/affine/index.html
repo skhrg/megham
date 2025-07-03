@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
     
     
       
@@ -607,7 +607,7 @@ This is useful in many scenarios where you which to remain in the linear regime 
 There are many places to learn the details of the transformation, but as usual <a href="https://en.wikipedia.org/wiki/Affine_transformation">Wikipedia</a> is a good starting place. </p>
 <p>This repository contains a function, <a href="https://skhrg.github.io/megham/latest/reference/transform/#megham.transform.get_affine"><code>get_affine</code></a>, to compute this transform.
 This page contains information on the two methods used in that function to compute this transformation.</p>
-<p>Since the affine transformation is the simply a generic affine transformation, we write it as follows:</p>
+<p>Since the affine transformation is simply a generic linear transformation, we write it as follows:</p>
 <div class="arithmatex">\[
 y = Ax + b
 \]</div>
@@ -669,7 +669,7 @@ This decomposition is able to fully describe the transformation and offers value
 A = RSM
 \]</div>
 <p>where <span class="arithmatex">\(R\)</span> is the rotation matrix, <span class="arithmatex">\(S\)</span> is the shear matrix, and <span class="arithmatex">\(M\)</span> is the scale matrix.</p>
-<p>Starting with the affine transform as a <span class="arithmatex">\(n_{dim|\)</span> by <span class="arithmatex">\(n_{dim}\)</span> matrix we take:</p>
+<p>Starting with the affine transform as a <span class="arithmatex">\(n_{dim}\)</span> by <span class="arithmatex">\(n_{dim}\)</span> matrix we take:</p>
 <div class="arithmatex">\[
 B = A^T A = M^T S^T R^T R S M = M^T S^T S M
 \]</div>
@@ -742,7 +742,7 @@ R = AC^{-1} = R S M \left( SM \right) ^{-1}
       <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      <script src="../assets/javascripts/bundle.56ea9cef.min.js"></script>
       
         <script src="../javascripts/mathjax.js"></script>
       
