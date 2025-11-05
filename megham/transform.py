@@ -493,7 +493,7 @@ def invert_transform(
     Parameters
     ----------
     transform : NDArray[np.floating]
-        The transform (affine or rotation matrix) the invert.
+        The transform (affine or rotation matrix) to invert.
         Should have shape (ndim, ndim).
     shift : NDArray[np.floating]
         The shift to invert.
@@ -510,3 +510,101 @@ def invert_transform(
     shift_inv = (-1 * shift) @ transform_inv
 
     return transform_inv, shift_inv
+
+
+def approx_common_mode_svd(
+    transforms: list[NDArray[np.floating]],
+) -> NDArray[np.floating]:
+    """
+    Approximate the common mode rotation between matrices by using the SVD.
+    This is done by taking a naive mean of all matrices and then finding the nearest
+    orthogonal matrix to this mean matrix: $U \tilde{I} V^T$ where $U$ and $V^T$ are
+    calculated from the SVD as usual and $\tilde{I}$ is the identity with its last element
+    (ie: the bottom right) replaced by $det(U)det(V)$.
+
+
+    Parameters
+    ----------
+    transforms : list[NDArray[np.floating]]
+        The transforms (affine or rotation matrix) to calculate the commom mode for.
+        Each should have shape (ndim, ndim).
+
+    Returns
+    -------
+    common_rot : NDArray[np.floating]
+        The approximate common mode rotation.
+    """
+    mean_mat = np.mean(transforms, axis=0)
+    u, _, vh = la.svd(mean_mat.T)
+    s = np.eye(len(mean_mat))
+    s[-1, -1] = la.det(u) * la.det(vh.T)
+
+    common_rot = u @ s @ vh
+    return common_rot.T
+
+
+def get_common_mode(
+    transforms: list[NDArray[np.floating]],
+    shifts: list[NDArray[np.floating]],
+    reference: int = -2,
+    rigid_only: bool = True,
+) -> tuple[NDArray[np.floating], NDArray[np.floating]]:
+    """
+    Get the rigid common mode from a set of transformations and shift.
+    This is done by computing the matrix exponential with respect to a reference matrix
+    and then computing the arithithmatic mean in corresponding Lie group before transforming back.
+
+    The choice of the reference matrix can effect the quality of this calculation,
+    since the Lie group will live in the tangent space of the reference matrix.
+    The farther the reference is from the input matrices the more unstable this calculation is.
+    If your martrices are very different (ie. not much of a common mode) it is possible to get
+    odd results from this.
+    By default `approx_common_mode_svd` will be used to generate the reference matrice,
+    this will genrally work well unless your transformations have basically no common mode.
+
+    Parameters
+    ----------
+    transforms : list[NDArray[np.floating]]
+        The transforms (affine or rotation matrix) to calculate the commom mode for.
+        Each should have shape (ndim, ndim).
+    shift : NDArray[np.floating]
+        The shifts to calculate the commom mode for.
+        Each should have shape (ndim,)
+    reference : int, default: -2
+        The matrix whose tangent space we calculate the common mode in.
+        If this is -2 then `approx_common_mode_svd` is called to generate the reference.
+        If this is -1 then the indentity is used.
+        If this is 0 or greater then `transforms[reference]` is used.
+    rigid_only : bool, default: True
+        If True then return only the rigid portion of the transform.
+
+    Returns
+    -------
+    common_transform : NDArray[np.floating]
+        The common mode portion of the input transforms.
+    common_shift : NDArray[np.floating]
+        The common mode portion of the input shifts.
+    """
+    if reference >= 0:
+        ref_transform = transforms[reference]
+    elif reference == -1:
+        ref_transform = np.eye(len(transforms[0]))
+    elif reference == -2:
+        ref_transform = approx_common_mode_svd(transforms)
+    else:
+        raise ValueError("Invalid reference")
+
+    # Compute the average in the Lie group
+    avg_group = np.mean(np.log(ref_transform.T @ np.array(transforms)), axis=0)
+
+    # Now back to the Lie algebra
+    common_transform = ref_transform @ np.exp(avg_group)
+
+    # Keep only the rotation if we want
+    if rigid_only:
+        _, _, common_transform = decompose_affine(common_transform)
+
+    # For the shift we can do the easy thing
+    common_shift = np.mean(shifts, axis=0)
+
+    return common_transform, common_shift
