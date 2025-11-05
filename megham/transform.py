@@ -227,7 +227,7 @@ def get_affine(
 def get_affine_two_stage(
     src: NDArray[np.floating],
     dst: NDArray[np.floating],
-    weights: NDArray[np.floating],
+    weights: Optional[NDArray[np.floating]],
 ) -> tuple[NDArray[np.floating], NDArray[np.floating]]:
     """
     Get affine transformation between two point clouds with a two stage solver.
@@ -253,13 +253,20 @@ def get_affine_two_stage(
     shift : NDArray[np.floating]
         The (ndim,) shift to apply after transformation.
     """
-    # Do an initial alignment without weights
-    affine_0, shift_0 = get_affine(src, dst, force_svd=True)
+    if weights is None:
+        weights = np.ones(len(src))
+    # Do an initial rigid alignment
+    affine_0, shift_0 = get_rigid(src, dst, method="mean")  # force_svd=True)
     init_align = apply_transform(src, affine_0, shift_0)
+    # Do an alignment without weights
+    affine_1, shift_1 = get_affine(init_align, dst, force_svd=True, method="mean")
+    init_align = apply_transform(init_align, affine_1, shift_1)
     # Now compute the actual transform
     affine, shift = get_affine(init_align, dst, weights)
     # Compose the transforms
-    affine, shift = compose_transform(affine_0, shift_0, affine, shift)
+    affine, shift = compose_transform(
+        *compose_transform(affine_0, shift_0, affine_1, shift_1), affine, shift
+    )
     # Now one last shift correction
     transformed = apply_transform(src, affine, shift)
     shift += get_shift(transformed, dst, "mean", weights)
