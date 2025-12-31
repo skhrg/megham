@@ -1,3 +1,10 @@
+## 1.4.0 (2025-12-31)
+
+### Feat
+
+- add common mode estimation
+- improve two stage alignment with a rigid pre-alignment
+
 ## 1.3.1 (2024-11-18)
 
 ### Fix
