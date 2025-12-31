@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     name: "Bump version and create changelog with commitizen"
     steps:
-      - Get token
+      - name: Get token
         uses: actions/create-github-app-token@v1
         id: app-token
         with:
