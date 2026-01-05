@@ -1,6 +1,7 @@
 """
 Functions to computing and working with transformations between point clouds
 """
+
 from typing import Optional
 
 import numpy as np
