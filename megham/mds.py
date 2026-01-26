@@ -1,6 +1,7 @@
 """
 Functions for doing multidimensional scaling.
 """
+
 import logging
 from typing import Callable, Optional
 
