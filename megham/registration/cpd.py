@@ -1,6 +1,7 @@
 """
 Module for performing coherent point drift
 """
+
 from typing import Optional, Protocol, Sequence
 
 import numpy as np
@@ -25,8 +26,7 @@ class Callback(Protocol):
         transformed: NDArray[np.floating],
         iteration: int,
         err: float,
-    ):
-        ...
+    ): ...
 
 
 def dummy_callback(target, transformed, iteration, err):
