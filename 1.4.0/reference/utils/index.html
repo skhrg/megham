@@ -815,7 +815,7 @@ Should have shape (npoint, ndim).</p>
 <span class="normal">91</span>
 <span class="normal">92</span>
 <span class="normal">93</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">estimate_spacing</span><span class="p">(</span><span class="n">coords</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Estimate the spacing between points in a point cloud.</span>
 <span class="sd">    This is just the median distance between nearest neighbors.</span>
 
@@ -829,7 +829,7 @@ Should have shape (npoint, ndim).</p>
 <span class="sd">    -------</span>
 <span class="sd">    spacing : float</span>
 <span class="sd">        The spacing between points.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">edm</span> <span class="o">=</span> <span class="n">make_edm</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span>
     <span class="n">edm</span><span class="p">[</span><span class="n">edm</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
     <span class="n">nearest_dists</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span><span class="n">edm</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -994,7 +994,7 @@ Will have shape (ndim,).</p>
     <span class="n">dst</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
     <span class="n">dim_groups</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">int_</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Estimate variance between point clouds for use with something like a GMM.</span>
 
 <span class="sd">    Parameters</span>
@@ -1014,7 +1014,7 @@ Will have shape (ndim,).</p>
 <span class="sd">    var : NDArray[np.floating]</span>
 <span class="sd">        The estimated variance.</span>
 <span class="sd">        Will have shape (ndim,).</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">nsrcpoints</span><span class="p">,</span> <span class="n">ndim</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">shape</span>
     <span class="n">ndstpoints</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dst</span><span class="p">)</span>
 
@@ -1028,7 +1028,7 @@ Will have shape (ndim,).</p>
 
     <span class="n">var</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ndim</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">dim_group</span> <span class="ow">in</span> <span class="n">dim_groups</span><span class="p">:</span>
-        <span class="n">sq_diff</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">cdist</span><span class="p">(</span><span class="n">src</span><span class="p">[:,</span> <span class="n">dim_group</span><span class="p">],</span> <span class="n">dst</span><span class="p">[:,</span> <span class="n">dim_group</span><span class="p">],</span> <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;sqeuclidean&quot;</span><span class="p">)</span>
+        <span class="n">sq_diff</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">cdist</span><span class="p">(</span><span class="n">src</span><span class="p">[:,</span> <span class="n">dim_group</span><span class="p">],</span> <span class="n">dst</span><span class="p">[:,</span> <span class="n">dim_group</span><span class="p">],</span> <span class="n">metric</span><span class="o">=</span><span class="s2">"sqeuclidean"</span><span class="p">)</span>
         <span class="n">var</span><span class="p">[</span><span class="n">dim_group</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">sq_diff</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dim_group</span><span class="p">)</span> <span class="o">*</span> <span class="n">nsrcpoints</span> <span class="o">*</span> <span class="n">ndstpoints</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">var</span>
@@ -1212,7 +1212,7 @@ This makes the weights the PDF of a normal distribution.</p>
     <span class="n">var</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">pdf</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Generate weights between points in two registered point clouds.</span>
 <span class="sd">    The weight here is just the liklihood from a gaussian.</span>
 <span class="sd">    Note that this is not a GMM, each weight is computed from a single</span>
@@ -1238,7 +1238,7 @@ This makes the weights the PDF of a normal distribution.</p>
 <span class="sd">    -------</span>
 <span class="sd">    weights : NDArray[np.floating]</span>
 <span class="sd">        (npoints,) array of weights.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">var</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">var</span> <span class="o">=</span> <span class="n">estimate_var</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">)</span>
     <span class="n">norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
@@ -1343,7 +1343,7 @@ This makes the weights the PDF of a normal distribution.</p>
 <span class="normal">23</span>
 <span class="normal">24</span>
 <span class="normal">25</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">make_edm</span><span class="p">(</span><span class="n">coords</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Make an Euclidean distance matrix from a set of points.</span>
 
 <span class="sd">    Parameters</span>
@@ -1355,7 +1355,7 @@ This makes the weights the PDF of a normal distribution.</p>
 <span class="sd">    -------</span>
 <span class="sd">    edm : NDArray[np.floating]</span>
 <span class="sd">        The (npoint, npoint) euclidean distance matrix.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">dist_vec</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">pdist</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span>
     <span class="n">edm</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">squareform</span><span class="p">(</span><span class="n">dist_vec</span><span class="p">)</span>
 

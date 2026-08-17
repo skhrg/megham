@@ -928,7 +928,7 @@ If distance_matrix has non-finite values.</p>
 <span class="normal">61</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">classic_mds</span><span class="p">(</span>
     <span class="n">distance_matrix</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span> <span class="n">ndim</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Perform classical (Torgerson) MDS. This assumes a complete euclidean distance matrix.</span>
 
 <span class="sd">    Parameters</span>
@@ -950,12 +950,12 @@ If distance_matrix has non-finite values.</p>
 <span class="sd">    ValueError</span>
 <span class="sd">        If distance_matrix is not square.</span>
 <span class="sd">        If distance_matrix has non-finite values.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">npoint</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">distance_matrix</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="n">npoint</span><span class="p">,</span> <span class="n">npoint</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Distance matrix should be square&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Distance matrix should be square"</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">)):</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Distance matrix must only have finite values&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Distance matrix must only have finite values"</span><span class="p">)</span>
 
     <span class="n">d_sq</span> <span class="o">=</span> <span class="n">distance_matrix</span><span class="o">**</span><span class="mi">2</span>
     <span class="n">cent_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">npoint</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">)</span> <span class="o">/</span> <span class="n">npoint</span>
@@ -1248,7 +1248,7 @@ If the shape of weights or guess is not consistant with distance_matrix.</p>
     <span class="n">use_smacof</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Perform metric MDS.</span>
 <span class="sd">    This is useful over classical MDS if you have missing values or need to weight distances.</span>
 
@@ -1283,30 +1283,30 @@ If the shape of weights or guess is not consistant with distance_matrix.</p>
 <span class="sd">    ValueError</span>
 <span class="sd">        If distance_matrix is not square.</span>
 <span class="sd">        If the shape of weights or guess is not consistant with distance_matrix.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">npoint</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">distance_matrix</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="n">npoint</span><span class="p">,</span> <span class="n">npoint</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Distance matrix should be square&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Distance matrix should be square"</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">weights</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">weights</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="n">npoint</span><span class="p">,</span> <span class="n">npoint</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Weights must match distance_matrix&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Weights must match distance_matrix"</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">neg_msk</span> <span class="o">=</span> <span class="n">weights</span> <span class="o">&lt;</span> <span class="mi">0</span>
         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">neg_msk</span><span class="p">):</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Negetive weight found, setting to 0.&quot;</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">"Negetive weight found, setting to 0."</span><span class="p">)</span>
             <span class="n">weights</span><span class="p">[</span><span class="n">neg_msk</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">nfin_msk</span> <span class="o">=</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">nfin_msk</span><span class="p">):</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Non-finite weight found, setting to 0.&quot;</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">"Non-finite weight found, setting to 0."</span><span class="p">)</span>
             <span class="n">weights</span><span class="p">[</span><span class="n">nfin_msk</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="k">if</span> <span class="n">guess</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;No initial guess provided, using a random set of points.&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"No initial guess provided, using a random set of points."</span><span class="p">)</span>
         <span class="n">guess</span> <span class="o">=</span> <span class="n">_init_coords</span><span class="p">(</span><span class="n">npoint</span><span class="p">,</span> <span class="n">ndim</span><span class="p">,</span> <span class="n">distance_matrix</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">guess</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="n">npoint</span><span class="p">,</span> <span class="n">ndim</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Guess must be (npoint, ndim)&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Guess must be (npoint, ndim)"</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">use_smacof</span><span class="p">:</span>
         <span class="n">coords</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">smacof</span><span class="p">(</span>
@@ -1320,7 +1320,7 @@ If the shape of weights or guess is not consistant with distance_matrix.</p>
             <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-            <span class="s2">&quot;Finished with a final stress of </span><span class="si">%f</span><span class="se">\n</span><span class="s2"> Optimizer message: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">"Finished with a final stress of </span><span class="si">%f</span><span class="se">\n</span><span class="s2"> Optimizer message: </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span>
             <span class="n">res</span><span class="o">.</span><span class="n">fun</span><span class="p">,</span>
             <span class="n">res</span><span class="o">.</span><span class="n">message</span><span class="p">,</span>
         <span class="p">)</span>
@@ -1491,7 +1491,7 @@ Should be (npoint, npoint) and have 1-to-1 correspondance with distance_matrix.<
     <span class="n">weights</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
     <span class="n">ndim</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Stress that is minimized for metric MDS.</span>
 
 <span class="sd">    Parameters</span>
@@ -1512,7 +1512,7 @@ Should be (npoint, npoint) and have 1-to-1 correspondance with distance_matrix.<
 <span class="sd">    -------</span>
 <span class="sd">    stress : float</span>
 <span class="sd">        The stress of the system at the with the given coordinates.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">npoint</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">)</span>
     <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">triu_indices</span><span class="p">(</span><span class="n">npoint</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">edm</span> <span class="o">=</span> <span class="n">make_edm</span><span class="p">(</span><span class="n">coords</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">npoint</span><span class="p">,</span> <span class="n">ndim</span><span class="p">)))</span>
@@ -1872,7 +1872,7 @@ If the shape of weights or guess is not consistant with distance_matrix.</p>
     <span class="n">use_smacof</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Perform nonmetric MDS.</span>
 <span class="sd">    This is useful over metric MDS if you have some wierd dissimilarity</span>
 <span class="sd">    (ie. not euclidean).</span>
@@ -1912,36 +1912,36 @@ If the shape of weights or guess is not consistant with distance_matrix.</p>
 <span class="sd">    ValueError</span>
 <span class="sd">        If distance_matrix is not square.</span>
 <span class="sd">        If the shape of weights or guess is not consistant with distance_matrix.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">use_smacof</span><span class="p">:</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-            <span class="s2">&quot;You are using SMACOF with nonmetric mds, this doesn&#39;t currently work very well...&quot;</span>
+            <span class="s2">"You are using SMACOF with nonmetric mds, this doesn't currently work very well..."</span>
         <span class="p">)</span>
-        <span class="k">if</span> <span class="s2">&quot;verbose&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
-            <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;verbose&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="s2">"verbose"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s2">"verbose"</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="n">npoint</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">distance_matrix</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="n">npoint</span><span class="p">,</span> <span class="n">npoint</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Distance matrix should be square&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Distance matrix should be square"</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">weights</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">weights</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="n">npoint</span><span class="p">,</span> <span class="n">npoint</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Weights must match distance_matrix&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Weights must match distance_matrix"</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">neg_msk</span> <span class="o">=</span> <span class="n">weights</span> <span class="o">&lt;</span> <span class="mi">0</span>
         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">neg_msk</span><span class="p">):</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Negetive weight found, setting to 0.&quot;</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">"Negetive weight found, setting to 0."</span><span class="p">)</span>
             <span class="n">weights</span><span class="p">[</span><span class="n">neg_msk</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">nfin_msk</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">nfin_msk</span><span class="p">):</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Non-finite weight found, setting to 0.&quot;</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">"Non-finite weight found, setting to 0."</span><span class="p">)</span>
             <span class="n">weights</span><span class="p">[</span><span class="n">nfin_msk</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="k">if</span> <span class="n">guess</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;No initial guess provided, using a random set of points.&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"No initial guess provided, using a random set of points."</span><span class="p">)</span>
         <span class="n">guess</span> <span class="o">=</span> <span class="n">_init_coords</span><span class="p">(</span><span class="n">npoint</span><span class="p">,</span> <span class="n">ndim</span><span class="p">,</span> <span class="n">distance_matrix</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">guess</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="n">npoint</span><span class="p">,</span> <span class="n">ndim</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Guess must be (npoint, ndim)&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Guess must be (npoint, ndim)"</span><span class="p">)</span>
 
     <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">triu_indices</span><span class="p">(</span><span class="n">npoint</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">flat_dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
@@ -1979,13 +1979,13 @@ If the shape of weights or guess is not consistant with distance_matrix.</p>
             <span class="n">guess</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">npoint</span><span class="p">,</span> <span class="n">ndim</span><span class="p">))</span>
             <span class="n">stress</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">fun</span>
         <span class="k">if</span> <span class="n">guess</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Current guess is None, something went wrong...&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">"Current guess is None, something went wrong..."</span><span class="p">)</span>
         <span class="n">coords</span> <span class="o">=</span> <span class="n">guess</span>
         <span class="k">if</span> <span class="n">_stress</span> <span class="o">-</span> <span class="n">stress</span> <span class="o">&lt;</span> <span class="n">epsilon_outer</span><span class="p">:</span>
             <span class="k">break</span>
         <span class="k">if</span> <span class="n">stress</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">break</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Took </span><span class="si">%d</span><span class="s2"> iterations with a final stress of </span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">stress</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"Took </span><span class="si">%d</span><span class="s2"> iterations with a final stress of </span><span class="si">%f</span><span class="s2">"</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">stress</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">coords</span>
 </code></pre></div></td></tr></table></div>
@@ -2157,7 +2157,7 @@ Should be (npoint, npoint) and have 1-to-1 correspondance with distance_matrix.<
     <span class="n">weights</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
     <span class="n">ndim</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Stress that is minimized for nonmetric MDS.</span>
 
 <span class="sd">    Parameters</span>
@@ -2178,7 +2178,7 @@ Should be (npoint, npoint) and have 1-to-1 correspondance with distance_matrix.<
 <span class="sd">    -------</span>
 <span class="sd">    stress : float</span>
 <span class="sd">        The stress of the system at the with the given coordinates.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">npoint</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">f_dist</span><span class="p">)</span>
     <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">triu_indices</span><span class="p">(</span><span class="n">npoint</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">edm</span> <span class="o">=</span> <span class="n">make_edm</span><span class="p">(</span><span class="n">coords</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">npoint</span><span class="p">,</span> <span class="n">ndim</span><span class="p">)))</span>
@@ -2475,7 +2475,7 @@ If False logs at the DEBUG level.</p>
     <span class="n">epsilon</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-10</span><span class="p">,</span>
     <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span> <span class="nb">float</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    SMACOF algorithm for multidimensional scaling.</span>
 
 <span class="sd">    Parameters</span>
@@ -2508,7 +2508,7 @@ If False logs at the DEBUG level.</p>
 <span class="sd">        The coordinates as optimized by SMACOF.</span>
 <span class="sd">    stress : float</span>
 <span class="sd">        The stress of the system at the final iteration.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
         <span class="n">log</span> <span class="o">=</span> <span class="n">logger</span><span class="o">.</span><span class="n">info</span>
     <span class="k">else</span><span class="p">:</span>
@@ -2534,7 +2534,7 @@ If False logs at the DEBUG level.</p>
         <span class="n">coords</span> <span class="o">=</span> <span class="n">guess</span>
         <span class="k">if</span> <span class="n">_stress</span> <span class="o">-</span> <span class="n">stress</span> <span class="o">&lt;</span> <span class="n">epsilon</span><span class="p">:</span>
             <span class="k">break</span>
-    <span class="n">log</span><span class="p">(</span><span class="s2">&quot;SMACOF took </span><span class="si">%d</span><span class="s2"> iterations with a final stress of </span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">stress</span><span class="p">)</span>
+    <span class="n">log</span><span class="p">(</span><span class="s2">"SMACOF took </span><span class="si">%d</span><span class="s2"> iterations with a final stress of </span><span class="si">%f</span><span class="s2">"</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">stress</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">coords</span><span class="p">,</span> <span class="n">stress</span>
 </code></pre></div></td></tr></table></div>
             </details>

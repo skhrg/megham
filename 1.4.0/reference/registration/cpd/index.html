@@ -789,9 +789,9 @@
 <span class="normal">27</span>
 <span class="normal">28</span>
 <span class="normal">29</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Callback</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Callback idea shamelessly stolen from pycpd.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -1007,7 +1007,7 @@ Has shape (nsrcpoints, ntrgpoints).</p>
     <span class="n">var</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
     <span class="n">w</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Compute matrix of probabilities of matches between points in source and target.</span>
 
 <span class="sd">    Parameters</span>
@@ -1031,7 +1031,7 @@ Has shape (nsrcpoints, ntrgpoints).</p>
 <span class="sd">        Probability matrix of matches between the source and target points.</span>
 <span class="sd">        P[i,j] is the probability that source[i] corresponds to target[j].</span>
 <span class="sd">        Has shape (nsrcpoints, ntrgpoints).</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="c1"># TODO: implement fast gaussian transform</span>
     <span class="n">nsrcpoints</span><span class="p">,</span> <span class="n">ndim</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">shape</span>
     <span class="n">ntrgpoints</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
@@ -1046,7 +1046,7 @@ Has shape (nsrcpoints, ntrgpoints).</p>
         <span class="n">sq_diff</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">cdist</span><span class="p">(</span>
             <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">source</span><span class="p">[:,</span> <span class="n">dim</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
             <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">target</span><span class="p">[:,</span> <span class="n">dim</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
-            <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;sqeuclidean&quot;</span><span class="p">,</span>
+            <span class="n">metric</span><span class="o">=</span><span class="s2">"sqeuclidean"</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">gaussians</span> <span class="o">*=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">sq_diff</span> <span class="o">/</span> <span class="n">var</span><span class="p">[</span><span class="n">dim</span><span class="p">])</span>
     <span class="n">norm_fac</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">gaussians</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">epsilon</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
@@ -1064,7 +1064,7 @@ Has shape (nsrcpoints, ntrgpoints).</p>
 
 
 <h2 id="megham.registration.cpd.cpd" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">cpd</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">max_iters</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">dummy_callback</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;affine&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">cpd</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">max_iters</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">dummy_callback</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">'affine'</span><span class="p">)</span></code>
 
 </h2>
 
@@ -1116,20 +1116,20 @@ See the docstring of joint_cpd for details on the parameters and returns.</p>
     <span class="n">eps</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-10</span><span class="p">,</span>
     <span class="n">max_iters</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">500</span><span class="p">,</span>
     <span class="n">callback</span><span class="p">:</span> <span class="n">Callback</span> <span class="o">=</span> <span class="n">dummy_callback</span><span class="p">,</span>
-    <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;affine&quot;</span><span class="p">,</span>
+    <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"affine"</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span>
     <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
     <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
     <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
     <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
 <span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Compute the CPD.</span>
 <span class="sd">    This is just a wrapper around joint_cpd that puts everything into one dim_group.</span>
 <span class="sd">    See the docstring of joint_cpd for details on the parameters and returns.</span>
 
 <span class="sd">    See https://arxiv.org/abs/0905.2635 for details on the base CPD algorithm.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">return</span> <span class="n">joint_cpd</span><span class="p">(</span>
         <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span>
         <span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">,</span>
@@ -1150,7 +1150,7 @@ See the docstring of joint_cpd for details on the parameters and returns.</p>
 
 
 <h2 id="megham.registration.cpd.joint_cpd" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">joint_cpd</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">dim_groups</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">max_iters</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">dummy_callback</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;affine&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">joint_cpd</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">dim_groups</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">max_iters</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">dummy_callback</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">'affine'</span><span class="p">)</span></code>
 
 </h2>
 
@@ -1549,14 +1549,14 @@ If dim_groups has repeated dimensions or invalid dimensions.</p>
     <span class="n">eps</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-3</span><span class="p">,</span>
     <span class="n">max_iters</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">500</span><span class="p">,</span>
     <span class="n">callback</span><span class="p">:</span> <span class="n">Callback</span> <span class="o">=</span> <span class="n">dummy_callback</span><span class="p">,</span>
-    <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;affine&quot;</span><span class="p">,</span>
+    <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"affine"</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span>
     <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
     <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
     <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
     <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
 <span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Compute the joint CPD.</span>
 
 <span class="sd">    This is an extension of the base CPD algorithm that allows you to fit for</span>
@@ -1598,7 +1598,7 @@ If dim_groups has repeated dimensions or invalid dimensions.</p>
 <span class="sd">    callback: Callback, default: dummy_callback</span>
 <span class="sd">        Function that runs once per iteration, can be used to visualize the match process.</span>
 <span class="sd">        See the Callback Protocol for details on the expected signature.</span>
-<span class="sd">    method : str, default: &#39;affine&#39;</span>
+<span class="sd">    method : str, default: 'affine'</span>
 <span class="sd">        The type of transformation to compute.</span>
 <span class="sd">        Acceptable values are: affine, rigid.</span>
 <span class="sd">        If any other value is passed then transform will be the identity.</span>
@@ -1624,13 +1624,13 @@ If dim_groups has repeated dimensions or invalid dimensions.</p>
 <span class="sd">    Raises</span>
 <span class="sd">    ------</span>
 <span class="sd">    ValueError</span>
-<span class="sd">        If source and target don&#39;t share ndim.</span>
+<span class="sd">        If source and target don't share ndim.</span>
 <span class="sd">        If dim_groups has repeated dimensions or invalid dimensions.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">ndim</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">target</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">ndim</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;Source and target don&#39;t have same ndim (</span><span class="si">{</span><span class="n">ndim</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="n">target</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span>
+            <span class="sa">f</span><span class="s2">"Source and target don't have same ndim (</span><span class="si">{</span><span class="n">ndim</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="n">target</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">)"</span>
         <span class="p">)</span>
     <span class="k">if</span> <span class="n">dim_groups</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">dim_groups</span> <span class="o">=</span> <span class="p">[</span>
@@ -1640,11 +1640,11 @@ If dim_groups has repeated dimensions or invalid dimensions.</p>
         <span class="n">dims_flat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">dim_groups</span><span class="p">)</span>
         <span class="n">dims_bad</span> <span class="o">=</span> <span class="n">dims_flat</span><span class="p">[(</span><span class="n">dims_flat</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">dims_flat</span> <span class="o">&gt;=</span> <span class="n">ndim</span><span class="p">)]</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dims_bad</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid dimensions in dim_groups: </span><span class="si">{</span><span class="n">dims_bad</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Invalid dimensions in dim_groups: </span><span class="si">{</span><span class="n">dims_bad</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
         <span class="n">dims_uniq</span><span class="p">,</span> <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">dims_flat</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">repeats</span> <span class="o">=</span> <span class="n">dims_uniq</span><span class="p">[</span><span class="n">counts</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">]</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">repeats</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Repeated dimensions in dim_groups: </span><span class="si">{</span><span class="n">repeats</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Repeated dimensions in dim_groups: </span><span class="si">{</span><span class="n">repeats</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
         <span class="n">dim_groups</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dim_group</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span> <span class="k">for</span> <span class="n">dim_group</span> <span class="ow">in</span> <span class="n">dim_groups</span><span class="p">]</span>
 
     <span class="n">var</span> <span class="o">=</span> <span class="n">estimate_var</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">dim_groups</span><span class="p">)</span>
@@ -1680,7 +1680,7 @@ If dim_groups has repeated dimensions or invalid dimensions.</p>
 
 
 <h2 id="megham.registration.cpd.solve_transform" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">solve_transform</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">dim_groups</span><span class="p">,</span> <span class="n">cur_var</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;affine&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">solve_transform</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">dim_groups</span><span class="p">,</span> <span class="n">cur_var</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">'affine'</span><span class="p">)</span></code>
 
 </h2>
 
@@ -1959,9 +1959,9 @@ If any other value is passed then transform will be the identity.</p>
     <span class="n">P</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
     <span class="n">dim_groups</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">int_</span><span class="p">]],</span>
     <span class="n">cur_var</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
-    <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;affine&quot;</span><span class="p">,</span>
+    <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"affine"</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span> <span class="nb">float</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Solve for the transformation at each iteration of CPD.</span>
 
 <span class="sd">    Parameters</span>
@@ -1978,7 +1978,7 @@ If any other value is passed then transform will be the identity.</p>
 <span class="sd">        Which dimensions should be transformed together.</span>
 <span class="sd">    cur_var : float</span>
 <span class="sd">        The current mixture model variance.</span>
-<span class="sd">    method : str, default: &#39;affine&#39;</span>
+<span class="sd">    method : str, default: 'affine'</span>
 <span class="sd">        The type of transformation to compute.</span>
 <span class="sd">        Acceptable values are: affine, rigid.</span>
 <span class="sd">        If any other value is passed then transform will be the identity.</span>
@@ -1993,7 +1993,7 @@ If any other value is passed then transform will be the identity.</p>
 <span class="sd">        Current variance of the mixture model.</span>
 <span class="sd">    err : float</span>
 <span class="sd">        Current value of the error function.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">ndim</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">N_P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
     <span class="n">PT1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
@@ -2018,9 +2018,9 @@ If any other value is passed then transform will be the identity.</p>
         <span class="n">all_mul</span> <span class="o">=</span> <span class="n">trg</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">P</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">src</span>
         <span class="n">src_mul</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">P1</span> <span class="o">@</span> <span class="n">src</span>
 
-        <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;affine&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">"affine"</span><span class="p">:</span>
             <span class="n">tfm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">src_mul</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">all_mul</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;rigid&quot;</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">"rigid"</span><span class="p">:</span>
             <span class="n">U</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">all_mul</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="n">corr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dim_group</span><span class="p">))</span>
             <span class="n">corr</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">det</span><span class="p">((</span><span class="n">V</span><span class="p">)</span> <span class="o">@</span> <span class="p">(</span><span class="n">U</span><span class="p">))</span>

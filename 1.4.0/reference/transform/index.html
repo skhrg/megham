@@ -1081,7 +1081,7 @@ If affine and shift have inconsistent shapes.</p>
     <span class="n">transform</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
     <span class="n">shift</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Apply a transformation to a set of points.</span>
 
 <span class="sd">    Parameters</span>
@@ -1106,17 +1106,17 @@ If affine and shift have inconsistent shapes.</p>
 <span class="sd">    ------</span>
 <span class="sd">    ValueError</span>
 <span class="sd">        If src is not a 2d array.</span>
-<span class="sd">        If one of src&#39;s axis is not of size ndim.</span>
+<span class="sd">        If one of src's axis is not of size ndim.</span>
 <span class="sd">        If affine and shift have inconsistent shapes.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">ndim</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">shift</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">transform</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="n">ndim</span><span class="p">,</span> <span class="n">ndim</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;From shift we assume ndim=</span><span class="si">{</span><span class="n">ndim</span><span class="si">}</span><span class="s2"> but transform has shape </span><span class="si">{</span><span class="n">transform</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">"From shift we assume ndim=</span><span class="si">{</span><span class="n">ndim</span><span class="si">}</span><span class="s2"> but transform has shape </span><span class="si">{</span><span class="n">transform</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span>
         <span class="p">)</span>
     <span class="n">src_shape</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">src_shape</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;src should be a 2d array, not </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="si">}</span><span class="s2">d&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"src should be a 2d array, not </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="si">}</span><span class="s2">d"</span><span class="p">)</span>
 
     <span class="n">transformed</span> <span class="o">=</span> <span class="n">src</span> <span class="o">@</span> <span class="n">transform</span> <span class="o">+</span> <span class="n">shift</span>
     <span class="k">return</span> <span class="n">transformed</span>
@@ -1232,7 +1232,7 @@ Each should have shape (ndim, ndim).</p>
 <span class="normal">544</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">approx_common_mode_svd</span><span class="p">(</span>
     <span class="n">transforms</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">]],</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Approximate the common mode rotation between matrices by using the SVD.</span>
 <span class="sd">    This is done by taking a naive mean of all matrices and then finding the nearest</span>
 <span class="sd">    orthogonal matrix to this mean matrix: $U \tilde{I} V^T$ where $U$ and $V^T$ are</span>
@@ -1250,7 +1250,7 @@ Each should have shape (ndim, ndim).</p>
 <span class="sd">    -------</span>
 <span class="sd">    common_rot : NDArray[np.floating]</span>
 <span class="sd">        The approximate common mode rotation.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">mean_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">transforms</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">u</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">vh</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">mean_mat</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
     <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mean_mat</span><span class="p">))</span>
@@ -1442,7 +1442,7 @@ Has shape (ndim,).</p>
     <span class="n">transform_2</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
     <span class="n">shift_2</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Combine transformations to get one that is equivalent to:</span>
 <span class="sd">    dst = (src@transform_1 + shift)@transform_2 + shift_2</span>
 
@@ -1469,7 +1469,7 @@ Has shape (ndim,).</p>
 <span class="sd">    shift : NDArray[np.floating].</span>
 <span class="sd">        The composed shift.</span>
 <span class="sd">        Has shape (ndim,).</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">transform</span> <span class="o">=</span> <span class="n">transform_1</span> <span class="o">@</span> <span class="n">transform_2</span>
     <span class="n">shift</span> <span class="o">=</span> <span class="n">shift_1</span> <span class="o">@</span> <span class="n">transform_2</span> <span class="o">+</span> <span class="n">shift_2</span>
 
@@ -1637,7 +1637,7 @@ If ndim is 2 or 3 then decompose_rotation can be used to get euler angles.</p>
 <span class="normal">363</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">decompose_affine</span><span class="p">(</span>
     <span class="n">affine</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Decompose an affine transformation into its components.</span>
 <span class="sd">    This decomposetion treats the affine matrix as: rotation * shear * scale.</span>
 
@@ -1660,10 +1660,10 @@ If ndim is 2 or 3 then decompose_rotation can be used to get euler angles.</p>
 <span class="sd">    ------</span>
 <span class="sd">    ValueError</span>
 <span class="sd">        If affine is not ndim by ndim.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">ndim</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">affine</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">affine</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="n">ndim</span><span class="p">,</span> <span class="n">ndim</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Affine matrix should be ndim by ndim&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Affine matrix should be ndim by ndim"</span><span class="p">)</span>
     <span class="c1"># Use the fact that rotation matrix times its transpose is the identity</span>
     <span class="n">no_rot</span> <span class="o">=</span> <span class="n">affine</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">affine</span>
     <span class="c1"># Decompose to get a matrix with just scale and shear</span>
@@ -1814,9 +1814,9 @@ If ndim is not 2 or 3.</p>
 <span class="normal">400</span>
 <span class="normal">401</span>
 <span class="normal">402</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">decompose_rotation</span><span class="p">(</span><span class="n">rotation</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Decompose a rotation matrix into its xyz rotation angles.</span>
-<span class="sd">    This currently won&#39;t work on anything higher than 3 dimensions.</span>
+<span class="sd">    This currently won't work on anything higher than 3 dimensions.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1835,17 +1835,17 @@ If ndim is not 2 or 3.</p>
 <span class="sd">    ValueError</span>
 <span class="sd">        If affine is not ndim by ndim.</span>
 <span class="sd">        If ndim is not 2 or 3.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">ndim</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">rotation</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No support for rotations in more than 3 dimensions&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"No support for rotations in more than 3 dimensions"</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">ndim</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Rotations with less than 2 dimensions don&#39;t make sense&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Rotations with less than 2 dimensions don't make sense"</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">rotation</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="n">ndim</span><span class="p">,</span> <span class="n">ndim</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Rotation matrix should be ndim by ndim&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Rotation matrix should be ndim by ndim"</span><span class="p">)</span>
     <span class="n">_rotation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
     <span class="n">_rotation</span><span class="p">[:</span><span class="n">ndim</span><span class="p">,</span> <span class="p">:</span><span class="n">ndim</span><span class="p">]</span> <span class="o">=</span> <span class="n">rotation</span>
-    <span class="n">angles</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="n">from_matrix</span><span class="p">(</span><span class="n">_rotation</span><span class="p">)</span><span class="o">.</span><span class="n">as_euler</span><span class="p">(</span><span class="s2">&quot;xyz&quot;</span><span class="p">)</span>
+    <span class="n">angles</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="n">from_matrix</span><span class="p">(</span><span class="n">_rotation</span><span class="p">)</span><span class="o">.</span><span class="n">as_euler</span><span class="p">(</span><span class="s2">"xyz"</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
         <span class="n">angles</span> <span class="o">=</span> <span class="n">angles</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span>
@@ -2036,7 +2036,7 @@ Has shape (ndim,).</p>
     <span class="n">transform_1</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
     <span class="n">shift_1</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Decompose transformations to get one with the other removed.</span>
 <span class="sd">    This is solving for transform_2 and shift_2 in the following equation:</span>
 <span class="sd">    dst = src@transform + shift = (src@transform_1 + shift)@transform_2 + shift_2</span>
@@ -2064,7 +2064,7 @@ Has shape (ndim,).</p>
 <span class="sd">    shift_2 : NDArray[np.floating].</span>
 <span class="sd">        The shift with the first transform removed.</span>
 <span class="sd">        Has shape (ndim,).</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">transform_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">transform_1</span><span class="p">)</span> <span class="o">@</span> <span class="n">transform</span>
     <span class="n">shift_2</span> <span class="o">=</span> <span class="n">shift</span> <span class="o">-</span> <span class="n">shift_1</span> <span class="o">@</span> <span class="n">transform_2</span>
 
@@ -2359,7 +2359,7 @@ If the input point clouds don't have enough points.</p>
     <span class="n">force_svd</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Get affine transformation between two point clouds.</span>
 <span class="sd">    It is assumed that the point clouds have the same registration,</span>
 <span class="sd">    ie. src[i] corresponds to dst[i].</span>
@@ -2395,14 +2395,14 @@ If the input point clouds don't have enough points.</p>
 <span class="sd">    ------</span>
 <span class="sd">    ValueError</span>
 <span class="sd">        If the input point clouds have different shapes.</span>
-<span class="sd">        If the input point clouds don&#39;t have enough points.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">        If the input point clouds don't have enough points.</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">src</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">dst</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Input point clouds should have the same shape&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Input point clouds should have the same shape"</span><span class="p">)</span>
 
     <span class="n">msk</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">src</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">dst</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">msk</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">src</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Not enough finite points to compute transformation&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Not enough finite points to compute transformation"</span><span class="p">)</span>
 
     <span class="c1"># When we have a small number of points lstsq is better than SVD</span>
     <span class="c1"># Condition is a bit arbitrary for now</span>
@@ -2613,7 +2613,7 @@ If provided a weighted least squares is done instead of an SVD.</p>
     <span class="n">dst</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
     <span class="n">weights</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">]],</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Get affine transformation between two point clouds with a two stage solver.</span>
 <span class="sd">    This first uses the SVD to do an intitial alignment and</span>
 <span class="sd">    then uses weighted least squares to compute a correction on top of that.</span>
@@ -2636,14 +2636,14 @@ If provided a weighted least squares is done instead of an SVD.</p>
 <span class="sd">        The (ndim, ndim) transformation matrix.</span>
 <span class="sd">    shift : NDArray[np.floating]</span>
 <span class="sd">        The (ndim,) shift to apply after transformation.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">weights</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">src</span><span class="p">))</span>
     <span class="c1"># Do an initial rigid alignment</span>
-    <span class="n">affine_0</span><span class="p">,</span> <span class="n">shift_0</span> <span class="o">=</span> <span class="n">get_rigid</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">)</span>  <span class="c1"># force_svd=True)</span>
+    <span class="n">affine_0</span><span class="p">,</span> <span class="n">shift_0</span> <span class="o">=</span> <span class="n">get_rigid</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">"mean"</span><span class="p">)</span>  <span class="c1"># force_svd=True)</span>
     <span class="n">init_align</span> <span class="o">=</span> <span class="n">apply_transform</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">affine_0</span><span class="p">,</span> <span class="n">shift_0</span><span class="p">)</span>
     <span class="c1"># Do an alignment without weights</span>
-    <span class="n">affine_1</span><span class="p">,</span> <span class="n">shift_1</span> <span class="o">=</span> <span class="n">get_affine</span><span class="p">(</span><span class="n">init_align</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">force_svd</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">)</span>
+    <span class="n">affine_1</span><span class="p">,</span> <span class="n">shift_1</span> <span class="o">=</span> <span class="n">get_affine</span><span class="p">(</span><span class="n">init_align</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">force_svd</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">"mean"</span><span class="p">)</span>
     <span class="n">init_align</span> <span class="o">=</span> <span class="n">apply_transform</span><span class="p">(</span><span class="n">init_align</span><span class="p">,</span> <span class="n">affine_1</span><span class="p">,</span> <span class="n">shift_1</span><span class="p">)</span>
     <span class="c1"># Now compute the actual transform</span>
     <span class="n">affine</span><span class="p">,</span> <span class="n">shift</span> <span class="o">=</span> <span class="n">get_affine</span><span class="p">(</span><span class="n">init_align</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
@@ -2653,7 +2653,7 @@ If provided a weighted least squares is done instead of an SVD.</p>
     <span class="p">)</span>
     <span class="c1"># Now one last shift correction</span>
     <span class="n">transformed</span> <span class="o">=</span> <span class="n">apply_transform</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">affine</span><span class="p">,</span> <span class="n">shift</span><span class="p">)</span>
-    <span class="n">shift</span> <span class="o">+=</span> <span class="n">get_shift</span><span class="p">(</span><span class="n">transformed</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+    <span class="n">shift</span> <span class="o">+=</span> <span class="n">get_shift</span><span class="p">(</span><span class="n">transformed</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="s2">"mean"</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">affine</span><span class="p">,</span> <span class="n">shift</span>
 </code></pre></div></td></tr></table></div>
@@ -2874,7 +2874,7 @@ If this is 0 or greater then <code>transforms[reference]</code> is used.</p>
     <span class="n">reference</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span>
     <span class="n">rigid_only</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Get the rigid common mode from a set of transformations and shift.</span>
 <span class="sd">    This is done by computing the matrix exponential with respect to a reference matrix</span>
 <span class="sd">    and then computing the arithithmatic mean in corresponding Lie group before transforming back.</span>
@@ -2909,7 +2909,7 @@ If this is 0 or greater then <code>transforms[reference]</code> is used.</p>
 <span class="sd">        The common mode portion of the input transforms.</span>
 <span class="sd">    common_shift : NDArray[np.floating]</span>
 <span class="sd">        The common mode portion of the input shifts.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">reference</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">ref_transform</span> <span class="o">=</span> <span class="n">transforms</span><span class="p">[</span><span class="n">reference</span><span class="p">]</span>
     <span class="k">elif</span> <span class="n">reference</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
@@ -2917,7 +2917,7 @@ If this is 0 or greater then <code>transforms[reference]</code> is used.</p>
     <span class="k">elif</span> <span class="n">reference</span> <span class="o">==</span> <span class="o">-</span><span class="mi">2</span><span class="p">:</span>
         <span class="n">ref_transform</span> <span class="o">=</span> <span class="n">approx_common_mode_svd</span><span class="p">(</span><span class="n">transforms</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid reference&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Invalid reference"</span><span class="p">)</span>
 
     <span class="c1"># Compute the average in the Lie group</span>
     <span class="n">avg_group</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">ref_transform</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">transforms</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -3169,7 +3169,7 @@ If the input point clouds don't have enough points.</p>
     <span class="n">center_dst</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Get rigid transformation between two point clouds.</span>
 <span class="sd">    It is assumed that the point clouds have the same registration,</span>
 <span class="sd">    ie. src[i] corresponds to dst[i].</span>
@@ -3200,20 +3200,20 @@ If the input point clouds don't have enough points.</p>
 <span class="sd">    ------</span>
 <span class="sd">    ValueError</span>
 <span class="sd">        If the input point clouds have different shapes.</span>
-<span class="sd">        If the input point clouds don&#39;t have enough points.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">        If the input point clouds don't have enough points.</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">src</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">dst</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Input point clouds should have the same shape&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Input point clouds should have the same shape"</span><span class="p">)</span>
 
     <span class="n">msk</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">src</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">dst</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">ndim</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">msk</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">ndim</span> <span class="o">*</span> <span class="p">(</span><span class="n">ndim</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Not enough finite points to compute transformation&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Not enough finite points to compute transformation"</span><span class="p">)</span>
 
     <span class="n">_dst</span> <span class="o">=</span> <span class="n">dst</span><span class="p">[</span><span class="n">msk</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">center_dst</span><span class="p">:</span>
         <span class="n">_kwargs</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-        <span class="n">_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;weights&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">})</span>
+        <span class="n">_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">"weights"</span><span class="p">:</span> <span class="kc">None</span><span class="p">})</span>
         <span class="n">_dst</span> <span class="o">+=</span> <span class="n">get_shift</span><span class="p">(</span><span class="n">_dst</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="o">**</span><span class="n">_kwargs</span><span class="p">)</span>
     <span class="n">_src</span> <span class="o">=</span> <span class="n">src</span><span class="p">[</span><span class="n">msk</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="n">_src</span> <span class="o">+=</span> <span class="n">get_shift</span><span class="p">(</span><span class="n">_src</span><span class="p">,</span> <span class="n">_dst</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -3242,7 +3242,7 @@ If the input point clouds don't have enough points.</p>
 
 
 <h2 id="megham.transform.get_shift" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">get_shift</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">get_shift</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">'median'</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 </h2>
 
@@ -3441,10 +3441,10 @@ If method is median this is not currently used.</p>
 <span class="normal">64</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_shift</span><span class="p">(</span>
     <span class="n">src</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
     <span class="n">dst</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span>
-    <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;median&quot;</span><span class="p">,</span>
+    <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"median"</span><span class="p">,</span>
     <span class="n">weights</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Get shift between two point clouds.</span>
 <span class="sd">    Shift can be applied as dst = src + shift.</span>
 
@@ -3458,12 +3458,12 @@ If method is median this is not currently used.</p>
 <span class="sd">        Some useful options are:</span>
 <span class="sd">        * np.zeros(1) to align with the origin</span>
 <span class="sd">        * A (ndim,) array to align with an arbitrary point</span>
-<span class="sd">    method : str, default: &#39;median&#39;</span>
+<span class="sd">    method : str, default: 'median'</span>
 <span class="sd">        Method to use to align points.</span>
-<span class="sd">        Current accepted values are: &#39;median&#39; and &#39;mean&#39;</span>
+<span class="sd">        Current accepted values are: 'median' and 'mean'</span>
 <span class="sd">    weights : Optional[NDArray[np.floating]], default: None</span>
 <span class="sd">        (npoints,) array of weights to use.</span>
-<span class="sd">        If provided and method is &#39;mean&#39; then a weighted average is used.</span>
+<span class="sd">        If provided and method is 'mean' then a weighted average is used.</span>
 <span class="sd">        If method is median this is not currently used.</span>
 
 <span class="sd">    Returns</span>
@@ -3475,14 +3475,14 @@ If method is median this is not currently used.</p>
 <span class="sd">    ------</span>
 <span class="sd">    ValueError</span>
 <span class="sd">        If an invalid method is provided</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">method</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;median&quot;</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">]:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid method: </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">method</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"median"</span><span class="p">,</span> <span class="s2">"mean"</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Invalid method: </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
     <span class="n">shift</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;median&quot;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">"median"</span><span class="p">:</span>
         <span class="n">shift</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">dst</span> <span class="o">-</span> <span class="n">src</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;mean&quot;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">"mean"</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">weights</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">shift</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dst</span> <span class="o">-</span> <span class="n">src</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -3626,7 +3626,7 @@ Should have shape (ndim,)</p>
 <span class="normal">513</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">invert_transform</span><span class="p">(</span>
     <span class="n">transform</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span> <span class="n">shift</span><span class="p">:</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">],</span> <span class="n">NDArray</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Invert a transformation.</span>
 <span class="sd">    If the inverted transformation is applied to a point cloud that has already been</span>
 <span class="sd">    transformed, you will recover the original point cloud.</span>
@@ -3646,7 +3646,7 @@ Should have shape (ndim,)</p>
 <span class="sd">        The inverted transformation matrix.</span>
 <span class="sd">    shift_inv : NDArray[np.floating]</span>
 <span class="sd">        The inverted shift vector.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">transform_inv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">transform</span><span class="p">)</span>
     <span class="n">shift_inv</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">shift</span><span class="p">)</span> <span class="o">@</span> <span class="n">transform_inv</span>
 
